@@ -1,8 +1,4 @@
-
-
-import Objects.Doctor;
-import Objects.Patient;
-
+package Objects;
 /** I really don't know what to do here, thanks love you all cuties
  *  addAppointment and removeAppointment are not implemented yet
  *  

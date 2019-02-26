@@ -1,13 +1,11 @@
 package Objects;
 
-import Schedule;
-
 /** This class is used to handle doctors in the system
  *  
  * @author ali
  *
  */
-public class Doctor 
+public class Doctor
 {
 	//Variables necessary for each doctor
 	private String name;
