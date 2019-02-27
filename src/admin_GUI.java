@@ -184,7 +184,6 @@ public class admin_GUI extends Main{
 					jsO.put ("Email: ", peMail);
 					jsO.put ("Address: ", pAdd);
 					//jsO.put ("Patient ID", );
-					//jsO.put ("Date of Birth", myArray[4] + " " + myArray[5] + " " + myArray[6]);
 
 
 					System.out.println("Input confirm print: " + pfirstName + " " + plastName + " " + pAdd +" " + pNumb + " " + peMail + " " +pDoct);
