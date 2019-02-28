@@ -32,7 +32,8 @@ public class Main extends Application {
 	
 	
 	int size = 800;
-	String pfirstName, plastName, pAdd, pNumb, peMail, pDoct;
+	String pfirstName, plastName, pAdd, pNumb, peMail, pDoct,pId;
+	String dfirstName, dlastName, dAdd, dNumb, deMail,docspec;
 
 	@Override
 	public void start(Stage primaryStage) {
