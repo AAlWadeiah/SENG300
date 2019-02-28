@@ -1,10 +1,8 @@
 package Objects;
-/** I really don't know what to do here, thanks love you all cuties
- *  addAppointment and removeAppointment are not implemented yet
+/** 
  *  
  * This class will be specific to each doctor
- * @author ali
- *
+ * addAppointment and removeAppointment are not implemented yet
  */
 public class Schedule {
 	
