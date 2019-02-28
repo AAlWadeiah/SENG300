@@ -254,7 +254,7 @@ public class admin_GUI extends Main{
 
 					//try/catch to write JASON obj to file
 
-					try (FileWriter file = new FileWriter("C:\\development\\SENG300\\"+pfirstName+"_"+plastName+".json")){
+					try (FileWriter file = new FileWriter(pfirstName+"_"+plastName+".json")){
 
 
 					file.write(jsO.toJSONString());
