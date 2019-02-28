@@ -2,7 +2,6 @@ package Objects;
 
 /** This method is used for handling instances of patients
  * 
- * @author ali
  *
  */
 public class Patient {

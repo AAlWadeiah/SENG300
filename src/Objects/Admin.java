@@ -3,7 +3,6 @@ package Objects;
 
 /** This method is used to handle administrators in the system
  * 
- * @author ali
  *
  */
 public class Admin {

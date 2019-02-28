@@ -2,7 +2,6 @@ package Objects;
 
 /** This class is used to handle doctors in the system
  *  
- * @author ali
  *
  */
 public class Doctor

@@ -22,7 +22,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class admin_GUI extends Main{
+public class admin_GUI extends startupGui{
 
 	public void startAdmin(Stage primaryStage) {
 		
@@ -62,7 +62,7 @@ public class admin_GUI extends Main{
 		Label eMail = new Label("Email: ");
 		Label patDoc = new Label("Doctor: ");
 		Label patID = new Label("Patient ID: ");
-		Label docSpec = new Label("Specialism:");
+		Label docSpec = new Label("Department: ");
 		
 		//text fields
 		TextField fName = new TextField();
@@ -98,7 +98,7 @@ public class admin_GUI extends Main{
 		dadd.setPromptText("Enter doctor's address");
 		dNum.setPromptText("Enter doctors's phone #");
 		dEmail.setPromptText("Enter doctor's email ");
-		dspec.setPromptText("Enter doctor's specialism");
+		dspec.setPromptText("Enter doctor's department");
 		
 		
 				
