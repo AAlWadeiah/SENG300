@@ -13,7 +13,7 @@ public class Patient {
 	private String assignedDoctorName;
 	private String email;
 	private String phoneNumber;
-//	private Integer id;
+	private Integer id;
 	
 	//Constructors
 	public Patient(String firstName, String lastName, String address, String doctor, String email, String phone, Integer id) {
@@ -23,7 +23,7 @@ public class Patient {
 		setDoctor(doctor);
 		setEmail(email);
 		setNumber(phone);
-//		setId(id);
+		setId(id);
 	}
 	public Patient() { }
 	
@@ -36,7 +36,7 @@ public class Patient {
 	public void setDoctor(String doctor) { this.assignedDoctorName = doctor;}
 	public void setEmail(String email1) { this.email = email1;}
 	public void setNumber(String number) { this.phoneNumber = number;}
-//	public void setId(Integer id) { this.id = id;}
+	public void setId(Integer id) { this.id = id;}
 	
 	
 	//Getters for info
@@ -46,6 +46,6 @@ public class Patient {
 	public String getDoctor() { return assignedDoctorName;}
 	public String getEmail() { return email;}
 	public String getNumber() { return phoneNumber;}
-//	public Integer getId() { return id;}
+	public Integer getId() { return id;}
 	
 }
