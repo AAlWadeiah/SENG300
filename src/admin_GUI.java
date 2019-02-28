@@ -14,6 +14,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
+
+import JsonFileUtils.Writer;
+import Objects.Patient;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -198,7 +202,6 @@ public class admin_GUI extends startupGui{
 					actionTarget.setText("*Please fill in all fields*");
 				}
 				else {
-
 					pfirstName = fName.getText();
 					plastName = lName.getText();
 					pAdd = add.getText();
@@ -206,6 +209,10 @@ public class admin_GUI extends startupGui{
 					peMail = pEmail.getText();
 					pDoct = pDoc.getText();
 					pId = pID.getText();
+					
+					Patient patient = new Patient(pfirstName, plastName, dAdd, pDoct, peMail, pNumb, Integer.valueOf(pId));
+					Writer writer = new Writer();
+					writer.writeObjectToFile(patient);
 
 					//creating a JSON obj to store all input information
 					JSONObject jsO = new JSONObject();

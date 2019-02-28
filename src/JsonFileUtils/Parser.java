@@ -1,3 +1,4 @@
+package JsonFileUtils;
 import java.io.*; 
 import java.util.*;  
 import com.google.gson.Gson;
@@ -5,19 +6,21 @@ import com.google.gson.stream.JsonReader;
 
 import Objects.Patient; 
 
-public class JSONParser {
+public class Parser {
 	public static void main(String[] args) {
 		String currentDir = System.getProperty("user.dir");
 	    File path = new File(currentDir);
 	    
-	    File[] jsonFiles = getFiles(path);
-	    List<Patient> allPatients = parsePatients(jsonFiles);
+	    Parser parser = new Parser();
+	    
+	    File[] jsonFiles = parser.getFiles(path);
+	    List<Patient> allPatients = parser.parsePatients(jsonFiles);
 	    for (Patient patient : allPatients) {
 			System.out.println(patient.getFirstName() + " " + patient.getLastName());
 		}
 	}
 	
-	private static List<Patient> parsePatients(File[] jsonFiles) {
+	private List<Patient> parsePatients(File[] jsonFiles) {
 		Gson parser = new Gson();
 		JsonReader reader;
 		List<Patient> allPatients = new ArrayList<>();
@@ -34,7 +37,7 @@ public class JSONParser {
 		}
 	}
 
-	public static File[] getFiles(File path) {
+	public File[] getFiles(File path) {
 		File[] jsonFiles = path.listFiles(new FilenameFilter() {
 	        @Override
 	        public boolean accept(File dir, String name) {
