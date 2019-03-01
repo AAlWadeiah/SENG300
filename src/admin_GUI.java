@@ -99,6 +99,7 @@ public class admin_GUI extends startupGui{
 		Button adminP = new Button("New patient");
 		Button adminD = new Button("New Doctor");
 		Button adminA = new Button("Schedule patient");
+		Button adminS = new Button("Search");
 
 		Button submitP = new Button("Submit");
 		Button submitD = new Button("Submit");
@@ -109,9 +110,10 @@ public class admin_GUI extends startupGui{
 		adminP.setPrefSize(150, 30);
 		adminD.setPrefSize(150, 30);
 		adminA.setPrefSize(150, 30);		
+		adminS.setPrefSize(150, 30);
 
 		//populate VBox
-		adminScreen.getChildren().addAll(adminP,adminD,adminA);
+		adminScreen.getChildren().addAll(adminP,adminD,adminA,adminS);
 
 		//Admin new Patient
 		adminP.setOnAction(new EventHandler<ActionEvent>(){
