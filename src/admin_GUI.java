@@ -29,6 +29,9 @@ public class admin_GUI extends startupGui{
 		VBox newPatient = new VBox();
 		setpatVBox(newPatient);
 
+		VBox searchPatient = new VBox();
+		setpatVBox(searchPatient);
+		
 		VBox newDoctor = new VBox();
 		setpatVBox(newDoctor);
 
@@ -145,6 +148,24 @@ public class admin_GUI extends startupGui{
 			}
 		});
 
+		
+		
+		//Admin Search
+		adminS.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent e) {
+				GridPane searchPane = new GridPane();
+				setsearchPane(searchPane, firstName, lastName, fName, lName, submitP, actionTarget, clearP,reTurn);
+				searchPatient.getChildren().add(searchPane);
+				actor.setText("Patient Search:");
+				BorderPane npPane = new BorderPane();
+				setBpane(npPane,intro, searchPatient);
+				setScene(npPane,primaryStage);
+			}
+		});
+		
+		
 		//return
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -348,5 +369,27 @@ public class admin_GUI extends startupGui{
 		Pane.add(restart, 40, 0);
 
 	}
+	
+	
+	protected void setsearchPane(GridPane Pane, Label firstName, Label lastName, TextField fName, TextField lName, Button submit, Text actionTarget, Button clear, Button restart) {
+
+		Pane.setAlignment(Pos.TOP_LEFT);
+		Pane.setHgap(10);
+		Pane.setVgap(10);
+		Pane.setPadding(new Insets(25,25,25,25));
+
+		Pane.add(firstName, 16, 10);
+		Pane.add(lastName, 16, 12);
+		
+		Pane.add(fName, 18, 10);
+		Pane.add(lName, 18, 12);
+
+		Pane.add(submit, 24, 24);
+		Pane.add(actionTarget, 18, 24);
+		Pane.add(clear, 24, 10);
+		Pane.add(restart, 40, 0);
+
+	}
+
 
 }
