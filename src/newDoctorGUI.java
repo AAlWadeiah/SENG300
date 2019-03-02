@@ -16,7 +16,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class newDoctorGUI extends adminGUI{
-	
+
+	/**
+	 * Loads the page to add a new doctor.
+	 * @param doctorStage
+	 * @param intro
+	 * @param adminScreen
+	 */
 	public void startDoctor(Stage doctorStage, HBox intro, VBox adminScreen) {
 
 		//Text Field
@@ -28,30 +34,30 @@ public class newDoctorGUI extends adminGUI{
 		TextField Spec = new TextField();
 
 		final Text actionTarget = new Text();
-		
+
 		//Buttons
 		Button submit = new Button("Submit");
 		Button clear = new Button("Clear");
 		Button reTurn = new Button("Return");
-		
+
 		//Boxes
 		VBox newDoctor = new VBox();
 		setformVBox(newDoctor);
-		
+
 		((Labeled) intro.getChildren().get(0)).setText("New Doctor: ");
-		
+
 		//Panes
 		GridPane newdoctorGrid = new GridPane();
 		BorderPane newdoctorBorder = new BorderPane();
 		setdoctorPane(newdoctorGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Spec, actionTarget);
-		
+
 		//populate box
 		newDoctor.getChildren().add(newdoctorGrid);
-		
-		
+
+
 		setBorderpane(newdoctorBorder, intro, newDoctor);
 		setScene(newdoctorBorder,doctorStage);
-		
+
 		clear.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -65,7 +71,7 @@ public class newDoctorGUI extends adminGUI{
 				actionTarget.setText(null);
 			}
 		});
-		
+
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -73,7 +79,7 @@ public class newDoctorGUI extends adminGUI{
 				startAdmin(doctorStage);
 			}
 		});
-		
+
 		submit.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -91,10 +97,10 @@ public class newDoctorGUI extends adminGUI{
 					dNumb = Num.getText();
 					dEmail = Email.getText();
 					dDoc = Spec.getText();
-					
+
 					System.out.println("Input confirm print: " + dfirstName + " " + dlastName + " " + dAdd + " " + dNumb + " " + dEmail + " " +dDoc);
 
-					
+
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Registration Complete");
 
@@ -109,15 +115,29 @@ public class newDoctorGUI extends adminGUI{
 		});
 	}
 
+	/**
+	 * Configures the pane where the user enters the new doctor's information.
+	 * @param Pane
+	 * @param submit
+	 * @param clear
+	 * @param reTurn
+	 * @param fName
+	 * @param lName
+	 * @param add
+	 * @param Num
+	 * @param Email
+	 * @param spec
+	 * @param actionTarget
+	 */
 	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, Text actionTarget) {
-		
+
 		int gap = 10;
 		int pad = 25;
 		int xs = 16;
 		int ys = 10;
 		int end = 40;
 		int start = 0;
-		
+
 		//Labels
 		Label firstName = new Label("First name: ");
 		Label lastName = new Label("Last name: ");
@@ -133,8 +153,8 @@ public class newDoctorGUI extends adminGUI{
 		Num.setPromptText("Enter doctor's phone #");
 		Email.setPromptText("Enter doctor's email ");
 		spec.setPromptText("Enter doctor's department");
-		
-	
+
+
 		Pane.setAlignment(Pos.TOP_LEFT);
 		Pane.setHgap(gap);
 		Pane.setVgap(gap);
@@ -159,7 +179,7 @@ public class newDoctorGUI extends adminGUI{
 		Pane.add(actionTarget, xs+2, ys+14);
 		Pane.add(clear, xs+8, ys);
 		Pane.add(reTurn, end, start);
-		}
-		
 	}
+
+}
 

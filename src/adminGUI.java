@@ -15,49 +15,53 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class adminGUI extends startupGUI{
-	
+
+	/**
+	 * Loads the main page for the administrator. Enables an administrator to add new patients, doctors, and appointments
+	 * @param adminStage The stage on which the admin page is loaded
+	 */
 	public void startAdmin(Stage adminStage) {
-		
+
 		//Boxes
 		VBox adminScreen = new VBox();
 		setVBox(adminScreen);
-		
+
 		HBox intro = new HBox();
 		setHBox(intro);
-		
+
 		//Labels
 		Label actor = new Label();
 		actor.setText("Admin: ");
 		actor.setFont(new Font("Cambria", 32));
-		
+
 		//Buttons 
 		Button logout = new Button("Logout");
-		
+
 		Button adminP = new Button("New patient");
 		Button adminD = new Button("New Doctor");
 		Button adminS = new Button("Schedule patient");
-		
+
 		adminP.setPrefSize(150, 30);
 		adminD.setPrefSize(150, 30);
 		adminS.setPrefSize(150, 30);
-		
+
 		//Panes
 		BorderPane adminPane = new BorderPane();
 		StackPane introPane = new StackPane();
 		introPane.setAlignment(Pos.CENTER_RIGHT);
 		introPane.getChildren().add(logout);
-		
+
 		//Populate Boxes
 		intro.getChildren().addAll(actor,introPane);
 		intro.setHgrow(introPane, Priority.ALWAYS);
 		adminScreen.getChildren().addAll(adminP,adminD,adminS);
-		
+
 		setBorderpane(adminPane, intro, adminScreen);
 		setScene(adminPane,adminStage);
-		
-		
+
+
 		//Button events
-		
+
 		//restarts program
 		logout.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -65,41 +69,41 @@ public class adminGUI extends startupGUI{
 				start(adminStage);
 			}
 		});
-		
+
 		adminP.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
-				
+
 				newPatientGUI adminNewpatient = new newPatientGUI();
 				adminNewpatient.startPatient(adminStage,intro,adminScreen);
-	
+
 			}
 		});
-		
+
 		adminD.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
-				
+
 				newDoctorGUI adminNewdoctor = new newDoctorGUI();
 				adminNewdoctor.startDoctor(adminStage,intro,adminScreen);
-	
+
 			}
 		});
-		
+
 		adminS.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
-				
+
 				newScheduleGUI adminNewschedule = new newScheduleGUI();
 				adminNewschedule.startSchedule(adminStage,intro);
-	
+
 			}
 		});
-		
-		
+
+
 	}
 
 }

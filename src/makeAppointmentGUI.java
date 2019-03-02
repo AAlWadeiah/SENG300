@@ -18,6 +18,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class makeAppointmentGUI extends newScheduleGUI{
+	
+	/**
+	 * Loads page to make a new appointment. Displays information of selected patient and allows user to enter a date and time for the appointment.
+	 * @param scheduleStage
+	 * @param intro
+	 * @param person The patient to make an appointment for.
+	 */
 	public void startApp(Stage scheduleStage, HBox intro, Patient person) {
 		int pad =50;
 		//Buttons
@@ -108,10 +115,6 @@ public class makeAppointmentGUI extends newScheduleGUI{
 			}
 		});
 		
-		
-		
-		
-		
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -122,6 +125,15 @@ public class makeAppointmentGUI extends newScheduleGUI{
 		
 	}
 
+	/**
+	 * Configures the pane where the user enters the information for the appointment.
+	 * @param Pane
+	 * @param clear
+	 * @param person
+	 * @param time
+	 * @param date
+	 * @param actionTarget
+	 */
 	private void setschedulePane(GridPane Pane,Button clear, Patient person, TextField time, TextField date, Text actionTarget) {
 		
 		int gap = 10;
@@ -150,13 +162,11 @@ public class makeAppointmentGUI extends newScheduleGUI{
 		Label pphone = new Label(person.getNumber());
 		Label pemail = new Label(person.getEmail());
 		
-
 		Pane.setAlignment(Pos.TOP_LEFT);
 		Pane.setHgap(gap);
 		Pane.setVgap(gap/1.5);
 		Pane.setPadding(new Insets(-30,pad,pad,pad));
 
-	
 		Pane.add(firstName, xs, ys);
 		Pane.add(lastName, xs, ys+2);
 		Pane.add(id, xs, ys+4);
@@ -168,7 +178,6 @@ public class makeAppointmentGUI extends newScheduleGUI{
 		Pane.add(timeLabel, xs, ys+16);
 		Pane.add(clear, xs+6, ys+16);
 		
-		
 		Pane.add(pfirstName, xs+4, ys);
 		Pane.add(plastName, xs+4, ys+2);
 		Pane.add(pid, xs+4, ys+4);
@@ -179,8 +188,6 @@ public class makeAppointmentGUI extends newScheduleGUI{
 		Pane.add(date, xs+4, ys+14);
 		Pane.add(time, xs+4, ys+16);
 		Pane.add(actionTarget, xs+4, ys+18);
-		
-		
 		
 	}
 

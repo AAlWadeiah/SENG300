@@ -22,6 +22,12 @@ public class Parser {
 		}
 	}
 	**/
+	
+	/**
+	 * Deserializes the given patient files and creates a list of Patient objects from the files.
+	 * @param jsonFiles The Patient JSON files
+	 * @return the list of deserialized Patient objects
+	 */
 	public List<Patient> parsePatients(File[] jsonFiles) {
 		Gson parser = new Gson();
 		JsonReader reader;
@@ -39,6 +45,11 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Grabs all JSON files from the specified directory.
+	 * @param path The path to the directory to search for JSON files in
+	 * @return an array containing all JSON files from the directory
+	 */
 	public File[] getFiles(File path) {
 		File[] jsonFiles = path.listFiles(new FilenameFilter() {
 	        @Override

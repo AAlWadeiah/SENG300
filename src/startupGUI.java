@@ -20,63 +20,61 @@ public class startupGUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-	
-			primaryStage.setTitle("Hospital Login");
-			
-			BorderPane root = new BorderPane();
-			
-			//Boxes
-			VBox openScreen = new VBox();
-			setVBox(openScreen);
-			
-			HBox intro = new HBox();
-			setHBox(intro);
 
-			Label actor = new Label();
-			actor.setText("Login: ");
-			actor.setFont(new Font("Cambria", 32));
-			
-			//Buttons
-			Button patient = new Button("Patient");
-			Button doctor = new Button("Doctor");
-			Button admin = new Button("Administration");
-			
-			patient.setPrefSize(150, 30);
-			doctor.setPrefSize(150, 30);
-			admin.setPrefSize(150, 30);
+		primaryStage.setTitle("Hospital Login");
 
-			
-			admin.setOnAction(new EventHandler<ActionEvent>(){
+		BorderPane root = new BorderPane();
 
-				@Override
-				public void handle(ActionEvent e) {
-					adminGUI adminLogin = new adminGUI();
-					adminLogin.startAdmin(primaryStage);
+		//Boxes
+		VBox openScreen = new VBox();
+		setVBox(openScreen);
 
-				}
-			});
-			
+		HBox intro = new HBox();
+		setHBox(intro);
 
-			//populate boxes
-			intro.getChildren().addAll(actor);
-			openScreen.getChildren().addAll(patient,doctor,admin);
-			
-			
-			setBorderpane(root,intro,openScreen);
-			setScene(root,primaryStage);
+		Label actor = new Label();
+		actor.setText("Login: ");
+		actor.setFont(new Font("Cambria", 32));
 
-			
-	
+		//Buttons
+		Button patient = new Button("Patient");
+		Button doctor = new Button("Doctor");
+		Button admin = new Button("Administration");
+
+		patient.setPrefSize(150, 30);
+		doctor.setPrefSize(150, 30);
+		admin.setPrefSize(150, 30);
+
+
+		admin.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent e) {
+				adminGUI adminLogin = new adminGUI();
+				adminLogin.startAdmin(primaryStage);
+
+			}
+		});
+
+
+		//populate boxes
+		intro.getChildren().addAll(actor);
+		openScreen.getChildren().addAll(patient,doctor,admin);
+
+
+		setBorderpane(root,intro,openScreen);
+		setScene(root,primaryStage);
+
+
+
 	}
-	
 
-	
 	protected void setBorderpane(BorderPane Pane, HBox hbox, VBox vbox) {
 		Pane.setTop(hbox);
 		Pane.setCenter(vbox);
-		
+
 	}
-	
+
 	protected void setScene(Pane Pane, Stage primaryStage) {
 		Scene scene = new Scene(Pane,size,size);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -84,24 +82,21 @@ public class startupGUI extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
-	
+
 	protected void setVBox(VBox name) {
 		name.setStyle("-fx-background-color: #FF9966;");
 		name.setAlignment(Pos.CENTER);
 		name.setSpacing(80);
 	}
-	
+
 	protected void setformVBox(VBox name) {
 		name.setStyle("-fx-background-color: #FF9966;");
 		name.setAlignment(Pos.TOP_LEFT);
 	}
-	
+
 	protected void setHBox(HBox name) {
 		name.setPadding(new Insets(15,12,15,12));
 		name.setStyle("-fx-background-color: #5C8BE9;");
 	}
-	
 
-	
 }
-

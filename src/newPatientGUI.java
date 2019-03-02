@@ -18,9 +18,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class newPatientGUI extends adminGUI{
-	
+
+	/**
+	 * Loads the page to add a new patient. Once the user submits the new patient's information, a new JSON file is generated for that patient.
+	 * @param patientStage 
+	 * @param intro
+	 * @param adminScreen
+	 */
 	public void startPatient(Stage patientStage, HBox intro, VBox adminScreen) {
-		
+
 		//Text Field
 		TextField fName = new TextField();
 		TextField lName = new TextField();
@@ -31,30 +37,30 @@ public class newPatientGUI extends adminGUI{
 		TextField ID = new TextField();
 
 		final Text actionTarget = new Text();
-		
+
 		//Buttons
 		Button submit = new Button("Submit");
 		Button clear = new Button("Clear");
 		Button reTurn = new Button("Return");
-		
+
 		//Boxes
 		VBox newPatient = new VBox();
 		setformVBox(newPatient);
-		
+
 		((Labeled) intro.getChildren().get(0)).setText("New Patient: ");
-		
+
 		//Panes
 		GridPane newpatientGrid = new GridPane();
 		BorderPane newpatientBorder = new BorderPane();
 		setpatientPane(newpatientGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Doc, ID, actionTarget);
-		
+
 		//populate box
 		newPatient.getChildren().add(newpatientGrid);
-		
-		
+
+
 		setBorderpane(newpatientBorder, intro, newPatient);
 		setScene(newpatientBorder,patientStage);
-		
+
 		clear.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -72,7 +78,7 @@ public class newPatientGUI extends adminGUI{
 
 			}
 		});
-		
+
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -98,14 +104,14 @@ public class newPatientGUI extends adminGUI{
 					pEmail = Email.getText();
 					pDoct = Doc.getText();
 					pId = ID.getText();
-					
+
 					Patient patient = new Patient(pfirstName, plastName, dAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId));
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(patient);
 					if (success) {
 						System.out.println("Wrote to file successfully");
 					}
-					
+
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Registration Complete");
 
@@ -118,19 +124,34 @@ public class newPatientGUI extends adminGUI{
 				}
 			}
 		});
-		
-		
+
+
 	}
 
+	/**
+	 * Configures the pane where the user enters the new patient's information
+	 * @param Pane
+	 * @param submit
+	 * @param clear
+	 * @param reTurn
+	 * @param fName
+	 * @param lName
+	 * @param add
+	 * @param Num
+	 * @param Email
+	 * @param Doc
+	 * @param ID
+	 * @param actionTarget
+	 */
 	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField Doc, TextField ID, Text actionTarget) {
-		
+
 		int gap = 10;
 		int pad = 25;
 		int xs = 16;
 		int ys = 10;
 		int end = 40;
 		int start = 0;
-		
+
 		//Labels
 		Label firstName = new Label("First name: ");
 		Label lastName = new Label("Last name: ");
@@ -148,8 +169,8 @@ public class newPatientGUI extends adminGUI{
 		Email.setPromptText("Enter patient's email ");
 		Doc.setPromptText("Enter patient's physician");
 		ID.setPromptText("Enter patient's ID");
-		
-	
+
+
 		Pane.setAlignment(Pos.TOP_LEFT);
 		Pane.setHgap(gap);
 		Pane.setVgap(gap);
@@ -175,9 +196,9 @@ public class newPatientGUI extends adminGUI{
 		Pane.add(actionTarget, xs+2, ys+14);
 		Pane.add(clear, xs+8, ys);
 		Pane.add(reTurn, end, start);
-		
-		
-		
+
+
+
 	}
 
 }
