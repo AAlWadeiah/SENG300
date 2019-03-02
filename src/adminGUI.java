@@ -94,7 +94,7 @@ public class adminGUI extends startupGUI{
 			public void handle(ActionEvent e) {
 				
 				newScheduleGUI adminNewschedule = new newScheduleGUI();
-				adminNewschedule.startSchedule(adminStage,intro,adminScreen);
+				adminNewschedule.startSchedule(adminStage,intro);
 	
 			}
 		});

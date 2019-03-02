@@ -62,6 +62,7 @@ public class newDoctorGUI extends adminGUI{
 				Num.clear();
 				Email.clear();
 				Spec.clear();
+				actionTarget.setText(null);
 			}
 		});
 		

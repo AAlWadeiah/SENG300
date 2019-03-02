@@ -71,6 +71,7 @@ public class newPatientGUI extends adminGUI{
 				Email.clear();
 				Doc.clear();
 				ID.clear();
+				actionTarget.setText(null);
 
 
 
