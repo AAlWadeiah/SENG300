@@ -1,8 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
-
-import org.json.simple.JSONObject;
-
 import JsonFileUtils.Writer;
 import Objects.Patient;
 import javafx.event.ActionEvent;
@@ -105,33 +100,9 @@ public class newPatientGUI extends adminGUI{
 					
 					Patient patient = new Patient(pfirstName, plastName, dAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId));
 					Writer writer = new Writer();
-					writer.writeObjectToFile(patient);
-
-					//creating a JSON obj to store all input information
-					JSONObject jsO = new JSONObject();
-
-					jsO.put ("firstName", pfirstName);
-					jsO.put ("lastName", plastName);
-					jsO.put ("assignedDoctorName", pDoct);
-					jsO.put ("phoneNumber", pNumb);
-					jsO.put ("email", pEmail);
-					jsO.put ("address", pAdd);
-					jsO.put ("id", pId);
-
-
-					System.out.println("Input confirm print: " + pfirstName + " " + plastName + " " + pAdd +" " + pNumb + " " + pEmail + " " +pDoct + " " + pId);
-					System.out.println("JSON obj: " + jsO);
-
-					//try/catch to write JASON obj to file
-
-					try (FileWriter file = new FileWriter(pfirstName+"_"+plastName+".json")){
-						file.write(jsO.toJSONString());
-						System.out.println("JSON file name: "+pfirstName+".json");
-						System.out.println("Successfully copied JSON to File...");
-						System.out.println("\nJSON Object: " +jsO);
-					}
-					catch(IOException f){
-						System.out.println("failed to create JSON object file");
+					boolean success = writer.writeObjectToFile(patient);
+					if (success) {
+						System.out.println("Wrote to file successfully");
 					}
 					
 					BorderPane npPane = new BorderPane();
