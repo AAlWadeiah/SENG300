@@ -30,7 +30,7 @@ public class newScheduleGUI extends adminGUI{
 	private TableView<Patient> table = new TableView<Patient>();
 	private Patient person;
 
-	public void startSchedule(Stage scheduleStage, HBox intro, VBox adminScreen) {
+	public void startSchedule(Stage scheduleStage, HBox intro) {
 		
 		int minwidth = 100;
 		
@@ -95,7 +95,6 @@ public class newScheduleGUI extends adminGUI{
 
 		//Buttons
 		Button submit = new Button("Submit");
-		Button clear = new Button("Clear");
 		Button reTurn = new Button("Return");
 		
 		
@@ -137,6 +136,8 @@ public class newScheduleGUI extends adminGUI{
 			public void handle(ActionEvent e) {
 				if(person!=null) {
 					System.out.println(person.getFirstName());
+					makeAppointmentGUI adminApp = new makeAppointmentGUI();
+					adminApp.startApp(scheduleStage,intro,person);
 					
 				}
 			}
