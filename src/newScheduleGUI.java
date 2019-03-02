@@ -1,3 +1,10 @@
+import java.io.File;
+import java.util.List;
+
+import JsonFileUtils.Parser;
+import Objects.Patient;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,6 +15,7 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -21,8 +29,8 @@ public class newScheduleGUI extends adminGUI{
 
 	public void startSchedule(Stage scheduleStage, HBox intro, VBox adminScreen) {
 		
-		//Test Field
-		
+		int minwidth = 100;
+
 		//Labels
 		final Label label = new Label("Patient List");
 		label.setFont(new Font("Arial", 20));
@@ -37,15 +45,42 @@ public class newScheduleGUI extends adminGUI{
 		TableColumn	numCol = new TableColumn("Phone number");
 		TableColumn emailCol = new TableColumn("Email");
 		
-		firstNameCol.setMinWidth(100);
-		lastNameCol.setMinWidth(100);
-		IDCol.setMinWidth(100);
-		doctorCol.setMinWidth(100);
-		addressCol.setMinWidth(100);
-		numCol.setMinWidth(100);
-		emailCol.setMinWidth(100);
+		firstNameCol.setMinWidth(minwidth);
+		lastNameCol.setMinWidth(minwidth);
+		IDCol.setMinWidth(minwidth);
+		doctorCol.setMinWidth(minwidth);
+		addressCol.setMinWidth(minwidth);
+		numCol.setMinWidth(minwidth);
+		emailCol.setMinWidth(minwidth);
 		
 		
+		
+		String currentDir = System.getProperty("user.dir");
+	    File path = new File(currentDir);
+	    
+	    Parser person = new Parser();
+	    
+	    File[] jsonFiles = person.getFiles(path);
+	    List<Patient> allPatients = person.parsePatients(jsonFiles);
+	    
+	    for (Patient patient : allPatients) {
+			System.out.println(patient.getFirstName() + " " + patient.getLastName()+" " + patient.getAddress() +" " + patient.getDoctor() + " " + patient.getEmail() + " " +patient.getNumber() + " " + patient.getId());
+		}
+		
+	    firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+	    lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+	    IDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+	    doctorCol.setCellValueFactory(new PropertyValueFactory<>("doctor"));
+	    addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+	    numCol.setCellValueFactory(new PropertyValueFactory<>("number"));
+	    emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+	    
+	    
+	    ObservableList<Patient> people = FXCollections.observableArrayList(allPatients);
+	    table.setItems(people);
+	    
+	    
+	    
 		
 		table.getColumns().addAll(firstNameCol,lastNameCol,IDCol,doctorCol,addressCol,numCol,emailCol);
 		
@@ -65,11 +100,10 @@ public class newScheduleGUI extends adminGUI{
 		((Labeled) intro.getChildren().get(0)).setText("Schedule patient: ");
 		
 		//Panes
-		//GridPane scheduleGrid = new GridPane();
 		BorderPane scheduleBorder = new BorderPane();
 		
 		//populate box
-		schedulePatient.getChildren().addAll(label,table);
+		schedulePatient.getChildren().addAll(label,table,reTurn);
 		
 		setBorderpane(scheduleBorder, intro, schedulePatient);
 		setScene(scheduleBorder,scheduleStage);
