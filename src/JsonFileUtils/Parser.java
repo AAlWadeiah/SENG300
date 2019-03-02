@@ -7,6 +7,8 @@ import com.google.gson.stream.JsonReader;
 import Objects.Patient; 
 
 public class Parser {
+	// Driver code
+	/**
 	public static void main(String[] args) {
 		String currentDir = System.getProperty("user.dir");
 	    File path = new File(currentDir);
@@ -19,8 +21,8 @@ public class Parser {
 			System.out.println(patient.getFirstName() + " " + patient.getLastName());
 		}
 	}
-	
-	private List<Patient> parsePatients(File[] jsonFiles) {
+	**/
+	public List<Patient> parsePatients(File[] jsonFiles) {
 		Gson parser = new Gson();
 		JsonReader reader;
 		List<Patient> allPatients = new ArrayList<>();
