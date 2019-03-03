@@ -19,9 +19,9 @@ public class newDoctorGUI extends adminGUI{
 
 	/**
 	 * Loads the page to add a new doctor.
-	 * @param doctorStage
-	 * @param intro
-	 * @param adminScreen
+	 * @param doctorStage stage that displays the new Doctor GUI
+	 * @param intro HBox to hold consistent format
+	 * @param adminScreen VBox to hold consistent format
 	 */
 	public void startDoctor(Stage doctorStage, HBox intro, VBox adminScreen) {
 
@@ -54,10 +54,11 @@ public class newDoctorGUI extends adminGUI{
 		//populate box
 		newDoctor.getChildren().add(newdoctorGrid);
 
-
+		//set border and scene
 		setBorderpane(newdoctorBorder, intro, newDoctor);
 		setScene(newdoctorBorder,doctorStage);
 
+		//Clear all the textfields
 		clear.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -72,6 +73,7 @@ public class newDoctorGUI extends adminGUI{
 			}
 		});
 
+		//Returns to the previous panel
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -80,11 +82,13 @@ public class newDoctorGUI extends adminGUI{
 			}
 		});
 
+		//Submit the filled out forms
 		submit.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
 
+				//checks if fields are empty
 				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Spec.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setText("*Please fill in all fields*");
@@ -98,9 +102,11 @@ public class newDoctorGUI extends adminGUI{
 					dEmail = Email.getText();
 					dDoc = Spec.getText();
 
+					//user confirmation
 					System.out.println("Input confirm print: " + dfirstName + " " + dlastName + " " + dAdd + " " + dNumb + " " + dEmail + " " +dDoc);
 
 
+					//transition to a confirmation panel
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Registration Complete");
 
@@ -117,17 +123,17 @@ public class newDoctorGUI extends adminGUI{
 
 	/**
 	 * Configures the pane where the user enters the new doctor's information.
-	 * @param Pane
-	 * @param submit
-	 * @param clear
-	 * @param reTurn
-	 * @param fName
-	 * @param lName
-	 * @param add
-	 * @param Num
-	 * @param Email
-	 * @param spec
-	 * @param actionTarget
+	 * @param Pane Gridpane housing all the elements
+	 * @param submit submit button to input doctor
+	 * @param clear button to clear textfields
+	 * @param reTurn button to return to previous slide
+	 * @param fName first name textfield
+	 * @param lName last name textfield
+	 * @param add address textfield
+	 * @param Num phone number textfield
+	 * @param Email email address textfield
+	 * @param spec	doctor department textfield
+	 * @param actionTarget warning text
 	 */
 	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, Text actionTarget) {
 

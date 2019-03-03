@@ -21,8 +21,8 @@ public class makeAppointmentGUI extends newScheduleGUI{
 	
 	/**
 	 * Loads page to make a new appointment. Displays information of selected patient and allows user to enter a date and time for the appointment.
-	 * @param scheduleStage
-	 * @param intro
+	 * @param scheduleStage stage that displays the scheduling panel
+	 * @param intro HBox to hold consistent form
 	 * @param person The patient to make an appointment for.
 	 */
 	public void startApp(Stage scheduleStage, HBox intro, Patient person) {
@@ -71,10 +71,12 @@ public class makeAppointmentGUI extends newScheduleGUI{
 		setBorderpane(appBorder, intro, scheduleApp);
 		setScene(appBorder,scheduleStage);
 		
+		//Buton that submits the patient object and filled out date and time
 		submit.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
+				//check if forms are empty
 				if(date.getText().isEmpty() || time.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setText("*Please fill in date & time*");
@@ -91,7 +93,7 @@ public class makeAppointmentGUI extends newScheduleGUI{
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Schedule Complete");
 
-					
+					//transitions to confirmation panel
 					scheduleApp.getChildren().clear();
 					setVBox(scheduleApp);
 					Label done = new Label("Patient Scheduling completed");
@@ -105,6 +107,7 @@ public class makeAppointmentGUI extends newScheduleGUI{
 			}
 		});
 		
+		//Clear all the textfields
 		clear.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -115,6 +118,7 @@ public class makeAppointmentGUI extends newScheduleGUI{
 			}
 		});
 		
+		//Returns to the previous panel
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -127,12 +131,12 @@ public class makeAppointmentGUI extends newScheduleGUI{
 
 	/**
 	 * Configures the pane where the user enters the information for the appointment.
-	 * @param Pane
-	 * @param clear
-	 * @param person
-	 * @param time
-	 * @param date
-	 * @param actionTarget
+	 * @param Pane Gridpane housing all the elements
+	 * @param clear button to clear textfields
+	 * @param person Patient object with the pertaining information
+	 * @param time scheduled time textfield
+	 * @param date scheduled date textfield
+	 * @param actionTarget warning text
 	 */
 	private void setschedulePane(GridPane Pane,Button clear, Patient person, TextField time, TextField date, Text actionTarget) {
 		

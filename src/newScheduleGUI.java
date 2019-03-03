@@ -32,8 +32,8 @@ public class newScheduleGUI extends adminGUI{
 
 	/**
 	 * Loads the page listing all registered patients. User selects one patient that is shown in the table of registered patients to make an appointment for.
-	 * @param scheduleStage
-	 * @param intro
+	 * @param scheduleStage stage that displays the scheduling panel
+	 * @param intro HBox to hold consistent format
 	 */
 	public void startSchedule(Stage scheduleStage, HBox intro) {
 
@@ -64,7 +64,7 @@ public class newScheduleGUI extends adminGUI{
 		emailCol.setMinWidth(minwidth);
 
 
-		//load files
+		//load objects from JSON files
 		String currentDir = System.getProperty("user.dir");
 		File path = new File(currentDir);
 
@@ -91,7 +91,7 @@ public class newScheduleGUI extends adminGUI{
 		table.setItems(people);
 		table.getColumns().addAll(firstNameCol,lastNameCol,IDCol,doctorCol,addressCol,numCol,emailCol);
 
-		//gets the patient to submit
+		//click event based on selection of a patient in the table
 		table.setOnMouseClicked((MouseEvent e)->{
 			person = table.getSelectionModel().getSelectedItem();
 
@@ -102,7 +102,7 @@ public class newScheduleGUI extends adminGUI{
 		Button submit = new Button("Submit");
 		Button reTurn = new Button("Return");
 
-
+		//Boxes
 		VBox schedulePatient = new VBox();
 		schedulePatient.setStyle("-fx-background-color: #FF9966;");
 		schedulePatient.setSpacing(25);
@@ -127,6 +127,7 @@ public class newScheduleGUI extends adminGUI{
 		setScene(scheduleBorder,scheduleStage);
 
 
+		//Returns to the previous panel
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -135,6 +136,7 @@ public class newScheduleGUI extends adminGUI{
 			}
 		});
 
+		//submit the selected patient to make an appointment
 		submit.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override

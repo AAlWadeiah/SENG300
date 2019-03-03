@@ -21,9 +21,9 @@ public class newPatientGUI extends adminGUI{
 
 	/**
 	 * Loads the page to add a new patient. Once the user submits the new patient's information, a new JSON file is generated for that patient.
-	 * @param patientStage 
-	 * @param intro
-	 * @param adminScreen
+	 * @param patientStage stage that displays the new patient GUI
+	 * @param intro HBox to hold consistent format
+	 * @param adminScreen VBox to hold consistent format
 	 */
 	public void startPatient(Stage patientStage, HBox intro, VBox adminScreen) {
 
@@ -57,10 +57,11 @@ public class newPatientGUI extends adminGUI{
 		//populate box
 		newPatient.getChildren().add(newpatientGrid);
 
-
+		//set border and scene
 		setBorderpane(newpatientBorder, intro, newPatient);
 		setScene(newpatientBorder,patientStage);
 
+		//Clear all the textfields
 		clear.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -79,6 +80,7 @@ public class newPatientGUI extends adminGUI{
 			}
 		});
 
+		//Returns to the previous panel
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -86,16 +88,18 @@ public class newPatientGUI extends adminGUI{
 				startAdmin(patientStage);
 			}
 		});
-		//submit text field
+		//submit the filled out forms
 		submit.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
 
+				//checks if fields are empty
 				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Doc.getText().isEmpty() || ID.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setText("*Please fill in all fields*");
 				}
+
 				else {
 					pfirstName = fName.getText();
 					plastName = lName.getText();
@@ -105,13 +109,15 @@ public class newPatientGUI extends adminGUI{
 					pDoct = Doc.getText();
 					pId = ID.getText();
 
-					Patient patient = new Patient(pfirstName, plastName, dAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId));
+					//Creates and writes to a JSON file
+					Patient patient = new Patient(pfirstName, plastName, pAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId));
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(patient);
 					if (success) {
 						System.out.println("Wrote to file successfully");
 					}
 
+					//transition to a confirmation panel
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Registration Complete");
 
@@ -130,18 +136,18 @@ public class newPatientGUI extends adminGUI{
 
 	/**
 	 * Configures the pane where the user enters the new patient's information
-	 * @param Pane
-	 * @param submit
-	 * @param clear
-	 * @param reTurn
-	 * @param fName
-	 * @param lName
-	 * @param add
-	 * @param Num
-	 * @param Email
-	 * @param Doc
-	 * @param ID
-	 * @param actionTarget
+	 * @param Pane Gridpane housing all the elements
+	 * @param submit button to input patient
+	 * @param clear button to clear textfields
+	 * @param reTurn button to return to previous slide
+	 * @param fName first name textfield
+	 * @param lName last name textfield
+	 * @param add address textfield
+	 * @param Num phone number textfield
+	 * @param Email email textfield
+	 * @param Doc patient/s doctor textfield
+	 * @param ID patient's ID number textfield
+	 * @param actionTarget warning text
 	 */
 	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField Doc, TextField ID, Text actionTarget) {
 

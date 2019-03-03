@@ -56,6 +56,7 @@ public class adminGUI extends startupGUI{
 		intro.setHgrow(introPane, Priority.ALWAYS);
 		adminScreen.getChildren().addAll(adminP,adminD,adminS);
 
+		//Set panes and scene
 		setBorderpane(adminPane, intro, adminScreen);
 		setScene(adminPane,adminStage);
 
@@ -70,6 +71,7 @@ public class adminGUI extends startupGUI{
 			}
 		});
 
+		//Create new patient
 		adminP.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -81,6 +83,7 @@ public class adminGUI extends startupGUI{
 			}
 		});
 
+		//Create new doctor
 		adminD.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -92,6 +95,7 @@ public class adminGUI extends startupGUI{
 			}
 		});
 
+		//Schedule a patient
 		adminS.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
