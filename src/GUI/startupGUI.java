@@ -40,7 +40,7 @@ public class startupGUI extends Application {
 
 		//Labels
 		Label actor = new Label();
-		actor.setText("Login: ");
+		actor.setText("Hospital Management System ");
 		actor.setFont(new Font("Cambria", 32));
 
 		//Buttons
@@ -58,11 +58,31 @@ public class startupGUI extends Application {
 
 			@Override
 			public void handle(ActionEvent e) {
-				adminGUI adminLogin = new adminGUI();
-				adminLogin.startAdmin(primaryStage);
+				adminLoginGUI adminLogin = new adminLoginGUI();
+				adminLogin.startAdminLogin(primaryStage);
 
 			}
 		});
+		
+		patient.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent e) {
+				patientLoginGUI patientLogin = new patientLoginGUI();
+				patientLogin.startPatientLogin(primaryStage);
+
+			}
+		});
+		
+		doctor.setOnAction(new EventHandler<ActionEvent>(){
+			
+				@Override
+				public void handle(ActionEvent e) {
+					doctorLoginGUI doctorLogin = new doctorLoginGUI();
+					doctorLogin.startDoctorLogin(primaryStage);
+
+				}
+			});
 
 
 		//populate boxes
