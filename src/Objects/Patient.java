@@ -6,7 +6,7 @@ package Objects;
  */
 public class Patient {
 	
-	//Variables necessary for patients
+	//Fields necessary for patients
 	private String firstName;
 	private String lastName;
 	private String address;
