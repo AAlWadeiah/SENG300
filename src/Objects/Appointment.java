@@ -10,7 +10,7 @@ public class Appointment {
 	public Appointment(String date, String time) {
 		setDate(date);
 		setTime(time);
-		setAppointmentId(date.hashCode() + time.hashCode());
+		setAppointmentId(date, time);
 	}
 	
 	/**
@@ -22,9 +22,8 @@ public class Appointment {
 	public Integer updateAppointment(String newDate, String newTime) {
 		setDate(newDate);
 		setTime(newTime);
-		Integer newAppointmentId = newDate.hashCode() + newTime.hashCode();
-		setAppointmentId(newAppointmentId);
-		return newAppointmentId;
+		setAppointmentId(newDate, newTime);
+		return getAppointmentId();
 	}
 	
 	// Getters
@@ -35,6 +34,9 @@ public class Appointment {
 	// Setters
 	public void setTime(String time) {this.time = time;}
 	public void setDate(String date) {this.date = date;}
-	private void setAppointmentId(Integer appointmentId) {this.appointmentId = appointmentId;}
+	private void setAppointmentId(String date, String time) {
+		this.appointmentId = date.hashCode() + time.hashCode();
+		
+	}
 	
 }
