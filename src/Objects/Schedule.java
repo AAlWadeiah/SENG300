@@ -29,10 +29,10 @@ public class Schedule {
 	 */
 	public void addAppointment(Integer patientId, String date, String time) {
 		if (getCurrentAppointments().containsKey(patientId)) {
-			getCurrentAppointments().get(patientId).add(new Appointment(patientId, date, time));
+			getCurrentAppointments().get(patientId).add(new Appointment(date, time));
 		} else {
 			ArrayList<Appointment> newApptSet = new ArrayList<>();
-			newApptSet.add(new Appointment(patientId, date, time));
+			newApptSet.add(new Appointment(date, time));
 			getCurrentAppointments().put(patientId, newApptSet);
 		}
 	}
@@ -49,15 +49,24 @@ public class Schedule {
 	/**
 	 * Removes the entry of the given patient from the currentApointments HashMap.
 	 * @param patientId The ID of the patient to remove from the appointments record.
+	 * @return true if the patient was removed, and false if the patient could not be found
 	 */
-	public void removePatient(Integer patientId) {
+	public boolean removePatient(Integer patientId) {
 		if (getCurrentAppointments().containsKey(patientId)) {
 			getCurrentAppointments().remove(patientId);
+			return true;
 		} else {
 			System.out.println("Patient " + patientId + " does not exist");
+			return false;
 		}
 	}
 	
+	/**
+	 * 
+	 * @param patientId
+	 * @param appointmentId
+	 * @return
+	 */
 	public boolean removeAppointment(Integer patientId, Integer appointmentId) {
 		boolean removed = getCurrentAppointments().get(patientId).removeIf(a -> a.getAppointmentId().equals(appointmentId));
 		return removed;
