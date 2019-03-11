@@ -6,7 +6,7 @@ package Objects;
  */
 public class Schedule {
 	
-	//Variables
+	//Fields
 	private Doctor doctor;
 	
 	
