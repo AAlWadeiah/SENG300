@@ -1,9 +1,12 @@
 package JsonFileUtils;
 
-import java.io.*; 
+import java.io.*;
+
+import Objects.Schedule;
 import com.google.gson.Gson;
 
 import Objects.Patient;
+import Objects.Doctor;
 
 public class Writer {
 	
@@ -18,9 +21,21 @@ public class Writer {
 			file.write(jsonString);
 		}
 		catch(IOException f){
-			System.out.println("failed to create JSON object file");
+			System.out.println("failed to create Patient JSON object file");
 			return false;
 		}
 		return true;
 	}
+	public boolean writeObjectToFile(Doctor doc){
+		String jsonString = new Gson().toJson(doc);
+		try (FileWriter file = new FileWriter(doc.getDepartment()+"_"+doc.getFirstname()+".json")){
+			file.write(jsonString);
+		}
+		catch(IOException f){
+			System.out.println("failed to create Doctor JSON object file");
+			return false;
+		}
+		return true;
+	}
+
 }

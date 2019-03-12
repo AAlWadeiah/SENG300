@@ -115,7 +115,7 @@ public class newPatientGUI extends adminGUI{
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(patient);
 					if (success) {
-						System.out.println("Wrote to file successfully");
+						System.out.println("Wrote to patient Json file successfully");
 					}
 
 					//transition to a confirmation panel

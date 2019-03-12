@@ -7,35 +7,65 @@ package Objects;
 public class Doctor
 {
 	//Fields necessary for each doctor
-	private String name;
-	private String department;
+	private String firstname;
+	private String lastname;
+	private String department;//specialty
 	private String phoneNumber;
+	private String email;
+	private String address;
 	private Integer id;
-	private Schedule schedule;
+
+	//private Schedule schedule;
 	
 	//Constructors
-	public Doctor(Integer id1, String name1, String department1, String number1, Schedule schedule1) {
+	public Doctor(Integer id1, String fname,String lname, String department1, String number1, String email, String address) {
 		setId(id1);
-		setName(name1);
+		setfName(fname);
+		setlName(lname);
 		setDepartment(department1);
 		setPhoneNumber(number1);
-		setSchedule(schedule1);
+		setEmail(email);
+		setAddress (address);
+	//	setSchedule(schedule1);
 	}
+
+	//this one is just for testing. Delete pre submission///////////////////////////////////////////////////////
+	public Doctor(String fname,String lname, String department1, String number1, String email, String address) {
+		setfName(fname);
+		setlName(lname);
+		setDepartment(department1);
+		setPhoneNumber(number1);
+		setEmail(email);
+		setAddress (address);
+		//	setSchedule(schedule1);
+	}
+
+
+
+
+
+
 	public Doctor() { }
 	
 	
 	//setters for Doctor fields
-	public void setName(String name1) { this.name = name1;}
+	public void setfName(String fname) { this.firstname = fname;}
+	public void setlName(String lname) {this.lastname = lname;}
 	public void setPhoneNumber(String number1) { this.phoneNumber = number1;}
 	public void setDepartment(String department1) {this.department = department1;}
-	public void setSchedule(Schedule schedule1) {this.schedule = schedule1;}
+	public void setEmail(String email){this.email = email;}
+	public void setAddress(String address){this.address = address;}
+	//public void setSchedule(Schedule schedule1) {this.schedule = schedule1;}
 	public void setId(Integer id) {this.id = id;}
 	
 	//getters for Doctor fields
-	public String getName() {return name;}
+	public String getFirstname() {return firstname;}
+	public String getLastname() {return lastname;}
 	public String getPhoneNumber() {return phoneNumber;}
 	public String getDepartment() {return department;}
-	public Schedule getSchedule() {return schedule;}
+	public String getEmail() {return email;}
+	public String getAddress() {return address;}
+	//public Schedule getSchedule() {return schedule;}
 	public Integer getId() {return id;}
 	
 	

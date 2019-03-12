@@ -1,4 +1,6 @@
 package GUI;
+import JsonFileUtils.Writer;
+import Objects.Doctor;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -32,7 +34,7 @@ public class newDoctorGUI extends adminGUI{
 		TextField add = new TextField();
 		TextField Num = new TextField();
 		TextField Email = new TextField();
-		TextField Spec = new TextField();
+		TextField Spec = new TextField();//department
 
 		final Text actionTarget = new Text();
 
@@ -95,7 +97,6 @@ public class newDoctorGUI extends adminGUI{
 					actionTarget.setText("*Please fill in all fields*");
 				}
 				else {
-
 					dfirstName = fName.getText();
 					dlastName = lName.getText();
 					dAdd = add.getText();
@@ -105,6 +106,15 @@ public class newDoctorGUI extends adminGUI{
 
 					//user confirmation
 					System.out.println("Input confirm print: " + dfirstName + " " + dlastName + " " + dAdd + " " + dNumb + " " + dEmail + " " +dDoc);
+
+					//creates and writes JSON file
+					//once Doctor ID has been added to GUI input, put into index 0 of constructor call below.
+					Doctor doctor = new Doctor(dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd);//////////////////////////////////////////////
+					Writer writer = new Writer();
+					boolean success = writer.writeObjectToFile(doctor);
+					if (success){
+						System.out.println("Wrote to Dr Json file successfully");
+					}
 
 
 					//transition to a confirmation panel
