@@ -1,6 +1,7 @@
 package Objects;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * A class which stores the appointment schedule for a single doctor. The doctor is indicated by their unique ID.
@@ -29,10 +30,10 @@ public class Schedule {
 	 */
 	public void addAppointment(Integer patientId, String date, String time) {
 		if (getCurrentAppointments().containsKey(patientId)) {
-			getCurrentAppointments().get(patientId).add(new Appointment(date, time));
+			getCurrentAppointments().get(patientId).add(new Appointment(patientId, date, time));
 		} else {
 			ArrayList<Appointment> newApptSet = new ArrayList<>();
-			newApptSet.add(new Appointment(date, time));
+			newApptSet.add(new Appointment(patientId, date, time));
 			getCurrentAppointments().put(patientId, newApptSet);
 		}
 	}
@@ -56,7 +57,6 @@ public class Schedule {
 		return getCurrentAppointments().get(patientId).stream().filter(appt -> appointmentId.equals(appt.getAppointmentId())).findFirst().orElse(null);
 	}
 
-
 	/**
 	 * Retrieves the appointment indicated by a date and time for the given patient, if the appointment is found.
 	 * @param patientId The ID of the patient to retrieve the appointment for
@@ -67,6 +67,21 @@ public class Schedule {
 	public Appointment getAppointment(Integer patientId, String date, String time) {
 		Integer idToFind = Appointment.calculateId(date, time);
 		return getCurrentAppointments().get(patientId).stream().filter(appt -> idToFind.equals(appt.getAppointmentId())).findFirst().orElse(null);
+	}
+
+	/**
+	 * Retrieves all appointments that are on the given date.
+	 * @param date The date to query for appointments
+	 * @return an ArrayList containing all appointments on the specified date
+	 */
+	public ArrayList<Appointment> getAppointmentsByDate(String date){
+		ArrayList<Appointment> apptsOnDate = new ArrayList<Appointment>();
+		for (Entry<Integer, ArrayList<Appointment>> patientAppts: getCurrentAppointments().entrySet()) {
+			for (Appointment appt : patientAppts.getValue()) {
+				if (appt.getDate().equals(date)) apptsOnDate.add(appt);
+			}
+		}
+		return apptsOnDate;
 	}
 
 	/**

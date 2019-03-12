@@ -7,17 +7,19 @@ package Objects;
  */
 public class Appointment {
 	private Integer appointmentId;
+	private Integer patientId;
 	private String date;
 	private String time;
-	
+
 	// Constructors
 	public Appointment() {}
-	public Appointment(String date, String time) {
+	public Appointment(Integer pId, String date, String time) {
+		setPatientId(pId);
 		setDate(date);
 		setTime(time);
 		setAppointmentId(calculateId(date, time));
 	}
-	
+
 	/**
 	 * Calculates the ID of an appointment based on the given date and time.
 	 * @param date The date of the appointment
@@ -27,7 +29,7 @@ public class Appointment {
 	public static Integer calculateId (String date, String time) {
 		return date.hashCode() + time.hashCode();
 	}
-	
+
 	/**
 	 * Updates the appointment by changing the date and time to the new one's provided.
 	 * @param newDate The new date for the appointment
@@ -40,18 +42,16 @@ public class Appointment {
 		setAppointmentId(calculateId(newDate, newTime));
 		return getAppointmentId();
 	}
-	
+
 	// Getters
 	public String getTime() {return time;}
 	public String getDate() {return date;}
 	public Integer getAppointmentId() {return appointmentId;}
-	
+	public Integer getPatientId() {return patientId;}
+
 	// Setters
 	public void setTime(String time) {this.time = time;}
 	public void setDate(String date) {this.date = date;}
-	private void setAppointmentId(Integer apptId) {
-		this.appointmentId = apptId;
-		
-	}
-	
+	private void setAppointmentId(Integer apptId) {this.appointmentId = apptId;}
+	public void setPatientId(Integer patientId) {this.patientId = patientId;}
 }
