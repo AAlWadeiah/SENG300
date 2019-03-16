@@ -35,6 +35,7 @@ public class newDoctorGUI extends adminGUI{
 		TextField Num = new TextField();
 		TextField Email = new TextField();
 		TextField Spec = new TextField();//department
+		TextField ID = new TextField();
 
 		final Text actionTarget = new Text();
 
@@ -52,7 +53,7 @@ public class newDoctorGUI extends adminGUI{
 		//Panes
 		GridPane newdoctorGrid = new GridPane();
 		BorderPane newdoctorBorder = new BorderPane();
-		setdoctorPane(newdoctorGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Spec, actionTarget);
+		setdoctorPane(newdoctorGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Spec, ID, actionTarget);
 
 		//populate box
 		newDoctor.getChildren().add(newdoctorGrid);
@@ -92,8 +93,9 @@ public class newDoctorGUI extends adminGUI{
 			public void handle(ActionEvent e) {
 
 				//checks if fields are empty
-				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Spec.getText().isEmpty()) {
+				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Spec.getText().isEmpty() || ID.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
 					actionTarget.setText("*Please fill in all fields*");
 				}
 				else {
@@ -103,13 +105,14 @@ public class newDoctorGUI extends adminGUI{
 					dNumb = Num.getText();
 					dEmail = Email.getText();
 					dDoc = Spec.getText();
+					dId = ID.getText();
 
 					//user confirmation
-					System.out.println("Input confirm print: " + dfirstName + " " + dlastName + " " + dAdd + " " + dNumb + " " + dEmail + " " +dDoc);
+					System.out.println("Input confirm print: " + dfirstName + " " + dlastName + " " + dAdd + " " + dNumb + " " + dEmail + " " +dDoc + " " + dId);
 
 					//creates and writes JSON file
 					//once Doctor ID has been added to GUI input, put into index 0 of constructor call below.
-					Doctor doctor = new Doctor(dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd);//////////////////////////////////////////////
+					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd);//////////////////////////////////////////////
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(doctor);
 					if (success){
@@ -146,7 +149,7 @@ public class newDoctorGUI extends adminGUI{
 	 * @param spec	doctor department textfield
 	 * @param actionTarget warning text
 	 */
-	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, Text actionTarget) {
+	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, TextField ID,  Text actionTarget) {
 
 		int gap = 10;
 		int pad = 25;
@@ -162,6 +165,7 @@ public class newDoctorGUI extends adminGUI{
 		Label phoneNum = new Label("Phone number: ");
 		Label email = new Label("Email: ");
 		Label docSpec = new Label("Department: ");
+		Label docID = new Label("Doctor ID: ");
 
 		//Text Prompts
 		fName.setPromptText("Enter doctor's first name");
@@ -170,6 +174,7 @@ public class newDoctorGUI extends adminGUI{
 		Num.setPromptText("Enter doctor's phone #");
 		Email.setPromptText("Enter doctor's email ");
 		spec.setPromptText("Enter doctor's department");
+		ID.setPromptText("Emter doctor's ID");
 
 
 		Pane.setAlignment(Pos.TOP_LEFT);
@@ -183,6 +188,7 @@ public class newDoctorGUI extends adminGUI{
 		Pane.add(phoneNum, xs, ys+6);
 		Pane.add(email, xs, ys+8);
 		Pane.add(docSpec, xs,ys+10);
+		Pane.add(docID, xs, ys+12);
 
 
 		Pane.add(fName, xs+2, ys);
@@ -191,6 +197,7 @@ public class newDoctorGUI extends adminGUI{
 		Pane.add(Num, xs+2, ys+6);
 		Pane.add(Email, xs+2, ys+8);
 		Pane.add(spec, xs+2, ys+10);
+		Pane.add(ID, xs+2, ys+12);
 
 		Pane.add(submit, xs+8, ys+14);
 		Pane.add(actionTarget, xs+2, ys+14);

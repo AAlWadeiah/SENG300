@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -19,7 +20,7 @@ public class startupGUI extends Application {
 
 	int size = 800;
 	String pfirstName, plastName, pAdd, pNumb, pEmail, pDoct,pId;
-	String dfirstName, dlastName, dAdd, dNumb, dEmail,dDoc;
+	String dfirstName, dlastName, dAdd, dNumb, dEmail,dDoc, dId;
 	
 	/**
 	 * Initializes the startup page accessible by all agents, patients, doctors, and administration.
@@ -41,6 +42,8 @@ public class startupGUI extends Application {
 		//Labels
 		Label actor = new Label();
 		actor.setText("Hospital Management System ");
+		actor.setTextFill(Color.WHITE);
+		//actor.setF
 		actor.setFont(new Font("Cambria", 32));
 
 		//Buttons
@@ -127,7 +130,7 @@ public class startupGUI extends Application {
 	 * @param name the desired VBox
 	 */
 	protected void setVBox(VBox name) {
-		name.setStyle("-fx-background-color: #FF9966;");
+		name.setStyle("-fx-background-color: #c5c9cc;");
 		name.setAlignment(Pos.CENTER);
 		name.setSpacing(80);
 	}
@@ -137,7 +140,7 @@ public class startupGUI extends Application {
 	 * @param name the desired VBox
 	 */
 	protected void setformVBox(VBox name) {
-		name.setStyle("-fx-background-color: #FF9966;");
+		name.setStyle("-fx-background-color: #c5c9cc;");
 		name.setAlignment(Pos.TOP_LEFT);
 	}
 
@@ -147,7 +150,7 @@ public class startupGUI extends Application {
 	 */
 	protected void setHBox(HBox name) {
 		name.setPadding(new Insets(15,12,15,12));
-		name.setStyle("-fx-background-color: #5C8BE9;");
+		name.setStyle("-fx-background-color: #1474c8;");
 	}
 
 }

@@ -80,7 +80,8 @@ public class makeAppointmentGUI extends newScheduleGUI{
 				//check if forms are empty
 				if(date.getText().isEmpty() || time.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setText("*Please fill in date & time*");
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Please fill in all fields*");
 				}
 				else {
 					String appDate = date.getText();

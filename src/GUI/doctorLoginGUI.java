@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -37,6 +38,7 @@ public class doctorLoginGUI extends startupGUI
 			Label actor = new Label();
 			actor.setText("Doctor Login");
 			actor.setFont(new Font("Cambria", 32));
+			actor.setTextFill(Color.WHITE);
 
 		//Buttons 
 			Button rreturn = new Button("Return");
@@ -62,10 +64,10 @@ public class doctorLoginGUI extends startupGUI
 		//Adjust boxes
 			introPane.setAlignment(Pos.CENTER_RIGHT);
 		
-			usernameBox.setStyle("-fx-background-color: #FF9966;");
+			usernameBox.setStyle("-fx-background-color: #c5c9cc;");
 			usernameBox.setAlignment(Pos.TOP_CENTER);
 		
-			passwordBox.setStyle("-fx-background-color: #FF9966;");
+			passwordBox.setStyle("-fx-background-color: #c5c9cc;");
 			passwordBox.setAlignment(Pos.TOP_CENTER);
 		
 

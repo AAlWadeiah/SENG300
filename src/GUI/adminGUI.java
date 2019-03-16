@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -34,6 +35,7 @@ public class adminGUI extends adminLoginGUI{
 		Label actor = new Label();
 		actor.setText("Admin: ");
 		actor.setFont(new Font("Cambria", 32));
+		actor.setTextFill(Color.WHITE);
 
 		//Buttons 
 		Button logout = new Button("Logout");

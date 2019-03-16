@@ -98,6 +98,7 @@ public class newPatientGUI extends adminGUI{
 				//checks if fields are empty
 				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Doc.getText().isEmpty() || ID.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
 					actionTarget.setText("*Please fill in all fields*");
 				}
 

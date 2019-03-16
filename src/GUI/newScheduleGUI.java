@@ -105,7 +105,7 @@ public class newScheduleGUI extends adminGUI{
 
 		//Boxes
 		VBox schedulePatient = new VBox();
-		schedulePatient.setStyle("-fx-background-color: #FF9966;");
+		schedulePatient.setStyle("-fx-background-color: #c5c9cc;");
 		schedulePatient.setSpacing(25);
 		schedulePatient.setAlignment(Pos.CENTER_LEFT);
 		schedulePatient.setPadding(new Insets(50,50,50,50));
