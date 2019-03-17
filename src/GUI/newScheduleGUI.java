@@ -4,6 +4,7 @@ import java.util.List;
 
 import JsonFileUtils.Parser;
 import Objects.Patient;
+import Objects.Schedule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -143,9 +144,10 @@ public class newScheduleGUI extends adminGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				if(person!=null) {
-					System.out.println(person.getFirstName());
-					makeAppointmentGUI adminApp = new makeAppointmentGUI();
-					adminApp.startApp(scheduleStage,intro,person);
+					//System.out.println(person.getFirstName());
+					Schedule schPatient = new Schedule(Integer.parseInt(person.getDoctor()));
+					appointmentGUI adminApp = new appointmentGUI();
+					adminApp.startApp(scheduleStage,intro,person,schPatient);
 
 				}
 			}
