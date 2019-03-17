@@ -41,7 +41,7 @@ public class doctorLoginGUI extends startupGUI
 			actor.setFont(new Font("Cambria", 32));
 			actor.setTextFill(Color.WHITE);
 		
-		final Text actionTarget = new Text();
+			final Text actionTarget = new Text();
 
 		//Buttons 
 			Button rreturn = new Button("Return");
@@ -132,8 +132,11 @@ public class doctorLoginGUI extends startupGUI
 					  /**Here is where we would reference the actual patient GUI which micheal will be making
 				  		 * you would replace the two below lines with it*/
 					  }
-				else {/**Need to handle the scenario where the password is incorrect*/}}
-			});
+				else {
+				actionTarget.setFill(Color.FIREBRICK);
+				actionTarget.setFont(new Font("Cambra", 14));
+				actionTarget.setText("*Wrong Username or Password*");}
+			}});
 
 
 	}

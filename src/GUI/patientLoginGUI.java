@@ -114,7 +114,10 @@ public class patientLoginGUI extends startupGUI {
 						patientSignin.startPatient(patientStage);
 				}
 				//	}
-				else {/**Need to handle the scenario where the password is incorrect*/}
+				else {
+				actionTarget.setFill(Color.FIREBRICK);
+				actionTarget.setFont(new Font("Cambra", 14));
+				actionTarget.setText("*Wrong Username or Password*");}
 				}
 		});
 		passID.setOnKeyReleased(event -> {
