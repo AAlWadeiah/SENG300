@@ -15,7 +15,7 @@ public class validateAccount {
 	File path = new File(currentDir);
 	Parser parser = new Parser();
 	File[] jsonFiles = parser.getFiles(path);
-	List<Patient> allPatients = parser.parsePatients(jsonFiles);
+	List<Patient> allPatients = parser.parsePatients();
 
 	public Boolean validate(String user, String pass, String filename) {
 

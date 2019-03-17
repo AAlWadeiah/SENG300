@@ -125,6 +125,8 @@ public class newPatientGUI extends adminGUI{
 					if (success) {
 						System.out.println("Wrote to patient Json file successfully");
 					}
+					else
+						System.out.println("Error! patient no write JSON :(");
 
 					//transition to a confirmation panel
 					BorderPane npPane = new BorderPane();

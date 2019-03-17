@@ -1,7 +1,10 @@
 package JsonFileUtils;
-import java.io.*; 
-import java.util.*;  
+import java.io.*;
+import java.lang.reflect.Type;
+import java.util.*;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import Objects.Patient; 
@@ -28,21 +31,26 @@ public class Parser {
 	 * @param jsonFiles The Patient JSON files
 	 * @return the list of deserialized Patient objects
 	 */
-	public List<Patient> parsePatients(File[] jsonFiles) {
-		Gson parser = new Gson();
-		JsonReader reader;
-		List<Patient> allPatients = new ArrayList<>();
+	public List<Patient> parsePatients() {
+		Gson allPatFile = new GsonBuilder().setPrettyPrinting().create();
+		List<Patient> allThePatients = null;
+		Type patientType = new TypeToken<List<Patient>>(){}.getType();
+
+
 		try {
-			for (File patFile : jsonFiles) {
-				reader = new JsonReader(new FileReader(patFile));
-				Patient pat = parser.fromJson(reader, Patient.class);
-				allPatients.add(pat);
-			}
-			return allPatients;
-		} catch (FileNotFoundException e) {
-			System.out.println("Error parsing JSON file: " + e.getMessage());
-			return null;
+			FileReader fReader = new FileReader("allThePatients.json");
+			allThePatients = allPatFile.fromJson(fReader, patientType);
+			fReader.close();
 		}
+		catch(FileNotFoundException e){
+			System.out.println("Error, file not found in parser class");
+		}
+		catch (IOException e){
+			System.out.println("Error! Cannot close file in Parser class - Big trouble...Aborting");
+		}
+
+		return allThePatients;
+
 	}
 
 	/**

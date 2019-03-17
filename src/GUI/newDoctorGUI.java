@@ -118,6 +118,8 @@ public class newDoctorGUI extends adminGUI{
 					if (success){
 						System.out.println("Wrote to Dr Json file successfully");
 					}
+					else
+						System.out.println("Error! doctor no write JSON :(");
 
 
 					//transition to a confirmation panel

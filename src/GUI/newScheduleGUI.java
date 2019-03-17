@@ -72,7 +72,7 @@ public class newScheduleGUI extends adminGUI{
 		Parser parser = new Parser();
 
 		File[] jsonFiles = parser.getFiles(path);
-		List<Patient> allPatients = parser.parsePatients(jsonFiles);
+		List<Patient> allPatients = parser.parsePatients();
 
 		/**tester
 	    for (Patient patient : allPatients) {
