@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class adminLoginGUI extends startupGUI {
@@ -37,6 +38,8 @@ public class adminLoginGUI extends startupGUI {
 			actor.setText("Admin Login");
 			actor.setFont(new Font("Cambria", 32));
 			actor.setTextFill(Color.WHITE);
+			
+			final Text actionTarget = new Text();
 
 		//Buttons 
 			Button rreturn = new Button("Return");
@@ -107,7 +110,10 @@ public class adminLoginGUI extends startupGUI {
 						signonSuccess.startAdmin(AdminStage);
 						}
 					
-					else { /**Need to handle the scenario where the password is incorrect*/}
+					else { 
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Wrong Username or Password*");}
 					}
 			});
 			
@@ -123,9 +129,9 @@ public class adminLoginGUI extends startupGUI {
 					  		adminGUI signonSuccess = new adminGUI();
 							signonSuccess.startAdmin(AdminStage);
 						}
-					else {/**Need to handle the scenario where the password is incorrect*/}}
-				});
-
-
+					else {
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Wrong Username or Password*");}
+				  }});}
 		}
-}

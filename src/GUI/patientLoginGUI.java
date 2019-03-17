@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class patientLoginGUI extends startupGUI {
@@ -39,6 +40,8 @@ public class patientLoginGUI extends startupGUI {
 		actor.setText("Patient Login");
 		actor.setFont(new Font("Cambria", 32));
 		actor.setTextFill(Color.WHITE);
+		
+		final Text actionTarget = new Text();
 
 		//Buttons 
 		Button rreturn = new Button("Return");
@@ -81,7 +84,7 @@ public class patientLoginGUI extends startupGUI {
 		passwordBox.getChildren().addAll(passLabel,passID);
 
 		patientScreen.getChildren().addAll(usernameBox, passwordBox);
-		patientScreen.getChildren().addAll(submitPane);
+		patientScreen.getChildren().addAll(submitPane,actionTarget);
 
 			
 		//Set panes and scene
@@ -104,11 +107,17 @@ public class patientLoginGUI extends startupGUI {
 
 			@Override
 			public void handle(ActionEvent e) {
-				if (new validateAccount().validate(userID.getText(),passID.getText(), "Patient_Users.json")) //first validate their login
-					{
-					//Here is where we would reference the actual patient GUI which micheal will be making
-					}
-				else {/**Need to handle the scenario where the password is incorrect*/}
+				//if (new validateAccount().validate(userID.getText(),passID.getText(), "Patient_Users.json")) //first validate their login
+				//	{
+				if(true) {
+						viewAppointmentGUI patientSignin = new viewAppointmentGUI();
+						patientSignin.startPatient(patientStage);
+				}
+				//	}
+				else {
+				actionTarget.setFill(Color.FIREBRICK);
+				actionTarget.setFont(new Font("Cambra", 14));
+				actionTarget.setText("*Wrong Username or Password*");}
 				}
 		});
 		passID.setOnKeyReleased(event -> {
@@ -118,7 +127,11 @@ public class patientLoginGUI extends startupGUI {
 					  /**Here is where we would reference the actual patient GUI which micheal will be making
 				  		 * you would replace the two below lines with it*/
 					  }
-				else {/**Need to handle the scenario where the password is incorrect*/}}
+				else {
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Wrong Username or Password*");
+				}}
 			});
 	       
 	}
