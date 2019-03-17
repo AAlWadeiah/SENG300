@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class doctorLoginGUI extends startupGUI
@@ -39,6 +40,8 @@ public class doctorLoginGUI extends startupGUI
 			actor.setText("Doctor Login");
 			actor.setFont(new Font("Cambria", 32));
 			actor.setTextFill(Color.WHITE);
+		
+		final Text actionTarget = new Text();
 
 		//Buttons 
 			Button rreturn = new Button("Return");
@@ -77,15 +80,16 @@ public class doctorLoginGUI extends startupGUI
 		
 			introPane.getChildren().add(rreturn);
 			submitPane.getChildren().addAll(submit);
+			
 		
 			usernameBox.getChildren().addAll(userLabel,userID);
 			passwordBox.getChildren().addAll(passLabel,passID);
 		
 			doctorScreen.getChildren().addAll(usernameBox, passwordBox);
-			doctorScreen.getChildren().addAll(submitPane);
+			doctorScreen.getChildren().addAll(submitPane,actionTarget);
 			
 		//Set panes and scene
-			setBorderpane( doctorPane, intro,  doctorScreen);
+			setBorderpane(doctorPane, intro,  doctorScreen);
 			setScene( doctorPane, doctorStage);
 
 
@@ -104,11 +108,19 @@ public class doctorLoginGUI extends startupGUI
 
 			@Override
 			public void handle(ActionEvent e) {
-				if (new validateAccount().validate(userID.getText(),passID.getText(), "Doctor_Users.json")) 
+				//if (new validateAccount().validate(userID.getText(),passID.getText(), "Doctor_Users.json")) 
 				//This is where we will handle what happens after a doctor is signed on
-				{}
+				//{}
+				if(false) {
+					viewScheduleGUI doctorSignin = new viewScheduleGUI();
+					doctorSignin.startDoctor(doctorStage);
+				}
 				
-				else { /**Need to handle the scenario where the password is incorrect*/}
+				else {
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Wrong Username or Password*");
+				}
 				
 			}
 		});
