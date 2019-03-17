@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 public class startupGUI extends Application {
 
 	int size = 800;
-	String pfirstName, plastName, pAdd, pNumb, pEmail, pDoct,pId;
-	String dfirstName, dlastName, dAdd, dNumb, dEmail,dDoc, dId;
+	String pfirstName, plastName, pAdd, pNumb, pEmail, pDoct,pId, pPassword;
+	String dfirstName, dlastName, dAdd, dNumb, dEmail,dDoc, dId, dPassword;
 	
 	/**
 	 * Initializes the startup page accessible by all agents, patients, doctors, and administration.

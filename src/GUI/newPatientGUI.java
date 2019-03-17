@@ -36,6 +36,7 @@ public class newPatientGUI extends adminGUI{
 		TextField Email = new TextField();
 		TextField Doc = new TextField();
 		TextField ID = new TextField();
+		TextField password = new TextField();
 
 		final Text actionTarget = new Text();
 
@@ -53,7 +54,7 @@ public class newPatientGUI extends adminGUI{
 		//Panes
 		GridPane newpatientGrid = new GridPane();
 		BorderPane newpatientBorder = new BorderPane();
-		setpatientPane(newpatientGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Doc, ID, actionTarget);
+		setpatientPane(newpatientGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Doc, ID, password, actionTarget);
 
 		//populate box
 		newPatient.getChildren().add(newpatientGrid);
@@ -74,6 +75,7 @@ public class newPatientGUI extends adminGUI{
 				Email.clear();
 				Doc.clear();
 				ID.clear();
+				password.clear();
 				actionTarget.setText(null);
 
 
@@ -96,7 +98,7 @@ public class newPatientGUI extends adminGUI{
 			public void handle(ActionEvent e) {
 
 				//checks if fields are empty
-				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Doc.getText().isEmpty() || ID.getText().isEmpty()) {
+				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Doc.getText().isEmpty() || ID.getText().isEmpty() || password.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setFont(new Font("Cambra", 14));
 					actionTarget.setText("*Please fill in all fields*");
@@ -110,9 +112,11 @@ public class newPatientGUI extends adminGUI{
 					pEmail = Email.getText();
 					pDoct = Doc.getText();
 					pId = ID.getText();
+					pPassword = password.getText();
+
 
 					//Creates and writes to a JSON file
-					Patient patient = new Patient(pfirstName, plastName, pAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId));
+					Patient patient = new Patient(pfirstName, plastName, pAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId), pPassword);
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(patient);
 					if (success) {
@@ -150,8 +154,9 @@ public class newPatientGUI extends adminGUI{
 	 * @param Doc patient/s doctor textfield
 	 * @param ID patient's ID number textfield
 	 * @param actionTarget warning text
+	 * @param password patient's password
 	 */
-	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField Doc, TextField ID, Text actionTarget) {
+	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField Doc, TextField ID, TextField password, Text actionTarget) {
 
 		int gap = 10;
 		int pad = 25;
@@ -168,6 +173,7 @@ public class newPatientGUI extends adminGUI{
 		Label eMail = new Label("Email: ");
 		Label patDoc = new Label("Doctor: ");
 		Label patID = new Label("Patient ID: ");
+		Label pWord = new Label ("Password: ");
 
 		//Text Prompts
 		fName.setPromptText("Enter patient's first name");
@@ -177,6 +183,7 @@ public class newPatientGUI extends adminGUI{
 		Email.setPromptText("Enter patient's email ");
 		Doc.setPromptText("Enter patient's physician");
 		ID.setPromptText("Enter patient's ID");
+		password.setPromptText("Enter patient's password");
 
 
 		Pane.setAlignment(Pos.TOP_LEFT);
@@ -191,6 +198,7 @@ public class newPatientGUI extends adminGUI{
 		Pane.add(eMail, xs, ys+8);
 		Pane.add(patDoc, xs,ys+10);
 		Pane.add(patID, xs, ys+12);
+		Pane.add(pWord, xs, ys+14);
 
 		Pane.add(fName, xs+2, ys);
 		Pane.add(lName, xs+2, ys+2);
@@ -199,6 +207,7 @@ public class newPatientGUI extends adminGUI{
 		Pane.add(Email, xs+2, ys+8);
 		Pane.add(Doc,xs+2, ys+10);
 		Pane.add(ID, xs+2, ys+12);
+		Pane.add(password, xs+2, ys+14);
 
 		Pane.add(submit, xs+8, ys+14);
 		Pane.add(actionTarget, xs+2, ys+14);

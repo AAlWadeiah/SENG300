@@ -14,9 +14,10 @@ public class Patient {
 	private String email;
 	private String phoneNumber;
 	private Integer id;
+	private String password;
 	
 	//Constructors
-	public Patient(String firstName, String lastName, String address, String doctor, String email, String phone, Integer id) {
+	public Patient(String firstName, String lastName, String address, String doctor, String email, String phone, Integer id, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setAddress(address);
@@ -24,6 +25,7 @@ public class Patient {
 		setEmail(email);
 		setNumber(phone);
 		setId(id);
+		setPassword(password);
 	}
 	public Patient() { }
 	
@@ -37,6 +39,7 @@ public class Patient {
 	public void setEmail(String email1) { this.email = email1;}
 	public void setNumber(String number) { this.phoneNumber = number;}
 	public void setId(Integer id) { this.id = id;}
+	public void setPassword(String password) {this.password = password;}
 	
 	
 	//Getters for info
@@ -47,5 +50,6 @@ public class Patient {
 	public String getEmail() { return email;}
 	public String getNumber() { return phoneNumber;}
 	public Integer getId() { return id;}
+	public String getPassword() {return password;}
 	
 }
