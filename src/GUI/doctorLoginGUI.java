@@ -129,8 +129,8 @@ public class doctorLoginGUI extends startupGUI
 			  if (event.getCode() == KeyCode.ENTER){
 				  if (new validateAccount().validate(userID.getText(),passID.getText(), "Doctor_Users.json")) //first validate their login
 					{
-					  /**Here is where we would reference the actual patient GUI which micheal will be making
-				  		 * you would replace the two below lines with it*/
+						viewScheduleGUI doctorSignin = new viewScheduleGUI();
+						doctorSignin.startDoctor(doctorStage);
 					  }
 				else {
 				actionTarget.setFill(Color.FIREBRICK);

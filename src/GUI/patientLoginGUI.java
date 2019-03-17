@@ -110,7 +110,7 @@ public class patientLoginGUI extends startupGUI {
 
 			@Override
 			public void handle(ActionEvent e) {
-				//if (new validateAccount().validate(userID.getText(),passID.getText(), "Patient_Users.json")) //first validate their login
+				//if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient_Users.json")) //first validate their login
 				//	{
 				if(true) {
 						viewAppointmentGUI patientSignin = new viewAppointmentGUI();
@@ -127,9 +127,8 @@ public class patientLoginGUI extends startupGUI {
 			  if (event.getCode() == KeyCode.ENTER){
 				  if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient_Users.json")) //first validate their login
 					{
-					  /**Here is where we would reference the actual patient GUI which micheal will be making
-				  		 * you would replace the two below lines with it*/
-					  
+						viewAppointmentGUI patientSignin = new viewAppointmentGUI();
+						patientSignin.startPatient(patientStage);
 					  }
 				else {
 					actionTarget.setFill(Color.FIREBRICK);
