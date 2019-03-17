@@ -18,6 +18,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class newPatientGUI extends adminGUI{
 
 	/**
@@ -112,7 +115,7 @@ public class newPatientGUI extends adminGUI{
 					pEmail = Email.getText();
 					pDoct = Doc.getText();
 					pId = ID.getText();
-					pPassword = password.getText();
+					pPassword = setPassword(password.getText());
 
 
 					//Creates and writes to a JSON file
@@ -218,4 +221,26 @@ public class newPatientGUI extends adminGUI{
 
 	}
 
+
+	/**
+	 * @param p The users text version password
+	 * @return The users hashed password
+	 */
+	private String setPassword(String p){
+		String password = null;
+
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(p.getBytes());
+			byte[] bytes = md.digest();
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < bytes.length; i++){
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			password = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return password;
+	}
 }

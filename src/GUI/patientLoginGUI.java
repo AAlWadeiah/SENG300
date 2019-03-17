@@ -19,6 +19,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class patientLoginGUI extends startupGUI {
 	public void startPatientLogin(Stage patientStage) {
 
@@ -122,10 +125,11 @@ public class patientLoginGUI extends startupGUI {
 		});
 		passID.setOnKeyReleased(event -> {
 			  if (event.getCode() == KeyCode.ENTER){
-				  if (new validateAccount().validate(userID.getText(),passID.getText(), "Patient_Users.json")) //first validate their login
+				  if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient_Users.json")) //first validate their login
 					{
 					  /**Here is where we would reference the actual patient GUI which micheal will be making
 				  		 * you would replace the two below lines with it*/
+					  
 					  }
 				else {
 					actionTarget.setFill(Color.FIREBRICK);
@@ -136,5 +140,26 @@ public class patientLoginGUI extends startupGUI {
 	       
 	}
 
+	/**
+	 * @param p The users text version password
+	 * @return The users hashed password
+	 */
+	private String getHash(String p){
+		String password = null;
+
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(p.getBytes());
+			byte[] bytes = md.digest();
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < bytes.length; i++){
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			password = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return password;
+	}
 }
 
