@@ -1,10 +1,5 @@
 package GUI;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import Objects.Appointment;
 import Objects.Patient;
-import Objects.Schedule;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -23,23 +18,20 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class makeAppointmentGUI extends appointmentGUI{
+public class makeAppointmentGUI extends newScheduleGUI{
 	
 	/**
 	 * Loads page to make a new appointment. Displays information of selected patient and allows user to enter a date and time for the appointment.
 	 * @param scheduleStage stage that displays the scheduling panel
 	 * @param intro HBox to hold consistent form
 	 * @param person The patient to make an appointment for.
-	 * @param schPatient The schedule object of the patient
 	 */
-	public void startAppGUI(Stage scheduleStage, HBox intro, Patient person, Schedule schPatient) {
+	public void startApp(Stage scheduleStage, HBox intro, Patient person) {
 		int pad =50;
 		//Buttons
 		Button submit = new Button("Submit");
 		Button clear = new Button("Clear");
-		Button reTurn = new Button("Return");	
-		
-		
+		Button reTurn = new Button("Return");		
 		
 		//Labels & Text
 		Label Patient = new Label("Patient: ");
@@ -96,12 +88,9 @@ public class makeAppointmentGUI extends appointmentGUI{
 					String appTime = time.getText();
 					
 					//person is the object
-				
-					//Schedule schPatient = new Schedule(Integer.parseInt(person.getDoctor()));
-					schPatient.addAppointment(person.getId(), appDate, appTime);
-					
-					Appointment s = schPatient.getAppointment(person.getId(), appDate, appTime);
-					System.out.println(s.getAppointmentId());
+					person.getLastName();
+					//example
+					//send to file etc
 					
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Schedule Complete");
@@ -114,10 +103,6 @@ public class makeAppointmentGUI extends appointmentGUI{
 					scheduleApp.getChildren().addAll(done,reTurn);
 					setBorderpane(npPane,intro, scheduleApp);
 					setScene(npPane,scheduleStage);
-					
-					//ArrayList<Appointment> s = (schPatient.getAllAppointments(person.getId()));
-					
-					//System.out.println(s.get(0).toString());
 					
 					
 				}
@@ -140,7 +125,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				startApp(scheduleStage, intro, person, schPatient);
+				startSchedule(scheduleStage, intro);
 			}
 		});
 		
