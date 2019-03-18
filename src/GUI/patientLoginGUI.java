@@ -110,13 +110,12 @@ public class patientLoginGUI extends startupGUI {
 
 			@Override
 			public void handle(ActionEvent e) {
-				//if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient_Users.json")) //first validate their login
-				//	{
-				if(true) {
+				
+				if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient")) {
 						viewAppointmentGUI patientSignin = new viewAppointmentGUI();
 						patientSignin.startPatient(patientStage);
 				}
-				//	}
+	
 				else {
 				actionTarget.setFill(Color.FIREBRICK);
 				actionTarget.setFont(new Font("Cambra", 14));
@@ -129,12 +128,13 @@ public class patientLoginGUI extends startupGUI {
 					{
 						viewAppointmentGUI patientSignin = new viewAppointmentGUI();
 						patientSignin.startPatient(patientStage);
-					  }
-				else {
+					}
+				  
+				else{
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setFont(new Font("Cambra", 14));
 					actionTarget.setText("*Wrong Username or Password*");
-				}}
+					}}
 			});
 	       
 	}
