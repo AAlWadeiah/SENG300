@@ -24,7 +24,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class newScheduleGUI extends adminGUI{
@@ -73,7 +75,9 @@ public class newScheduleGUI extends adminGUI{
 		Parser parser = new Parser();
 
 		File[] jsonFiles = parser.getFiles(path);
-		List<Patient> allPatients = parser.parsePatients();
+		
+		final Text actionTarget = new Text();
+		
 
 		/**tester
 	    for (Patient patient : allPatients) {
@@ -89,10 +93,18 @@ public class newScheduleGUI extends adminGUI{
 		numCol.setCellValueFactory(new PropertyValueFactory<>("number"));
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+		try {
+		List<Patient> allPatients = parser.parsePatients();
 		ObservableList<Patient> people = FXCollections.observableArrayList(allPatients);
 		table.setItems(people);
 		table.getColumns().addAll(firstNameCol,lastNameCol,IDCol,doctorCol,addressCol,numCol,emailCol);
-
+		}
+		catch(Exception e) {
+			actionTarget.setFill(Color.FIREBRICK);
+			actionTarget.setFont(new Font("Cambra", 14));
+			actionTarget.setText("*No current patients*");
+			
+		}
 		//click event based on selection of a patient in the table
 		table.setOnMouseClicked((MouseEvent e)->{
 			person = table.getSelectionModel().getSelectedItem();
@@ -116,14 +128,17 @@ public class newScheduleGUI extends adminGUI{
 		//Panes
 		StackPane returnPane = new StackPane();
 		StackPane submitPane = new StackPane();
+		StackPane textPane = new StackPane();
 		returnPane.getChildren().add(reTurn);
 		returnPane.setAlignment(Pos.TOP_RIGHT);
 		submitPane.getChildren().add(submit);
 		submitPane.setAlignment(Pos.BOTTOM_RIGHT);
+		textPane.getChildren().add(actionTarget);
+		textPane.setAlignment(Pos.BOTTOM_CENTER);
 		BorderPane scheduleBorder = new BorderPane();
 
 		//populate box
-		schedulePatient.getChildren().addAll(returnPane, label,table,submitPane);
+		schedulePatient.getChildren().addAll(returnPane, label,table,submitPane,textPane);
 
 		setBorderpane(scheduleBorder, intro, schedulePatient);
 		setScene(scheduleBorder,scheduleStage);
