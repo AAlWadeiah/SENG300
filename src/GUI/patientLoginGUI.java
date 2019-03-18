@@ -125,7 +125,7 @@ public class patientLoginGUI extends startupGUI {
 		});
 		passID.setOnKeyReleased(event -> {
 			  if (event.getCode() == KeyCode.ENTER){
-				  if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient_Users.json")) //first validate their login
+				  if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient")) //first validate their login
 					{
 						viewAppointmentGUI patientSignin = new viewAppointmentGUI();
 						patientSignin.startPatient(patientStage);

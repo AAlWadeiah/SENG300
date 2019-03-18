@@ -14,11 +14,12 @@ public class Doctor
 	private String email;
 	private String address;
 	private Integer id;
+	private String password;
 
 	//private Schedule schedule;
 	
 	//Constructors
-	public Doctor(Integer id1, String fname,String lname, String department1, String number1, String email, String address) {
+	public Doctor(Integer id1, String fname,String lname, String department1, String number1, String email, String address, String password) {
 		setId(id1);
 		setfName(fname);
 		setlName(lname);
@@ -26,6 +27,7 @@ public class Doctor
 		setPhoneNumber(number1);
 		setEmail(email);
 		setAddress (address);
+		setPassword(password);
 	//	setSchedule(schedule1);
 	}
 
@@ -37,6 +39,7 @@ public class Doctor
 		setPhoneNumber(number1);
 		setEmail(email);
 		setAddress (address);
+
 		//	setSchedule(schedule1);
 	}
 
@@ -57,6 +60,7 @@ public class Doctor
 	public void setAddress(String address){this.address = address;}
 	//public void setSchedule(Schedule schedule1) {this.schedule = schedule1;}
 	public void setId(Integer id) {this.id = id;}
+	public void setPassword(String password) {this.password = password;}
 	
 	//getters for Doctor fields
 	public String getFirstname() {return firstname;}
@@ -67,6 +71,7 @@ public class Doctor
 	public String getAddress() {return address;}
 	//public Schedule getSchedule() {return schedule;}
 	public Integer getId() {return id;}
+	public String getPassword() {return password;}
 	
 	
 }

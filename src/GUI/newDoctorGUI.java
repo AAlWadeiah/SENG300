@@ -18,6 +18,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class newDoctorGUI extends adminGUI{
 
 	/**
@@ -36,6 +39,7 @@ public class newDoctorGUI extends adminGUI{
 		TextField Email = new TextField();
 		TextField Spec = new TextField();//department
 		TextField ID = new TextField();
+		TextField password = new TextField();
 
 		final Text actionTarget = new Text();
 
@@ -53,7 +57,7 @@ public class newDoctorGUI extends adminGUI{
 		//Panes
 		GridPane newdoctorGrid = new GridPane();
 		BorderPane newdoctorBorder = new BorderPane();
-		setdoctorPane(newdoctorGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Spec, ID, actionTarget);
+		setdoctorPane(newdoctorGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Spec, ID, password, actionTarget);
 
 		//populate box
 		newDoctor.getChildren().add(newdoctorGrid);
@@ -73,6 +77,7 @@ public class newDoctorGUI extends adminGUI{
 				Num.clear();
 				Email.clear();
 				Spec.clear();
+				password.clear();
 				actionTarget.setText(null);
 			}
 		});
@@ -93,7 +98,7 @@ public class newDoctorGUI extends adminGUI{
 			public void handle(ActionEvent e) {
 
 				//checks if fields are empty
-				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Spec.getText().isEmpty() || ID.getText().isEmpty()) {
+				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Spec.getText().isEmpty() || ID.getText().isEmpty() || password.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setFont(new Font("Cambra", 14));
 					actionTarget.setText("*Please fill in all fields*");
@@ -106,13 +111,14 @@ public class newDoctorGUI extends adminGUI{
 					dEmail = Email.getText();
 					dDoc = Spec.getText();
 					dId = ID.getText();
+					dPassword = setPassword(password.getText());
 
 					//user confirmation
 					System.out.println("Input confirm print: " + dfirstName + " " + dlastName + " " + dAdd + " " + dNumb + " " + dEmail + " " +dDoc + " " + dId);
 
 					//creates and writes JSON file
 					//once Doctor ID has been added to GUI input, put into index 0 of constructor call below.
-					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd);//////////////////////////////////////////////
+					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd, dPassword);//////////////////////////////////////////////
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(doctor);
 					if (success){
@@ -150,8 +156,9 @@ public class newDoctorGUI extends adminGUI{
 	 * @param Email email address textfield
 	 * @param spec	doctor department textfield
 	 * @param actionTarget warning text
+	 * @param password doctor's password
 	 */
-	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, TextField ID,  Text actionTarget) {
+	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, TextField ID, TextField password, Text actionTarget) {
 
 		int gap = 10;
 		int pad = 25;
@@ -168,6 +175,7 @@ public class newDoctorGUI extends adminGUI{
 		Label email = new Label("Email: ");
 		Label docSpec = new Label("Department: ");
 		Label docID = new Label("Doctor ID: ");
+		Label pWord = new Label ("Password: ");
 
 		//Text Prompts
 		fName.setPromptText("Enter doctor's first name");
@@ -177,6 +185,7 @@ public class newDoctorGUI extends adminGUI{
 		Email.setPromptText("Enter doctor's email ");
 		spec.setPromptText("Enter doctor's department");
 		ID.setPromptText("Emter doctor's ID");
+		password.setPromptText("Enter patient's password");
 
 
 		Pane.setAlignment(Pos.TOP_LEFT);
@@ -191,6 +200,7 @@ public class newDoctorGUI extends adminGUI{
 		Pane.add(email, xs, ys+8);
 		Pane.add(docSpec, xs,ys+10);
 		Pane.add(docID, xs, ys+12);
+		Pane.add(pWord, xs, ys+14);
 
 
 		Pane.add(fName, xs+2, ys);
@@ -200,6 +210,7 @@ public class newDoctorGUI extends adminGUI{
 		Pane.add(Email, xs+2, ys+8);
 		Pane.add(spec, xs+2, ys+10);
 		Pane.add(ID, xs+2, ys+12);
+		Pane.add(password, xs+2, ys+14);
 
 		Pane.add(submit, xs+8, ys+14);
 		Pane.add(actionTarget, xs+2, ys+14);
@@ -207,5 +218,27 @@ public class newDoctorGUI extends adminGUI{
 		Pane.add(reTurn, end, start);
 	}
 
+
+	/**
+	 * @param p The users text version password
+	 * @return The users hashed password
+	 */
+	private String setPassword(String p){
+		String password = null;
+
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(p.getBytes());
+			byte[] bytes = md.digest();
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < bytes.length; i++){
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			password = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return password;
+	}
 }
 

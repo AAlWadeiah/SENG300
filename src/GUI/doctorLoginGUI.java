@@ -18,6 +18,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class doctorLoginGUI extends startupGUI
 {
 	public void startDoctorLogin(Stage doctorStage) {
@@ -111,7 +114,7 @@ public class doctorLoginGUI extends startupGUI
 				//if (new validateAccount().validate(userID.getText(),passID.getText(), "Doctor_Users.json")) 
 				//This is where we will handle what happens after a doctor is signed on
 				//{}
-				if(false) {
+				if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor")) {
 					viewScheduleGUI doctorSignin = new viewScheduleGUI();
 					doctorSignin.startDoctor(doctorStage);
 				}
@@ -127,7 +130,7 @@ public class doctorLoginGUI extends startupGUI
 		
 		passID.setOnKeyReleased(event -> {
 			  if (event.getCode() == KeyCode.ENTER){
-				  if (new validateAccount().validate(userID.getText(),passID.getText(), "Doctor_Users.json")) //first validate their login
+				  if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor")) //first validate their login
 					{
 						viewScheduleGUI doctorSignin = new viewScheduleGUI();
 						doctorSignin.startDoctor(doctorStage);
@@ -139,5 +142,26 @@ public class doctorLoginGUI extends startupGUI
 			}});
 
 
+	}
+	/**
+	 * @param p The users text version password
+	 * @return The users hashed password
+	 */
+	private String getHash(String p){
+		String password = null;
+
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(p.getBytes());
+			byte[] bytes = md.digest();
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < bytes.length; i++){
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			password = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return password;
 	}
 }

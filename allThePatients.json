@@ -1,0 +1,12 @@
+[
+  {
+    "firstName": "New",
+    "lastName": "Patient",
+    "address": "67 st",
+    "assignedDoctorName": "who",
+    "email": "test@email.com",
+    "phoneNumber": "67",
+    "id": 8,
+    "password": "5f4dcc3b5aa765d61d8327deb882cf99"
+  }
+]

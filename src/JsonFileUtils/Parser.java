@@ -7,7 +7,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
-import Objects.Patient; 
+import Objects.Patient;
+import Objects.Doctor;
 
 public class Parser {
 	// Driver code
@@ -52,6 +53,29 @@ public class Parser {
 		return allThePatients;
 
 	}
+
+	public List<Doctor> parseDoctors() {
+		Gson allDocFile = new GsonBuilder().setPrettyPrinting().create();
+		List<Doctor> allTheDoctors = null;
+		Type doctorType = new TypeToken<List<Doctor>>(){}.getType();
+
+
+		try {
+			FileReader fReader = new FileReader("allTheDoctors.json");
+			allTheDoctors = allDocFile.fromJson(fReader, doctorType);
+			fReader.close();
+		}
+		catch(FileNotFoundException e){
+			System.out.println("Error, file not found in parser class");
+		}
+		catch (IOException e){
+			System.out.println("Error! Cannot close file in Parser class - Big trouble...Aborting");
+		}
+
+		return allTheDoctors;
+
+	}
+
 
 	/**
 	 * Grabs all JSON files from the specified directory.
