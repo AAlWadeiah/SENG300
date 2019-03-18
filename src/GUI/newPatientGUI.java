@@ -176,7 +176,7 @@ public class newPatientGUI extends adminGUI{
 		Label address = new Label("Address: ");
 		Label phoneNum = new Label("Phone number: ");
 		Label eMail = new Label("Email: ");
-		Label patDoc = new Label("Doctor: ");
+		Label patDoc = new Label("Doctor ID: ");
 		Label patID = new Label("Patient ID: ");
 		Label pWord = new Label ("Password: ");
 
