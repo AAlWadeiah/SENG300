@@ -32,6 +32,13 @@ public class tableSchGUI extends appointmentGUI{
 	private TableView<Appointment> table = new TableView<Appointment>();
 	private Appointment appPat;
 	
+	/**
+	 * Populates a table displaying all the available appointments for a given patient
+	 * @param scheduleStage stage that displays the appointment table
+	 * @param intro	HBox consistent form
+	 * @param person current patient	
+	 * @param schPatient current schedule
+	 */
 	public void startAppTable(Stage scheduleStage, HBox intro, Patient person,Schedule schPatient) {
 		
 		int minwidth = 175;

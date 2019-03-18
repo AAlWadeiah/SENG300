@@ -23,6 +23,14 @@ import javafx.stage.Stage;
 
 public class updateAppointmentGUI extends tableSchGUI{
 
+	/**
+	 * Updates an appointment with a new date and time
+	 * @param scheduleStage current stage
+	 * @param intro consistent form
+	 * @param person current patient
+	 * @param schPatient current schedule
+	 * @param appPat current appointment
+	 */
 	public void startUA(Stage scheduleStage, HBox intro, Patient person,Schedule schPatient, Appointment appPat) {
 		
 		int pad =50;
@@ -132,7 +140,15 @@ public class updateAppointmentGUI extends tableSchGUI{
 		});
 		
 	}
-	
+	/**
+	 * 
+	 * @param Pane
+	 * @param clear button
+	 * @param appPat Appointment
+	 * @param time
+	 * @param date
+	 * @param actionTarget warning
+	 */
 	private void setschedulePane(GridPane Pane,Button clear, Appointment appPat, TextField time, TextField date, Text actionTarget) {
 		
 		int gap = 10;

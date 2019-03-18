@@ -26,7 +26,13 @@ import javafx.stage.Stage;
 public class appointmentGUI extends newScheduleGUI{
 	
 
-
+	/**
+	 * Loads the page to either add an appointment or update an existing one
+	 * @param scheduleStage stage that displays the scheduling panel
+	 * @param intro HBox to hold consistent form
+	 * @param person The patient for the appointment
+	 * @param schPatient The current schedule object
+	 */
 	public void startApp(Stage scheduleStage, HBox intro, Patient person, Schedule schPatient) {
 		
 		int pad =50;
