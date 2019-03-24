@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class viewScheduleGUI extends doctorLoginGUI{
+public class viewScheduleGUI extends loginGUI{
 	public void startDoctor(Stage doctorStage) {
 		
 		//Boxes

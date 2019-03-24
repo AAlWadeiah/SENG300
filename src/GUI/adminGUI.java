@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class adminGUI extends adminLoginGUI{
+public class adminGUI extends loginGUI{
 
 	/**
 	 * Loads the main page for the administrator. Enables an administrator to add new patients, doctors, and appointments
