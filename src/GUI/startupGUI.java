@@ -61,8 +61,8 @@ public class startupGUI extends Application {
 
 			@Override
 			public void handle(ActionEvent e) {
-				adminLoginGUI adminLogin = new adminLoginGUI();
-				adminLogin.startAdminLogin(primaryStage);
+				loginGUI adminLogin = new loginGUI();
+				adminLogin.startLogin(primaryStage,"Admin");
 
 			}
 		});
@@ -71,8 +71,8 @@ public class startupGUI extends Application {
 
 			@Override
 			public void handle(ActionEvent e) {
-				patientLoginGUI patientLogin = new patientLoginGUI();
-				patientLogin.startPatientLogin(primaryStage);
+				loginGUI patientLogin = new loginGUI();
+				patientLogin.startLogin(primaryStage,"Patient");
 
 			}
 		});
@@ -81,8 +81,8 @@ public class startupGUI extends Application {
 			
 				@Override
 				public void handle(ActionEvent e) {
-					doctorLoginGUI doctorLogin = new doctorLoginGUI();
-					doctorLogin.startDoctorLogin(primaryStage);
+					loginGUI doctorLogin = new loginGUI();
+					doctorLogin.startLogin(primaryStage,"Doctor");
 
 				}
 			});

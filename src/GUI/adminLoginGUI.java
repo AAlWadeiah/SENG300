@@ -22,7 +22,7 @@ public class adminLoginGUI extends startupGUI {
 
 		//Boxes
 			VBox  AdminScreen = new VBox(20);		//spacing is 20 in the VBox
-			setVBox( AdminScreen);
+			setVBox(AdminScreen);
 
 			HBox intro = new HBox();
 			setHBox(intro);
@@ -80,7 +80,7 @@ public class adminLoginGUI extends startupGUI {
 			passwordBox.getChildren().addAll(passLabel,passID);
 			
 			AdminScreen.getChildren().addAll(usernameBox, passwordBox);
-			AdminScreen.getChildren().addAll(submitPane);
+			AdminScreen.getChildren().addAll(submitPane,actionTarget);
 				
 		//Set panes and scene
 			setBorderpane( AdminPane, intro,  AdminScreen);

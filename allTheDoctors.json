@@ -1,0 +1,12 @@
+[
+  {
+    "firstname": "generic",
+    "lastname": "DoctorName",
+    "department": "Medicine",
+    "phoneNumber": "4039919111",
+    "email": "doctoremail@docmail.com",
+    "address": "123 Medical Road",
+    "id": 123,
+    "password": "5f4dcc3b5aa765d61d8327deb882cf99"
+  }
+]

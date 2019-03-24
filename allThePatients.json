@@ -1,0 +1,32 @@
+[
+  {
+    "firstName": "generic",
+    "lastName": "patientName",
+    "address": "123 Happiness Road",
+    "assignedDoctorName": "123",
+    "email": "genericEmail@email.com",
+    "phoneNumber": "403 439 4320",
+    "id": 321,
+    "password": "9407c826d8e3c07ad37cb2d13d1cb641"
+  },
+  {
+    "firstName": "test",
+    "lastName": "test",
+    "address": "test",
+    "assignedDoctorName": "soimedude",
+    "email": "anemail",
+    "phoneNumber": "123",
+    "id": 123,
+    "password": "098f6bcd4621d373cade4e832627b4f6"
+  },
+  {
+    "firstName": "user",
+    "lastName": "user",
+    "address": "user",
+    "assignedDoctorName": "123",
+    "email": "user",
+    "phoneNumber": "user",
+    "id": 123,
+    "password": "202cb962ac59075b964b07152d234b70"
+  }
+]
