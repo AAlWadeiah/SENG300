@@ -11,11 +11,13 @@ public class Admin {
 	private Integer id;
 	
 	//Constructors
-	public Admin (Integer id1, String name1) { 
-		setId(id1);
-		setName(name1);
+	public Admin (Integer id, String name) { 
+		setId(id);
+		setName(name);
 	}
-	public Admin() {}
+	public Admin() {
+		this(null, null);
+	}
 	
 	//Setters
 	public void setName(String name1) {this.name = name1;}

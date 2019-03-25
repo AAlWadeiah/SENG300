@@ -17,7 +17,8 @@ public class Patient {
 	private String password;
 	
 	//Constructors
-	public Patient(String firstName, String lastName, String address, String doctor, String email, String phone, Integer id, String password) {
+	public Patient(String firstName, String lastName, String address, String doctor, String email, 
+			String phone, Integer id, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setAddress(address);
@@ -27,9 +28,10 @@ public class Patient {
 		setId(id);
 		setPassword(password);
 	}
-	public Patient() { }
 	
-	
+	public Patient() {
+		this(null, null, null, null, null, null, null, null);
+	}
 	
 	//Setters for info
 	public void setFirstName(String name) { this.firstName = name;}
