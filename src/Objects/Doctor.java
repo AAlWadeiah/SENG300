@@ -30,10 +30,6 @@ public class Doctor
 		setAddress (address);
 		setPassword(password);
 	}
-
-	public Doctor(Integer id, String fname,String lname, String department, String number, String email, String address) {
-		this(id, fname, lname, department, number, email, address, null);
-	}
 	public Doctor() {
 		this(null, null, null, null, null, null, null, null);
 	}
