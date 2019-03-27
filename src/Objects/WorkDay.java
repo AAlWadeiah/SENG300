@@ -13,6 +13,24 @@ public class WorkDay {
 		for (int i = 1; i <= getNumberOfTimeslots(); i++) getWorkSchedule().put(i, new TimeSlot());
 	}
 	
+	public TimeSlot getTimeSlot(Integer timeSlotId) {
+		return getWorkSchedule().get(timeSlotId);
+	}
+	
+	public TimeSlot[] getTimeSlotRange(Integer firstTimeSlot, Integer secondTimeSlot) {
+		TimeSlot[] timeRange = new TimeSlot[secondTimeSlot - firstTimeSlot];
+		int counter = firstTimeSlot;
+		while(counter <= secondTimeSlot) {
+			timeRange[counter] = getWorkSchedule().get(counter);
+			counter++;
+		}
+		return timeRange;
+	}
+	
+	public void bookTimeSlot(Integer timeSlotId) {
+		getWorkSchedule().get(timeSlotId).setIsBooked(true);
+	}
+	
 	// Getters
 	public static Integer getNumberOfTimeslots() {return NUMBER_OF_TIMESLOTS;}
 	public Boolean getIsAvailable() {return isAvailable;}
