@@ -110,4 +110,49 @@ public class Writer {
 
 
 	}
+	
+	public boolean editObjectToFile(Doctor doc, int index) {
+		Gson allDocFile = new GsonBuilder().setPrettyPrinting().create();
+		Type doctorType = new TypeToken<List<Doctor>>(){}.getType();
+
+		//declared addNewPatient
+		List<Doctor> addNewDoctor;
+
+
+		try {
+			FileReader fReader = new FileReader("allTheDoctors.json");
+			addNewDoctor = allDocFile.fromJson(fReader, doctorType);
+			fReader.close();
+		}
+		catch(FileNotFoundException e){
+			addNewDoctor = null;
+
+		}
+		catch (IOException e){
+			System.out.println("Error! Writer Class cannot close allTheDoctors file - Big trouble...Aborting");
+			return false;
+		}
+
+		//if file is empty create a new list
+		if (null == addNewDoctor){
+			addNewDoctor = new ArrayList<>();
+		}
+		//to append, rewrite to new file
+		addNewDoctor.remove(index);
+		addNewDoctor.add(index, doc);
+
+		String newJsonString = allDocFile.toJson(addNewDoctor);
+
+
+
+		try (FileWriter file = new FileWriter("allTheDoctors.json")){
+			file.write(newJsonString);
+		}
+		catch(IOException f){
+			System.out.println("Error! Writer class failed to create Doctor JSON object file");
+			return false;
+		}
+		return true;
+		
+	}
 }
