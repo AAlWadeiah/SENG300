@@ -8,5 +8,3203 @@
     "address": "123 Medical Road",
     "id": 123,
     "password": "5f4dcc3b5aa765d61d8327deb882cf99"
+  },
+  {
+    "firstname": "TEST",
+    "lastname": "DOC",
+    "department": "NEURO",
+    "phoneNumber": "2345678",
+    "email": "EMAIL",
+    "address": "12345",
+    "id": 69,
+    "password": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "schedule": {
+      "doctorId": 69,
+      "currentAppointments": {}
+    },
+    "availability": {
+      "availability": {
+        "1": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "2": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "3": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "4": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "5": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "6": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "7": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "8": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "9": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "10": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "11": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "12": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "13": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "14": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "15": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "16": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "17": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "18": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "19": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "20": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "21": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "22": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "23": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "24": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "25": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "26": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "27": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "28": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "29": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "30": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "31": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "32": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "33": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "34": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "35": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "36": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "37": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "38": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "39": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "40": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "41": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "42": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "43": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "44": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "45": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "46": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "47": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "48": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "49": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "50": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "51": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "52": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "53": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "54": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "55": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "56": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "57": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "58": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "59": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        },
+        "60": {
+          "isAvailable": true,
+          "workSchedule": {
+            "1": {
+              "isBooked": false
+            },
+            "2": {
+              "isBooked": false
+            },
+            "3": {
+              "isBooked": false
+            },
+            "4": {
+              "isBooked": false
+            },
+            "5": {
+              "isBooked": false
+            },
+            "6": {
+              "isBooked": false
+            },
+            "7": {
+              "isBooked": false
+            },
+            "8": {
+              "isBooked": false
+            },
+            "9": {
+              "isBooked": false
+            },
+            "10": {
+              "isBooked": false
+            },
+            "11": {
+              "isBooked": false
+            },
+            "12": {
+              "isBooked": false
+            },
+            "13": {
+              "isBooked": false
+            },
+            "14": {
+              "isBooked": false
+            },
+            "15": {
+              "isBooked": false
+            },
+            "16": {
+              "isBooked": false
+            }
+          }
+        }
+      }
+    }
   }
 ]

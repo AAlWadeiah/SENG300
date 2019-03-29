@@ -2,6 +2,7 @@ package GUI;
 
 import JsonFileUtils.Parser;
 import Objects.Patient;
+import Objects.Admin;
 import Objects.Doctor;
 
 import java.io.File;
@@ -18,6 +19,7 @@ public class validateAccount {
 	//File[] jsonFiles = parser.getFiles(path);
 	List<Patient> allPatients = parser.parsePatients();
 	List<Doctor> allDoctors = parser.parseDoctors();
+	List<Admin> allAdmins = parser.parseAdmins();
 
 	public Boolean validate(String user, String pass, String type) {
 
@@ -45,10 +47,20 @@ public class validateAccount {
 				}
 			}
 		}
-
+		else if(type.equals("Admin")){
+			for (Admin admin : allAdmins) {
+				if (admin.getName().equals(user)) {
+					if(admin.getPassword().equals(pass)) {
+						System.out.println("Authentication Success!");
+						authenticate = true;
+						break;
+					}
+				}
+			}
+		}
 
 //		else if (filename.equals("Doctor_Users.json")) {System.out.println("this is a doctor signing in\n"+ user +" + "+pass); return true;}
-		else {System.out.println("This is an admin signing in"+ user +" + "+ pass); return true;}
+		//else {System.out.println("This is an admin signing in"+ user +" + "+ pass); return true;}
 		return authenticate;
 	}
 }

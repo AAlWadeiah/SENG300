@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import Objects.Patient;
+import Objects.Admin;
 import Objects.Doctor;
 
 public class Parser {
@@ -76,6 +77,28 @@ public class Parser {
 
 	}
 
+	
+	public List<Admin> parseAdmins() {
+		Gson allAdminFile = new GsonBuilder().setPrettyPrinting().create();
+		List<Admin> allTheAdmins = null;
+		Type adminType = new TypeToken<List<Admin>>(){}.getType();
+
+
+		try {
+			FileReader fReader = new FileReader("allTheAdmins.json");
+			allTheAdmins = allAdminFile.fromJson(fReader, adminType);
+			fReader.close();
+		}
+		catch(FileNotFoundException e){
+			System.out.println("Error, file not found in parser class");
+		}
+		catch (IOException e){
+			System.out.println("Error! Cannot close file in Parser class - Big trouble...Aborting");
+		}
+
+		return allTheAdmins;
+
+	}
 
 	/**
 	 * Grabs all JSON files from the specified directory.

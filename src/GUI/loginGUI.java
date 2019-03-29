@@ -111,8 +111,23 @@ public class loginGUI extends startupGUI {
 					//if (new validateAccount().validate(userID.getText(),passID.getText(), "Admin_Users.json")) //first validate their login
 					if (user.equals("Admin"))
 					{
-						adminGUI signonSuccess = new adminGUI();
-						signonSuccess.startAdmin(stage);
+//						adminGUI signonSuccess = new adminGUI();
+//						signonSuccess.startAdmin(stage);
+//						
+						
+						if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
+							{
+							adminGUI adminSignin = new adminGUI();
+							adminSignin.startAdmin(stage);	
+							}
+						else 
+							{
+							actionTarget.setFill(Color.FIREBRICK);
+							actionTarget.setFont(new Font("Cambra", 14));
+							actionTarget.setText("*Wrong Username or Password*");
+							}
+						
+						
 					}
 					
 					else if (user.equals("Patient"))
@@ -150,8 +165,23 @@ public class loginGUI extends startupGUI {
 				  if (event.getCode() == KeyCode.ENTER){
 						if (user.equals("Admin"))
 						{
-							adminGUI signonSuccess = new adminGUI();
-							signonSuccess.startAdmin(stage);
+//							adminGUI signonSuccess = new adminGUI();
+//							signonSuccess.startAdmin(stage);
+//							
+							
+							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
+								{
+								adminGUI adminSignin = new adminGUI();
+								adminSignin.startAdmin(stage);	
+								}
+							else 
+								{
+								actionTarget.setFill(Color.FIREBRICK);
+								actionTarget.setFont(new Font("Cambra", 14));
+								actionTarget.setText("*Wrong Username or Password*");
+								}
+							
+							
 						}
 						
 						else if (user.equals("Patient"))
