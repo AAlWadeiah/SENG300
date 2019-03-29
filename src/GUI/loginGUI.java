@@ -115,7 +115,7 @@ public class loginGUI extends startupGUI {
 //						signonSuccess.startAdmin(stage);
 //						
 						
-						if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
+						if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
 							{
 							adminGUI adminSignin = new adminGUI();
 							adminSignin.startAdmin(stage);	
@@ -132,7 +132,7 @@ public class loginGUI extends startupGUI {
 					
 					else if (user.equals("Patient"))
 					{ 
-						if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
+						if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Patient"))
 							{
 							viewAppointmentGUI patientSignin = new viewAppointmentGUI();
 							patientSignin.startPatient(stage);	
@@ -146,7 +146,7 @@ public class loginGUI extends startupGUI {
 					}
 					else if (user.equals("Doctor"))
 					{
-						if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
+						if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
 							{
 							viewScheduleGUI doctorSignin = new viewScheduleGUI();
 							doctorSignin.startDoctor(stage);

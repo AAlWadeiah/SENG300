@@ -10,7 +10,7 @@ import java.util.List;
 
 public class validateAccount {
 
-	public validateAccount(String user, String pass, String filename) {this.validate(user, pass, filename);}
+	public validateAccount(Integer user, String pass, String filename) {this.validate(user, pass, filename);}
 	public validateAccount() {}
 
 	String currentDir = System.getProperty("user.dir");
