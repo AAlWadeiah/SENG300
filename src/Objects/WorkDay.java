@@ -19,8 +19,8 @@ public class WorkDay {
 	
 	public TimeSlot[] getTimeSlotRange(Integer firstTimeSlot, Integer secondTimeSlot) {
 		TimeSlot[] timeRange = new TimeSlot[secondTimeSlot - firstTimeSlot];
-		int counter = firstTimeSlot;
-		while(counter <= secondTimeSlot) {
+		int counter = firstTimeSlot - 1;
+		while(counter < secondTimeSlot) {
 			timeRange[counter] = getWorkSchedule().get(counter);
 			counter++;
 		}
