@@ -21,12 +21,12 @@ public class validateAccount {
 	List<Doctor> allDoctors = parser.parseDoctors();
 	List<Admin> allAdmins = parser.parseAdmins();
 
-	public Boolean validate(String user, String pass, String type) {
+	public Boolean validate(Integer user, String pass, String type) {
 
 		boolean authenticate = false;
 		if (type.equals("Patient")) {
 			for (Patient patient : allPatients) {
-				if (patient.getFirstName().equals(user)) {
+				if (patient.getId() == user) {
 					if(patient.getPassword().equals(pass)) {
 						System.out.println("Authentication Success!");
 						authenticate = true;
@@ -38,7 +38,7 @@ public class validateAccount {
 		}
 		else if(type.equals("Doctor")){
 			for (Doctor doctor : allDoctors) {
-				if (doctor.getFirstname().equals(user)) {
+				if (doctor.getId() == user) {
 					if(doctor.getPassword().equals(pass)) {
 						System.out.println("Authentication Success!");
 						authenticate = true;
@@ -49,7 +49,7 @@ public class validateAccount {
 		}
 		else if(type.equals("Admin")){
 			for (Admin admin : allAdmins) {
-				if (admin.getName().equals(user)) {
+				if (admin.getId() == user) {
 					if(admin.getPassword().equals(pass)) {
 						System.out.println("Authentication Success!");
 						authenticate = true;

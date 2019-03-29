@@ -164,12 +164,8 @@ public class loginGUI extends startupGUI {
 			passID.setOnKeyReleased(event -> {
 				  if (event.getCode() == KeyCode.ENTER){
 						if (user.equals("Admin"))
-						{
-//							adminGUI signonSuccess = new adminGUI();
-//							signonSuccess.startAdmin(stage);
-//							
-							
-							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
+						{						
+							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
 								{
 								adminGUI adminSignin = new adminGUI();
 								adminSignin.startAdmin(stage);	
@@ -180,13 +176,11 @@ public class loginGUI extends startupGUI {
 								actionTarget.setFont(new Font("Cambra", 14));
 								actionTarget.setText("*Wrong Username or Password*");
 								}
-							
-							
 						}
 						
 						else if (user.equals("Patient"))
 						{ 
-							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
+							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Patient"))
 								{
 								viewAppointmentGUI patientSignin = new viewAppointmentGUI();
 								patientSignin.startPatient(stage);	
@@ -200,7 +194,7 @@ public class loginGUI extends startupGUI {
 						}
 						else if (user.equals("Doctor"))
 						{
-							if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
+							if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
 								{
 								viewScheduleGUI doctorSignin = new viewScheduleGUI();
 								doctorSignin.startDoctor(stage);
