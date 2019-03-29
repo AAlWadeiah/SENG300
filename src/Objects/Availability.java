@@ -31,12 +31,16 @@ public class Availability {
 		getAvailability().get(workDayId).setIsAvailable(isAvailable);
 	}
 	
-	public ArrayList<HashMap<Integer, TimeSlot>> getFullWorkSchedule() {
-		ArrayList<HashMap<Integer, TimeSlot>> fullSchedule = new ArrayList<>();
+	public ArrayList<ArrayList<Boolean>> getFullWorkSchedule() {
+		ArrayList<ArrayList<Boolean>> fullSchedule = new ArrayList<>();
 		
 		for (Entry<Integer, WorkDay> workDay : getAvailability().entrySet()) 
 		{
-			fullSchedule.add(workDay.getValue().getWorkSchedule());
+			ArrayList<Boolean> daySchedule = new ArrayList<>();
+			for(Entry<Integer, TimeSlot> timeSlot : workDay.getValue().getWorkSchedule().entrySet()) {
+				daySchedule.add(timeSlot.getValue().getIsBooked());
+			}
+			fullSchedule.add(daySchedule);
 		}
 		return fullSchedule;
 	}
