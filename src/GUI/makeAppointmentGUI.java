@@ -1,8 +1,13 @@
 package GUI;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import JsonFileUtils.Parser;
+import JsonFileUtils.Writer;
 import Objects.Appointment;
+import Objects.Doctor;
 import Objects.Patient;
 import Objects.Schedule;
 import javafx.event.ActionEvent;
@@ -32,15 +37,17 @@ public class makeAppointmentGUI extends appointmentGUI{
 	 * @param person The patient to make an appointment for.
 	 * @param schPatient The schedule object of the patient
 	 */
-	public void startAppGUI(Stage scheduleStage, HBox intro, Patient person, Schedule schPatient) {
+	public void startAppGUI(Stage scheduleStage, HBox intro, Patient person, Integer schPatient) {
 		int pad =50;
 		//Buttons
 		Button submit = new Button("Submit");
 		Button clear = new Button("Clear");
 		Button reTurn = new Button("Return");	
 		
+		//get doctor ID
+		Integer docID = schPatient;
 		
-		
+
 		//Labels & Text
 		Label Patient = new Label("Patient: ");
 		Patient.setFont(new Font("Arial", 32));
@@ -96,12 +103,46 @@ public class makeAppointmentGUI extends appointmentGUI{
 					String appTime = time.getText();
 					
 					//person is the object
-				
-					//Schedule schPatient = new Schedule(Integer.parseInt(person.getDoctor()));
-					schPatient.addAppointment(person.getId(), appDate, appTime);
+
 					
-					Appointment s = schPatient.getAppointment(person.getId(), appDate, appTime);
-					//System.out.println(s.getAppointmentId());
+					//Writer & reader
+					
+					//load objects from JSON files
+					String currentDir = System.getProperty("user.dir");
+					File path = new File(currentDir);
+
+					Parser parser = new Parser();
+
+					File[] jsonFiles = parser.getFiles(path);
+					
+					Writer writer = new Writer();
+					
+					List<Doctor> allDoctors = parser.parseDoctors();
+					
+					try {
+						System.out.println("OUR ID: " +docID);
+						for(int i =0; i< allDoctors.size();i++) {
+							Doctor doctorX = allDoctors.get(i);
+							if(doctorX.getId().equals(docID)) {
+								System.out.println("MATCH");
+
+								doctorX.getSchedule().addAppointment(person.getId(), appDate, appTime);
+								writer.editObjectToFile(doctorX,i);
+								break;
+							}
+						}
+						
+					}
+					
+					catch(Exception noDoc){
+						//doc didnt exist
+					}
+					
+
+					
+					
+				
+					
 					
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Schedule Complete");

@@ -1,6 +1,8 @@
 package GUI;
 import JsonFileUtils.Writer;
+import Objects.Availability;
 import Objects.Doctor;
+import Objects.Schedule;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -118,7 +120,9 @@ public class newDoctorGUI extends adminGUI{
 
 					//creates and writes JSON file
 					//once Doctor ID has been added to GUI input, put into index 0 of constructor call below.
-					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd, dPassword);//////////////////////////////////////////////
+					Schedule schDoc = new Schedule(Integer.valueOf(dId));
+					Availability avaDoc = new Availability();
+					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd, dPassword,schDoc,avaDoc);//////////////////////////////////////////////
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(doctor);
 					if (success){
@@ -184,7 +188,7 @@ public class newDoctorGUI extends adminGUI{
 		Num.setPromptText("Enter doctor's phone #");
 		Email.setPromptText("Enter doctor's email ");
 		spec.setPromptText("Enter doctor's department");
-		ID.setPromptText("Emter doctor's ID");
+		ID.setPromptText("Enter doctor's ID");
 		password.setPromptText("Enter patient's password");
 
 

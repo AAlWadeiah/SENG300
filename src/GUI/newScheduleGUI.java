@@ -160,7 +160,8 @@ public class newScheduleGUI extends adminGUI{
 			public void handle(ActionEvent e) {
 				if(person!=null) {
 					//System.out.println(person.getFirstName());
-					Schedule schPatient = new Schedule(Integer.parseInt(person.getDoctor()));
+					Integer schPatient = Integer.parseInt(person.getDoctor());
+					//Schedule schPatient = new Schedule(Integer.parseInt(person.getDoctor()));
 					appointmentGUI adminApp = new appointmentGUI();
 					adminApp.startApp(scheduleStage,intro,person,schPatient);
 

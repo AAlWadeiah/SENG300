@@ -33,7 +33,7 @@ public class appointmentGUI extends newScheduleGUI{
 	 * @param person The patient for the appointment
 	 * @param schPatient The current schedule object
 	 */
-	public void startApp(Stage scheduleStage, HBox intro, Patient person, Schedule schPatient) {
+	public void startApp(Stage scheduleStage, HBox intro, Patient person, Integer schPatient) {
 		
 		int pad =50;
 		((Labeled) intro.getChildren().get(0)).setText("Patient Appointment: ");
@@ -96,7 +96,7 @@ public class appointmentGUI extends newScheduleGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				tableSchGUI changeApp = new tableSchGUI();
-				changeApp.startAppTable(scheduleStage, intro, person,schPatient);
+				//changeApp.startAppTable(scheduleStage, intro, person,schPatient);
 				
 			}
 		});
