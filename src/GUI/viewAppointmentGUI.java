@@ -27,7 +27,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class viewAppointmentGUI extends loginGUI{
-	public void startPatient(Stage patientStage, String userName) {
+	public void startPatient(Stage patientStage, Integer userName) {
 		
 		//Reader
 		String currentDir = System.getProperty("user.dir");
@@ -41,7 +41,7 @@ public class viewAppointmentGUI extends loginGUI{
 
 		
 		for(Patient patient : allPatients) {
-			if(patient.getFirstName().equals(userName)) {
+			if(patient.getId().equals(userName)) {
 				patientUser = patient;
 				break;
 				//patient located
