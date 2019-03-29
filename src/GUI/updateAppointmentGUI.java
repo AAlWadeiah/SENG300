@@ -1,6 +1,8 @@
 package GUI;
 
+import JsonFileUtils.Writer;
 import Objects.Appointment;
+import Objects.Doctor;
 import Objects.Patient;
 import Objects.Schedule;
 import javafx.event.ActionEvent;
@@ -31,7 +33,9 @@ public class updateAppointmentGUI extends tableSchGUI{
 	 * @param schPatient current schedule
 	 * @param appPat current appointment
 	 */
-	public void startUA(Stage scheduleStage, HBox intro, Patient person,Schedule schPatient, Appointment appPat) {
+	public void startUA(Stage scheduleStage, HBox intro, Patient person,Doctor doc, Appointment appPat, int docI) {
+		
+		Writer writer = new Writer();
 		
 		int pad =50;
 
@@ -95,8 +99,10 @@ public class updateAppointmentGUI extends tableSchGUI{
 					String appDate = newDate.getText();
 					String appTime = newTime.getText();
 					
-					schPatient.updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime);
+					doc.getSchedule().updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime);
 				
+					//writer
+					writer.editObjectToFile(doc, docI);
 
 					
 					BorderPane npPane = new BorderPane();
@@ -124,7 +130,7 @@ public class updateAppointmentGUI extends tableSchGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				startAppTable(scheduleStage, intro, person, schPatient);
+				startAppTable(scheduleStage, intro, person, doc.getId());
 			}
 		});
 		
@@ -174,18 +180,18 @@ public class updateAppointmentGUI extends tableSchGUI{
 		Pane.setVgap(gap/1.5);
 		Pane.setPadding(new Insets(-30,pad,pad,pad));
 
-		Pane.add(oldTime, xs, ys);
-		Pane.add(oldDate, xs, ys+2);
+		Pane.add(oldTime, xs, ys+2);
+		Pane.add(oldDate, xs, ys);
 
-		Pane.add(timeLabel, xs, ys+4);
-		Pane.add(dateLabel, xs, ys+6);
+		Pane.add(timeLabel, xs, ys+6);
+		Pane.add(dateLabel, xs, ys+4);
 		Pane.add(clear, xs+6, ys+8);
 		
-		Pane.add(appTime, xs+4, ys);
-		Pane.add(appDate, xs+4, ys+2);
+		Pane.add(appTime, xs+4, ys+2);
+		Pane.add(appDate, xs+4, ys);
 
-		Pane.add(time, xs+4, ys+4);
-		Pane.add(date, xs+4, ys+6);
+		Pane.add(time, xs+4, ys+6);
+		Pane.add(date, xs+4, ys+4);
 		Pane.add(actionTarget, xs+4, ys+18);
 		
 	}

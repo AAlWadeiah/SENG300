@@ -1,8 +1,12 @@
 package GUI;
 
+import java.io.File;
 import java.util.List;
 
+import JsonFileUtils.Parser;
+import JsonFileUtils.Writer;
 import Objects.Appointment;
+import Objects.Doctor;
 import Objects.Patient;
 import Objects.Schedule;
 import javafx.collections.FXCollections;
@@ -39,7 +43,7 @@ public class tableSchGUI extends appointmentGUI{
 	 * @param person current patient	
 	 * @param schPatient current schedule
 	 */
-	public void startAppTable(Stage scheduleStage, HBox intro, Patient person,Schedule schPatient) {
+	public void startAppTable(Stage scheduleStage, HBox intro, Patient person,Integer docID) {
 		
 		int minwidth = 175;
 		
@@ -66,9 +70,29 @@ public class tableSchGUI extends appointmentGUI{
 		dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
 		timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
 		
+		//reader & writer
+		String currentDir = System.getProperty("user.dir");
+		File path = new File(currentDir);
+
+		Parser parser = new Parser();
+		Writer writer = new Writer();
+
+		File[] jsonFiles = parser.getFiles(path);		
+		
+		List<Doctor> allDoctors = parser.parseDoctors();
+		List<Appointment> allApps = null;
+		Doctor doctorX = null;
+		int docIndex =0;
+
 		try {
-			List <Appointment> allApps = schPatient.getAllAppointments(person.getId());
-			//System.out.println(allApps.size());
+			for(docIndex=0; docIndex < allDoctors.size(); docIndex++) {
+				doctorX = allDoctors.get(docIndex);
+				if(doctorX.getId().equals(docID)) {
+					allApps = doctorX.getSchedule().getAllAppointments(person.getId());
+					break;
+				}
+			}
+
 			ObservableList<Appointment> people = FXCollections.observableArrayList(allApps);
 			table.setItems(people);
 		}
@@ -78,6 +102,10 @@ public class tableSchGUI extends appointmentGUI{
 			actionTarget.setText("*No current appointments*");
 			
 		}
+		
+		final Doctor doc = doctorX;
+		final int docI = docIndex;
+
 		table.getColumns().addAll(patIDCol,appIDCol,dateCol,timeCol);
 		
 		//click event based on selection of appointment in the table
@@ -128,7 +156,7 @@ public class tableSchGUI extends appointmentGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				startApp(scheduleStage, intro, person, schPatient);
+				startApp(scheduleStage, intro, person, docID);
 			}
 		});
 		
@@ -137,7 +165,12 @@ public class tableSchGUI extends appointmentGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				if(appPat!=null) {
-					schPatient.removeAppointment(appPat.getPatientId(),appPat.getAppointmentId());
+					doc.getSchedule().removeAppointment(appPat.getPatientId(),appPat.getAppointmentId());
+					
+					//writer
+					writer.editObjectToFile(doc, docI);
+					
+					
 					
 					//transition to confirmation panel
 					BorderPane npPane = new BorderPane();
@@ -161,7 +194,7 @@ public class tableSchGUI extends appointmentGUI{
 			public void handle(ActionEvent e) {
 				if(appPat!=null) {
 					updateAppointmentGUI upAppGUI = new updateAppointmentGUI();
-					upAppGUI.startUA(scheduleStage, intro, person, schPatient,appPat);
+					upAppGUI.startUA(scheduleStage, intro, person, doc,appPat,docI);
 					
 
 				}

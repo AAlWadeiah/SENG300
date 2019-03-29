@@ -120,11 +120,9 @@ public class makeAppointmentGUI extends appointmentGUI{
 					List<Doctor> allDoctors = parser.parseDoctors();
 					
 					try {
-						System.out.println("OUR ID: " +docID);
 						for(int i =0; i< allDoctors.size();i++) {
 							Doctor doctorX = allDoctors.get(i);
 							if(doctorX.getId().equals(docID)) {
-								System.out.println("MATCH");
 
 								doctorX.getSchedule().addAppointment(person.getId(), appDate, appTime);
 								writer.editObjectToFile(doctorX,i);
@@ -137,12 +135,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 					catch(Exception noDoc){
 						//doc didnt exist
 					}
-					
 
-					
-					
-				
-					
 					
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Schedule Complete");

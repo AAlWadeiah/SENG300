@@ -96,7 +96,7 @@ public class appointmentGUI extends newScheduleGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				tableSchGUI changeApp = new tableSchGUI();
-				//changeApp.startAppTable(scheduleStage, intro, person,schPatient);
+				changeApp.startAppTable(scheduleStage, intro, person,schPatient);
 				
 			}
 		});
