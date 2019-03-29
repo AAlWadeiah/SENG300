@@ -19,20 +19,23 @@ public class Availability {
 	
 	public WorkDay[] getWorkDayRange(Integer firstWorkDay, Integer secondWorkDay) {
 		WorkDay[] workRange = new WorkDay[secondWorkDay - firstWorkDay];
-		int counter = firstWorkDay;
-		while(counter <= secondWorkDay) {
+		int counter = firstWorkDay - 1;
+		while(counter < secondWorkDay) {
 			workRange[counter] = getAvailability().get(counter);
+			counter++;
 		}
 		return workRange;
 	}
-	
+
 	public void setWorkDayAvailability(Integer workDayId, Boolean isAvailable) {
 		getAvailability().get(workDayId).setIsAvailable(isAvailable);
 	}
 	
 	public ArrayList<HashMap<Integer, TimeSlot>> getFullWorkSchedule() {
 		ArrayList<HashMap<Integer, TimeSlot>> fullSchedule = new ArrayList<>();
-		for (Entry<Integer, WorkDay> workDay : getAvailability().entrySet()) {
+		
+		for (Entry<Integer, WorkDay> workDay : getAvailability().entrySet()) 
+		{
 			fullSchedule.add(workDay.getValue().getWorkSchedule());
 		}
 		return fullSchedule;
