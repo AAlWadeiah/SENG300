@@ -51,7 +51,7 @@ public class newPatientGUI extends adminGUI{
 		
 		List<Doctor> allDoctors = parser.parseDoctors();
 		for(Doctor doctor: allDoctors) {
-			Doc.getItems().add(doctor.getFirstname());
+			Doc.getItems().add(doctor.getFirstname() + "-" + doctor.getId());
 		}
 
 		final Text actionTarget = new Text();
@@ -89,7 +89,7 @@ public class newPatientGUI extends adminGUI{
 				add.clear();
 				Num.clear();
 				Email.clear();
-				//Doc.clear();
+				Doc.setValue(null);
 				ID.clear();
 				password.clear();
 				actionTarget.setText(null);
@@ -126,7 +126,7 @@ public class newPatientGUI extends adminGUI{
 					pAdd = add.getText();
 					pNumb = Num.getText();
 					pEmail = Email.getText();
-					pDoct = Doc.getValue();
+					pDoct = Doc.getValue().split("-")[1];
 					pId = ID.getText();
 					pPassword = setPassword(password.getText());
 

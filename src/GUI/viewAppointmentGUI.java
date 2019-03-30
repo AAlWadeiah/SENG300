@@ -67,7 +67,7 @@ public class viewAppointmentGUI extends loginGUI{
 
 		//Labels
 		Label actor = new Label();
-		actor.setText("Patient: ");
+		actor.setText("Welcome back, "+ patientUser.getFirstName());
 		actor.setFont(new Font("Cambria", 32));
 		actor.setTextFill(Color.WHITE);
 

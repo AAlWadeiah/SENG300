@@ -1,26 +1,39 @@
 [
   {
-    "firstname": "generic",
-    "lastname": "DoctorName",
-    "department": "Medicine",
-    "phoneNumber": "4039919111",
-    "email": "doctoremail@docmail.com",
-    "address": "123 Medical Road",
-    "id": 123,
-    "password": "5f4dcc3b5aa765d61d8327deb882cf99"
-  },
-  {
-    "firstname": "TEST",
-    "lastname": "DOC",
-    "department": "NEURO",
-    "phoneNumber": "2345678",
-    "email": "EMAIL",
-    "address": "12345",
-    "id": 69,
+    "firstname": "Ali",
+    "lastname": "A",
+    "department": "Neuro",
+    "phoneNumber": "111 111 1111",
+    "email": "ali@ucalgary.ca",
+    "address": "123 Main Street",
+    "id": 1,
     "password": "5f4dcc3b5aa765d61d8327deb882cf99",
     "schedule": {
-      "doctorId": 69,
-      "currentAppointments": {}
+      "doctorId": 1,
+      "currentAppointments": {
+        "101": [
+          {
+            "appointmentId": -268237510,
+            "patientId": 101,
+            "date": "01/01/01",
+            "time": "12:00"
+          },
+          {
+            "appointmentId": -313519830,
+            "patientId": 101,
+            "date": "01/01/01",
+            "time": "1:00"
+          }
+        ],
+        "77": [
+          {
+            "appointmentId": -313519830,
+            "patientId": 77,
+            "date": "01/01/01",
+            "time": "1:00"
+          }
+        ]
+      }
     },
     "availability": {
       "availability": {
