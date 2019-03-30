@@ -27,6 +27,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class viewAppointmentGUI extends loginGUI{
+	/**
+	 * Patient views their upcoming appointments in a tabbed window
+	 * @param patientStage
+	 * @param userName patients user name to sign in
+	 */
 	public void startPatient(Stage patientStage, Integer userName) {
 		
 		//Reader
@@ -41,7 +46,7 @@ public class viewAppointmentGUI extends loginGUI{
 
 		
 		for(Patient patient : allPatients) {
-			if(patient.getId().equals(userName)) {
+			if((patient.getId()).equals(userName)) {
 				patientUser = patient;
 				break;
 				//patient located
@@ -67,7 +72,7 @@ public class viewAppointmentGUI extends loginGUI{
 
 		//Labels
 		Label actor = new Label();
-		actor.setText("Welcome back, "+ patientUser.getFirstName());
+		actor.setText("Patient: ");
 		actor.setFont(new Font("Cambria", 32));
 		actor.setTextFill(Color.WHITE);
 
@@ -142,6 +147,12 @@ public class viewAppointmentGUI extends loginGUI{
 		
 	}
 	
+	/**
+	 * sets up the tab pane
+	 * @param patientScreen
+	 * @param apps
+	 * @param doctorUser
+	 */
 	public void setTabBox(VBox patientScreen, Appointment apps, Doctor doctorUser){
 		
 		//Labels
