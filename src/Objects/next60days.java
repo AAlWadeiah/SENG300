@@ -1,16 +1,31 @@
+/**
+ * 
+ * This class will handle all issues associated with relating the local date and mapping it to the next 60 
+ * days.
+ * 
+ * 
+ */
+
 package Objects;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
+
+
+
 public class next60days {
 	
-	LocalDate today = LocalDate.now();
+	private LocalDate today = LocalDate.now();
+	
 	/**
+	 * NextMonths, this method should give the month values of the months associated with the next 60 days
 	 * 
-	 * @return The months which are involved in the next 60 days starting from tomorrow
+	 * @return The month values which are involved in the next 60 days starting from tomorrow
 	 */
 	public ArrayList<Integer> nextMonths() 
 	{
@@ -27,7 +42,13 @@ public class next60days {
 		return monthArray;
 	}
 	
-	//Days involved in the month which we are currently in
+	/**daysInCurrentMonth
+	 * 
+	 * daysInCurrentMonth, finds the number of days in the current month, and puts each day as an integer
+	 *  into a slot in the arrayList
+	 * 
+	 * @return ArrayList of integers going up linearly from 1 until the last day of the current month
+	 */
 	public ArrayList<Integer> daysInCurrentMonth()
 	{
 		int numberOfDaysThisMonth = today.plusDays(1).lengthOfMonth();
@@ -42,12 +63,11 @@ public class next60days {
 		return daysThisMonth;
 	}
 	
-	public static void main(String[] args)
-	{
-				next60days days = new next60days(); 
-				System.out.print(days.daysInCurrentMonth());
-	}
-	
+	/** This method takes a month value and returns an arrayList of integers for each of the month
+	 * 
+	 * @param MonthID, month to be measured
+	 * @return, an ArrayList of integers going up linearly starting from 1 until the last day of the month
+	 */
 	public ArrayList<Integer> daysInMonth(Integer MonthID)
 	{
 		int numberOfDaysThisMonth = today.of(today.getYear(), MonthID, 1).lengthOfMonth();
@@ -61,16 +81,20 @@ public class next60days {
 		}
 		return daysInMonth;
 	}
-	
+	/** 
+	 * This method finds the difference between the first date of the doctors schedule and the date of a given appointment
+	 *  Using this it calls the availability method to update the given doctors availability
+	 * 
+	 * @param date a string for the date in the form "month/day/year" all in the form of integers
+	 * @param time a string for the the time of the appointment in the form "hour:minutes" all in the form of integers
+	 * @param doc a doctor object to find his availability 
+	 */
 	//This requires that the date is given in the following format "month/day/year" with no spaces between
-	//This method finds the difference between the first date of the doctors schedule and the date of a given appointment
-	//It also calls the availability method to update the given doctors availability
 	public void dateToAvailability(String date, String time, Doctor doc)
 	{
 		String[] dateArray = date.split("/");
 		LocalDate dateOfAppointment = LocalDate.of(Integer.parseInt(dateArray[2]),Month.of(Integer.parseInt(dateArray[0])),Integer.parseInt(dateArray[1]));
 		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment) + 1;	//This finds the number of days between the current day and the day of the appointment
-		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment)+1;	//This finds the number of days between the current day and the day of the appointment
 		String[] timeArray = time.split(":");
 		int timeSlot;
 		if (timeArray[0].equals("9") && timeArray[1].equals("00")) {timeSlot = 1;}
@@ -90,13 +114,13 @@ public class next60days {
 		else if (timeArray[0].equals("4") && timeArray[1].equals("00")) {timeSlot = 15;}
 		else {timeSlot = 16;}
 		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeSlot);}
-		System.out.println("Booking Day: "+ noOfDaysBetween);
-		System.out.println("Booking Time: "+ timeSlot);
-		
-		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeSlot);
 
-	}
 	
+	/** This method finds the number of days between tomorrow and a given LocalDate
+	 * 
+	 * @param LocalDate, date to find the number of days between
+	 * @return int, the number of days between tomorrow and the given date
+	 */
 	public int dayToTimeSlot(LocalDate date) 
 	{
 		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), date);	//This finds the number of days between the current day and the day of the appointment
@@ -105,6 +129,7 @@ public class next60days {
 	
 	/** This method determines if the next 60 days starting from tomorrow will overlap into the next year
 	 * 
+	 * @return Boolean, true if it is in the next year
 	 */
 	public boolean hasNextYear()
 	{
@@ -117,27 +142,50 @@ public class next60days {
 		else {return false;}
 	}
 	
+	/**
+	 * 
+	 * @return Integer, The current year
+	 */
 	public int currentYear()
 	{
 		return today.getYear();
 	}
+	
+	/**
+	 * @return Integer, The next year
+	 */
 	public int nextYear()
 	{
 		return today.getYear()+1;
 	}
-	
+	/**
+	 * 
+	 * @return Integer, the current day of the month
+	 */
 	public int getCurrentDayOfMonth()
 	{
 		return today.getDayOfMonth();
 	}
+	/**
+	 * 
+	 * @return The current month number
+	 */
 	public int currentMonthValue()
 	{
 		return today.getMonthValue();
 	}
+	/**
+	 * 
+	 * @return The day of the month after 60 days, being in a new month
+	 */
 	public int dayOfMonthAfter60Days()
 	{
 		return today.plusDays(60).getDayOfMonth();
 	}
+	/**
+	 * 
+	 * @return The month number we will be in after 60 days pass
+	 */
 	public int monthValueAfter60Days()
 	{
 		return today.plusDays(60).getMonthValue();
