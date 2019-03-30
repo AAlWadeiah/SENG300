@@ -1,19 +1,13 @@
 package Objects;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-
-
-
 public class next60days {
 	
 	LocalDate today = LocalDate.now();
-	
 	/**
 	 * 
 	 * @return The months which are involved in the next 60 days starting from tomorrow
@@ -93,9 +87,7 @@ public class next60days {
 		
 		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeSlot);
 
-									
-				
-		
+
 				
 	}
 	
