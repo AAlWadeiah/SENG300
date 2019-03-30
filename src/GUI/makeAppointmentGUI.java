@@ -4,12 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.util.ArrayList;
+
 import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Doctor;
 import Objects.Patient;
 import Objects.Schedule;
+import Objects.next60days;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -30,6 +37,7 @@ import javafx.stage.Stage;
 
 public class makeAppointmentGUI extends appointmentGUI{
 	
+	next60days days = new next60days();
 	/**
 	 * Loads page to make a new appointment. Displays information of selected patient and allows user to enter a date and time for the appointment.
 	 * @param scheduleStage stage that displays the scheduling panel
@@ -125,6 +133,9 @@ public class makeAppointmentGUI extends appointmentGUI{
 							if(doctorX.getId().equals(docID)) {
 
 								doctorX.getSchedule().addAppointment(person.getId(), appDate, appTime);
+								//doctorX.getAvailability().getWorkDay(1).bookTimeSlot(5);
+								//days.calculations(appDate,appTime,doctorX);
+								days.dateToAvailability(appDate, appTime, doctorX);
 								writer.editObjectToFile(doctorX,i);
 								break;
 							}
@@ -243,5 +254,26 @@ public class makeAppointmentGUI extends appointmentGUI{
 		Pane.add(actionTarget, xs+4, ys+18);
 		
 	}
+//	
+//	private int getWorkday(String date) {
+//		
+//		int appMonth = Integer.valueOf(date.split("/")[0]);
+//		int appDay = Integer.valueOf(date.split("/")[1]);
+//		int appYear = Integer.valueOf(date.split("/")[2]);
+//		
+//		LocalDate today = LocalDate.now();
+//		
+//		int curMonth = today.split("-")[1];
+//		int curDay = today.split("-")[2];
+//		int curYear = today.split("-")[0];
+//
+//		
+//		LocalDate appointment = LocalDate.of(appYear, appMonth, appDay);
+//		
+//		
+//		
+//		
+//		return 1;
+//	}
 
 }

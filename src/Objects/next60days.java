@@ -7,7 +7,6 @@ import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 
 
@@ -77,6 +76,7 @@ public class next60days {
 		String[] dateArray = date.split("/");
 		LocalDate dateOfAppointment = LocalDate.of(Integer.parseInt(dateArray[2]),Month.of(Integer.parseInt(dateArray[0])),Integer.parseInt(dateArray[1]));
 		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment) + 1;	//This finds the number of days between the current day and the day of the appointment
+		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment)+1;	//This finds the number of days between the current day and the day of the appointment
 		String[] timeArray = time.split(":");
 		int timeSlot;
 		if (timeArray[0].equals("9") && timeArray[1].equals("00")) {timeSlot = 1;}
@@ -96,6 +96,10 @@ public class next60days {
 		else if (timeArray[0].equals("4") && timeArray[1].equals("00")) {timeSlot = 15;}
 		else {timeSlot = 16;}
 		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeSlot);}
+		System.out.println("Booking Day: "+ noOfDaysBetween);
+		System.out.println("Booking Time: "+ timeSlot);
+		
+		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeSlot);
 
 	public boolean dayAvailability(Doctor doc, int dayID) 
 	{
