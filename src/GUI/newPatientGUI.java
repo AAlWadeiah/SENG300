@@ -1,11 +1,14 @@
 package GUI;
+import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
+import Objects.Doctor;
 import Objects.Patient;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
@@ -18,8 +21,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class newPatientGUI extends adminGUI{
 
@@ -37,9 +42,17 @@ public class newPatientGUI extends adminGUI{
 		TextField add = new TextField();
 		TextField Num = new TextField();
 		TextField Email = new TextField();
-		TextField Doc = new TextField();
+		//TextField Doc = new TextField();
 		TextField ID = new TextField();
 		TextField password = new TextField();
+		ChoiceBox<String> Doc = new ChoiceBox<>();
+		
+		Parser parser = new Parser();
+		
+		List<Doctor> allDoctors = parser.parseDoctors();
+		for(Doctor doctor: allDoctors) {
+			Doc.getItems().add(doctor.getFirstname());
+		}
 
 		final Text actionTarget = new Text();
 
@@ -76,7 +89,7 @@ public class newPatientGUI extends adminGUI{
 				add.clear();
 				Num.clear();
 				Email.clear();
-				Doc.clear();
+				//Doc.clear();
 				ID.clear();
 				password.clear();
 				actionTarget.setText(null);
@@ -101,7 +114,7 @@ public class newPatientGUI extends adminGUI{
 			public void handle(ActionEvent e) {
 
 				//checks if fields are empty
-				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Doc.getText().isEmpty() || ID.getText().isEmpty() || password.getText().isEmpty()) {
+				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Doc.getValue().isEmpty() || ID.getText().isEmpty() || password.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setFont(new Font("Cambra", 14));
 					actionTarget.setText("*Please fill in all fields*");
@@ -113,7 +126,7 @@ public class newPatientGUI extends adminGUI{
 					pAdd = add.getText();
 					pNumb = Num.getText();
 					pEmail = Email.getText();
-					pDoct = Doc.getText();
+					pDoct = Doc.getValue();
 					pId = ID.getText();
 					pPassword = setPassword(password.getText());
 
@@ -161,7 +174,7 @@ public class newPatientGUI extends adminGUI{
 	 * @param actionTarget warning text
 	 * @param password patient's password
 	 */
-	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField Doc, TextField ID, TextField password, Text actionTarget) {
+	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, ChoiceBox<String> Doc, TextField ID, TextField password, Text actionTarget) {
 
 		int gap = 10;
 		int pad = 25;
@@ -186,7 +199,7 @@ public class newPatientGUI extends adminGUI{
 		add.setPromptText("Enter patient's address");
 		Num.setPromptText("Enter patient's phone #");
 		Email.setPromptText("Enter patient's email ");
-		Doc.setPromptText("Enter patient's physician");
+		//choicebox.setPromptText("Enter patient's physician");
 		ID.setPromptText("Enter patient's ID");
 		password.setPromptText("Enter patient's password");
 
