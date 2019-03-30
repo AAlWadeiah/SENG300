@@ -151,7 +151,7 @@ public class loginGUI extends startupGUI {
 						if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
 							{
 							viewScheduleGUI doctorSignin = new viewScheduleGUI();
-							doctorSignin.startDoctor(stage);
+							doctorSignin.startDoctor(stage,Integer.parseInt(userID.getText()));
 							}
 						else 
 							{
@@ -201,7 +201,7 @@ public class loginGUI extends startupGUI {
 							if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
 								{
 								viewScheduleGUI doctorSignin = new viewScheduleGUI();
-								doctorSignin.startDoctor(stage);
+								doctorSignin.startDoctor(stage,Integer.parseInt(userID.getText()));
 								}
 							else 
 								{
