@@ -4,7 +4,6 @@ import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Doctor;
 import Objects.Patient;
-import Objects.Schedule;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -134,7 +133,7 @@ public class updateAppointmentGUI extends tableSchGUI{
 			}
 		});
 		
-		//Clear all the textfields
+		//Clear all the textfields and the actionTarget
 		clear.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -146,7 +145,8 @@ public class updateAppointmentGUI extends tableSchGUI{
 		});
 		
 	}
-	/**
+	/** Sets the schedule pane in order to organize the large amounts of data on this pane. Resulting in a visually
+	 *  appealing table
 	 * 
 	 * @param Pane
 	 * @param clear button

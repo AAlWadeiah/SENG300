@@ -20,6 +20,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
+/** This class is used for handling all Logins, it has a input box for userID and password,
+ *  sending them to the validation class to be authenticated then responds accordingly
+ * 
+ */
+
 public class loginGUI extends startupGUI {
 	@SuppressWarnings("unused")
 	public void startLogin(Stage stage, String user) {
@@ -108,12 +114,8 @@ public class loginGUI extends startupGUI {
 				@Override
 				public void handle(ActionEvent e) {
 					
-					//if (new validateAccount().validate(userID.getText(),passID.getText(), "Admin_Users.json")) //first validate their login
 					if (user.equals("Admin"))
 					{
-//						adminGUI signonSuccess = new adminGUI();
-//						signonSuccess.startAdmin(stage);
-//						
 						
 						if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
 							{
@@ -161,6 +163,8 @@ public class loginGUI extends startupGUI {
 					}
 			}});
 			
+			//If the enter button is pressed while inside the password box,
+			//do the validation process
 			passID.setOnKeyReleased(event -> {
 				  if (event.getCode() == KeyCode.ENTER){
 						if (user.equals("Admin"))
@@ -211,7 +215,8 @@ public class loginGUI extends startupGUI {
 	
 	
 	
-	/**
+	/** This hashes a string which is input and returns the corresponding hash
+	 * 
 	 * @param p The users text version password
 	 * @return The users hashed password
 	 */

@@ -26,7 +26,8 @@ import java.security.NoSuchAlgorithmException;
 public class newDoctorGUI extends adminGUI{
 
 	/**
-	 * Loads the page to add a new doctor.
+	 * This class loads the page which is used to add a new doctor, a new JSON input is generated for that Doctor.
+	 * 
 	 * @param doctorStage stage that displays the new Doctor GUI
 	 * @param intro HBox to hold consistent format
 	 * @param adminScreen VBox to hold consistent format
@@ -39,7 +40,7 @@ public class newDoctorGUI extends adminGUI{
 		TextField add = new TextField();
 		TextField Num = new TextField();
 		TextField Email = new TextField();
-		TextField Spec = new TextField();//department
+		TextField Spec = new TextField();  //department which the doctor works in
 		TextField ID = new TextField();
 		TextField password = new TextField();
 
@@ -122,7 +123,7 @@ public class newDoctorGUI extends adminGUI{
 					//once Doctor ID has been added to GUI input, put into index 0 of constructor call below.
 					Schedule schDoc = new Schedule(Integer.valueOf(dId));
 					Availability avaDoc = new Availability();
-					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd, dPassword,schDoc,avaDoc);//////////////////////////////////////////////
+					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd, dPassword,schDoc,avaDoc);
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(doctor);
 					if (success){
@@ -148,7 +149,8 @@ public class newDoctorGUI extends adminGUI{
 	}
 
 	/**
-	 * Configures the pane where the user enters the new doctor's information.
+	 * Configures the pane where the user enters the new doctor's information. Making it look appealing.
+	 * 
 	 * @param Pane Gridpane housing all the elements
 	 * @param submit submit button to input doctor
 	 * @param clear button to clear textfields
@@ -223,7 +225,8 @@ public class newDoctorGUI extends adminGUI{
 	}
 
 
-	/**
+	/** This sets the actual attribute as the hash
+	 * 
 	 * @param p The users text version password
 	 * @return The users hashed password
 	 */

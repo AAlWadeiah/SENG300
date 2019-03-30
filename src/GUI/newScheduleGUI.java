@@ -1,10 +1,8 @@
 package GUI;
 import java.io.File;
 import java.util.List;
-
 import JsonFileUtils.Parser;
 import Objects.Patient;
-import Objects.Schedule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,11 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -36,9 +32,11 @@ public class newScheduleGUI extends adminGUI{
 
 	/**
 	 * Loads the page listing all registered patients. User selects one patient that is shown in the table of registered patients to make an appointment for.
+	 * 
 	 * @param scheduleStage stage that displays the scheduling panel
 	 * @param intro HBox to hold consistent format
 	 */
+	@SuppressWarnings("unchecked")
 	public void startSchedule(Stage scheduleStage, HBox intro) {
 
 		int minwidth = 100;
@@ -159,9 +157,7 @@ public class newScheduleGUI extends adminGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				if(person!=null) {
-					//System.out.println(person.getFirstName());
 					Integer schPatient = Integer.parseInt(person.getDoctor());
-					//Schedule schPatient = new Schedule(Integer.parseInt(person.getDoctor()));
 					appointmentGUI adminApp = new appointmentGUI();
 					adminApp.startApp(scheduleStage,intro,person,schPatient);
 

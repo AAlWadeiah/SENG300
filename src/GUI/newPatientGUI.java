@@ -29,7 +29,7 @@ import java.util.List;
 public class newPatientGUI extends adminGUI{
 
 	/**
-	 * Loads the page to add a new patient. Once the user submits the new patient's information, a new JSON file is generated for that patient.
+	 * Loads the page to add a new patient. Once the user submits the new patient's information, a new JSON input is generated for that patient.
 	 * @param patientStage stage that displays the new patient GUI
 	 * @param intro HBox to hold consistent format
 	 * @param adminScreen VBox to hold consistent format
@@ -159,7 +159,8 @@ public class newPatientGUI extends adminGUI{
 	}
 
 	/**
-	 * Configures the pane where the user enters the new patient's information
+	 * Configures the pane where the user enters the new patient's information, making it appear in an appealing way.
+	 * 
 	 * @param Pane Gridpane housing all the elements
 	 * @param submit button to input patient
 	 * @param clear button to clear textfields
@@ -237,7 +238,8 @@ public class newPatientGUI extends adminGUI{
 	}
 
 
-	/**
+	/** This method sets the actual attribute of the hash
+	 * 
 	 * @param p The users text version password
 	 * @return The users hashed password
 	 */

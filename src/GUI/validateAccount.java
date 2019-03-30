@@ -8,19 +8,37 @@ import Objects.Doctor;
 import java.io.File;
 import java.util.List;
 
+/**
+ * 
+ * @author ali
+ *
+ */
 public class validateAccount {
 
+	/** Constructor which immediately goes to validation method
+	 * 
+	 * @param user userID to validate
+	 * @param pass password to validate
+	 * @param filename filename of entity we will be validating
+	 */
 	public validateAccount(Integer user, String pass, String filename) {this.validate(user, pass, filename);}
-	public validateAccount() {}
 
-	String currentDir = System.getProperty("user.dir");
-	File path = new File(currentDir);
+	String currentDir = System.getProperty("user.dir");			//current directory
+	File path = new File(currentDir);							//File path
 	Parser parser = new Parser();
-	//File[] jsonFiles = parser.getFiles(path);
-	List<Patient> allPatients = parser.parsePatients();
-	List<Doctor> allDoctors = parser.parseDoctors();
-	List<Admin> allAdmins = parser.parseAdmins();
+	List<Patient> allPatients = parser.parsePatients();			//List of all patients from parser class
+	List<Doctor> allDoctors = parser.parseDoctors();			//List of all doctors from parser class
+	List<Admin> allAdmins = parser.parseAdmins();				//List of all admins from parser class
 
+	/**
+	 * This is the method whic hdoes the actual validation by comparing the given values to the 
+	 * values found in file
+	 * 
+	 * @param user, ID to validate
+	 * @param pass, string password to validate
+	 * @param type, are we doing patients, admins, or doctors
+	 * @return boolean, true if it is validated successfully, or false otherwise
+	 */
 	public Boolean validate(Integer user, String pass, String type) {
 
 		boolean authenticate = false;
@@ -58,9 +76,6 @@ public class validateAccount {
 				}
 			}
 		}
-
-//		else if (filename.equals("Doctor_Users.json")) {System.out.println("this is a doctor signing in\n"+ user +" + "+pass); return true;}
-		//else {System.out.println("This is an admin signing in"+ user +" + "+ pass); return true;}
 		return authenticate;
 	}
 }

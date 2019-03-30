@@ -71,7 +71,7 @@ public class appointmentGUI extends newScheduleGUI{
 		setScene(appBorder,scheduleStage);
 		
 		
-		
+		//ActionEvent for returning to the previous screen
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -80,6 +80,7 @@ public class appointmentGUI extends newScheduleGUI{
 			}
 		});
 		
+		//ActionEvent for the adding a new Appointment Button
 		addApp.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -90,7 +91,7 @@ public class appointmentGUI extends newScheduleGUI{
 		});
 		
 
-		
+		//ActionEven for the updating Appointment Button
 		updateApp.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
