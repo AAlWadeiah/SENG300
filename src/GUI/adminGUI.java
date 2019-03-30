@@ -66,7 +66,7 @@ public class adminGUI extends loginGUI{
 
 		//Button events
 
-		//restarts program
+		//ActionEvent used to restart program
 		logout.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent e) {
@@ -74,7 +74,7 @@ public class adminGUI extends loginGUI{
 			}
 		});
 
-		//Create new patient
+		//ActionEvent used to create new patient
 		adminP.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -86,7 +86,7 @@ public class adminGUI extends loginGUI{
 			}
 		});
 
-		//Create new doctor
+		//Action Event used to create a new doctor
 		adminD.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -98,7 +98,7 @@ public class adminGUI extends loginGUI{
 			}
 		});
 
-		//Schedule a patient
+		//Action Event used to invoke the newscheduleGUI which will be used to make a schedule
 		adminS.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
