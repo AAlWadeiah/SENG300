@@ -22,6 +22,7 @@ public class validateAccount {
 	 * @param filename filename of entity we will be validating
 	 */
 	public validateAccount(Integer user, String pass, String filename) {this.validate(user, pass, filename);}
+	public validateAccount() {}
 
 	String currentDir = System.getProperty("user.dir");			//current directory
 	File path = new File(currentDir);							//File path
