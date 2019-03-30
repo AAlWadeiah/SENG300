@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 /**
- * A class which stores the appointment schedule for a single doctor. The doctor is indicated by their unique ID.
+ * A class which stores the appointment schedule for a single doctor.
  * @author Abdullah
  *
  */

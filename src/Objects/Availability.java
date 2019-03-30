@@ -4,19 +4,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/**
+ * A class which stores the availability of a Doctor.
+ * @author Abdullah
+ *
+ */
 public class Availability {
+	
+	// Fields
 	private static final Integer NUMBER_OF_WORK_DAYS = 60;
 	private HashMap<Integer, WorkDay> availability;
 	
+	// Constructor
 	public Availability() {
 		setAvailability(new HashMap<Integer, WorkDay>());
 		for (int i = 1; i <= getNumberOfWorkDays(); i++) getAvailability().put(i, new WorkDay());
 	}
 	
+	/**
+	 * Retrieves the workday specified by the given ID.
+	 * @param workDayId The ID of the workday to return
+	 * @return the workday which was specified by the ID
+	 */
 	public WorkDay getWorkDay(Integer workDayId) {
 		return getAvailability().get(workDayId);
 	}
 	
+	/**
+	 * Retrieves a range of workdays specified by a starting ID and an ending ID.
+	 * @param firstWorkDay The ID of beginning workday
+	 * @param secondWorkDay The ID of the ending workday
+	 * @return an array containing the workdays in the specified range
+	 */
 	public WorkDay[] getWorkDayRange(Integer firstWorkDay, Integer secondWorkDay) {
 		WorkDay[] workRange = new WorkDay[secondWorkDay - firstWorkDay];
 		int counter = firstWorkDay - 1;
@@ -27,10 +46,19 @@ public class Availability {
 		return workRange;
 	}
 
+	/**
+	 * Sets the availability for a specified workday.
+	 * @param workDayId The workday to set the availability for
+	 * @param isAvailable The availability to set
+	 */
 	public void setWorkDayAvailability(Integer workDayId, Boolean isAvailable) {
 		getAvailability().get(workDayId).setIsAvailable(isAvailable);
 	}
 	
+	/**
+	 * Retrieves the full availability schedule.
+	 * @return an ArrayList of ArrayLists of Booleans that corresponds to the Doctor's availability
+	 */
 	public ArrayList<ArrayList<Boolean>> getFullWorkSchedule() {
 		ArrayList<ArrayList<Boolean>> fullSchedule = new ArrayList<>();
 		
