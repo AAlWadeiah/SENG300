@@ -1,21 +1,11 @@
 package GUI;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
-import java.util.ArrayList;
 
 import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
-import Objects.Appointment;
 import Objects.Doctor;
 import Objects.Patient;
-import Objects.Schedule;
 import Objects.next60days;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -69,6 +59,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 		setformVBox(scheduleApp);
 		
 		//Panes
+		
 		GridPane datePane = new GridPane();
 		StackPane returnPane = new StackPane();
 		StackPane submitPane = new StackPane();
@@ -77,6 +68,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 		setschedulePane(datePane,clear, person, time, date, actionTarget);
 		
+		//populate panes and align
 		patientPane.getChildren().add(Patient);
 		patientPane.setAlignment(Pos.TOP_LEFT);
 		
@@ -100,17 +92,37 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
+				String[] dateArray = date.getText().split("/");
+				
+				// Used to catch various exceptions, like putting a letter where numbers should be
+				try {	
 				//check if forms are empty
 				if(date.getText().isEmpty() || time.getText().isEmpty()) {
 					actionTarget.setFill(Color.FIREBRICK);
 					actionTarget.setFont(new Font("Cambra", 14));
 					actionTarget.setText("*Please fill in all fields*");
 				}
+				else if(dateArray.length!=3 || dateArray[0].length()!=2 ||
+						dateArray[1].length()!=2 || dateArray[2].length()!=4) 
+				{
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Please fill in all fields*");
+					
+					
+					//These are to test if the date is in the right form with no letters inside, a number format exception
+					//will be caught if there are any
+					
+					Integer.parseInt(dateArray[0]); 						
+					Integer.parseInt(dateArray[1]);							
+					Integer.parseInt(dateArray[2]);							
+				}
+				
 				else {
+					
 					String appDate = date.getText();
 					String appTime = time.getText();
 					
-					//person is the object
 
 					
 					//Writer & reader
@@ -128,23 +140,22 @@ public class makeAppointmentGUI extends appointmentGUI{
 					List<Doctor> allDoctors = parser.parseDoctors();
 					
 					try {
-						for(int i =0; i< allDoctors.size();i++) {
-							Doctor doctorX = allDoctors.get(i);
-							if(doctorX.getId().equals(docID)) {
+						for(int i =0; i< allDoctors.size();i++) {			//Iterate through all doctors
+							Doctor doctorX = allDoctors.get(i);				//Check if the ID's match
+							if(doctorX.getId().equals(docID)) {				//if they match
 
-								doctorX.getSchedule().addAppointment(person.getId(), appDate, appTime);
-								//doctorX.getAvailability().getWorkDay(1).bookTimeSlot(5);
-								//days.calculations(appDate,appTime,doctorX);
-								days.dateToAvailability(appDate, appTime, doctorX);
-								writer.editObjectToFile(doctorX,i);
+								doctorX.getSchedule().addAppointment(person.getId(), appDate, appTime);	 //Add an appointment based on the time/date input
+								days.dateToAvailability(appDate, appTime, doctorX);			//Check the date relative to local Time and update availability
+								writer.editObjectToFile(doctorX,i);							//Writing to file
 								break;
 							}
 						}
 						
 					}
 					
-					catch(Exception noDoc){
-						//doc didnt exist
+					catch(Exception noDoc)
+					{
+						//TODO: This exception here seems to be resolved due to a change, but needs further testing
 					}
 
 					
@@ -163,11 +174,16 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 					
 					
+				}}
+				catch (Exception a)
+				{
+					
 				}
+				
 			}
 		});
 		
-		//Clear all the textfields
+		//Clear all the textfields, clear the actionTarget
 		clear.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -254,26 +270,4 @@ public class makeAppointmentGUI extends appointmentGUI{
 		Pane.add(actionTarget, xs+4, ys+18);
 		
 	}
-//	
-//	private int getWorkday(String date) {
-//		
-//		int appMonth = Integer.valueOf(date.split("/")[0]);
-//		int appDay = Integer.valueOf(date.split("/")[1]);
-//		int appYear = Integer.valueOf(date.split("/")[2]);
-//		
-//		LocalDate today = LocalDate.now();
-//		
-//		int curMonth = today.split("-")[1];
-//		int curDay = today.split("-")[2];
-//		int curYear = today.split("-")[0];
-//
-//		
-//		LocalDate appointment = LocalDate.of(appYear, appMonth, appDay);
-//		
-//		
-//		
-//		
-//		return 1;
-//	}
-
 }
