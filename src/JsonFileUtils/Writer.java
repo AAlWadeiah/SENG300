@@ -1,29 +1,28 @@
 package JsonFileUtils;
-
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.google.gson.Gson;
-
 import Objects.Patient;
 import Objects.Doctor;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * This class is used to store a Patient and Doctor object in a JSON file.
+ *
+ */
+
 public class Writer {
 	
-	/**
-	 * Writes a Patient object to a JSON file.
+	/** This is the main class for writing patients to file
+	 * 
 	 * @param pat The Patient object to write to file
 	 * @return true if Patient was written to file, false otherwise
 	 *
     */
 	public boolean writeObjectToFile(Patient pat) {
-		//Note: source for how to append code was:
-		//https://stackoverflow.com/questions/54574576/append-json-object-in-existing-json-file-using-java
-		//read old file, rewrite to new file with new information to be appended
 		Gson allPatFile = new GsonBuilder().setPrettyPrinting().create();
 		Type patientType = new TypeToken<List<Patient>>(){}.getType();
 
@@ -63,6 +62,11 @@ public class Writer {
 		}
 		return true;
 	}
+	/** Overloaded Method for writing doctors to file
+	 * 
+	 * @param doc doctor to be written to file
+	 * @return True/False success/Failure
+	 */
 	public boolean writeObjectToFile(Doctor doc){
 
 
@@ -111,6 +115,12 @@ public class Writer {
 
 	}
 	
+	/** This method is used to edit the doctor object info on the JSON file
+	 * 
+	 * @param doc Doctor object who would like their on file records to be editted
+	 * @param index index to be changed
+	 * @return True/False Success/Failure
+	 */
 	public boolean editObjectToFile(Doctor doc, int index) {
 		Gson allDocFile = new GsonBuilder().setPrettyPrinting().create();
 		Type doctorType = new TypeToken<List<Doctor>>(){}.getType();

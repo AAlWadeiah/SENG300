@@ -5,33 +5,21 @@ import java.util.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
 import Objects.Patient;
 import Objects.Admin;
 import Objects.Doctor;
 
+/**
+ *  The main purpose of this class it to deserialize the given patient, doctor and admin files and create a list of Patient
+ *   doctor and admin objects from the files.
+ *
+ */
+
 public class Parser {
-	// Driver code
-	/**
-	public static void main(String[] args) {
-		String currentDir = System.getProperty("user.dir");
-	    File path = new File(currentDir);
-	    
-	    Parser parser = new Parser();
-	    
-	    File[] jsonFiles = parser.getFiles(path);
-	    List<Patient> allPatients = parser.parsePatients(jsonFiles);
-	    for (Patient patient : allPatients) {
-			System.out.println(patient.getFirstName() + " " + patient.getLastName());
-		}
-	}
-	**/
 	
-	/**
-	 * Deserializes the given patient files and creates a list of Patient objects from the files.
-	 * @param jsonFiles The Patient JSON files
-	 * @return the list of deserialized Patient objects
+	/** This method is used to parse the patient JSON files
+	 * 
+	 * @return returns a list containing all the patient objects which were parsed by the parser
 	 */
 	public List<Patient> parsePatients() {
 		Gson allPatFile = new GsonBuilder().setPrettyPrinting().create();
@@ -54,7 +42,11 @@ public class Parser {
 		return allThePatients;
 
 	}
-
+	
+	/** This method is used to parse the doctor JSON files
+	 * 
+	 * @return returns a list containing all the doctor objects which were parsed by the parser
+	 */
 	public List<Doctor> parseDoctors() {
 		Gson allDocFile = new GsonBuilder().setPrettyPrinting().create();
 		List<Doctor> allTheDoctors = null;
@@ -77,7 +69,10 @@ public class Parser {
 
 	}
 
-	
+	/** This method is used to parse the admin JSON files
+	 * 
+	 * @return returns a list containing all the admin objects which were parsed by the parser
+	 */
 	public List<Admin> parseAdmins() {
 		Gson allAdminFile = new GsonBuilder().setPrettyPrinting().create();
 		List<Admin> allTheAdmins = null;
