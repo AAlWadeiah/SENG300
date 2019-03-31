@@ -13,16 +13,16 @@
       "currentAppointments": {
         "101": [
           {
-            "appointmentId": -268237510,
+            "appointmentId": -695738240,
             "patientId": 101,
-            "date": "01/01/01",
-            "time": "12:00"
+            "date": "05/01/2019",
+            "time": "12:30"
           },
           {
-            "appointmentId": -313519830,
+            "appointmentId": 1111716223,
             "patientId": 101,
-            "date": "01/01/01",
-            "time": "1:00"
+            "date": "04/01/2019",
+            "time": "12:30"
           }
         ],
         "77": [
@@ -62,7 +62,7 @@
               "isBooked": false
             },
             "8": {
-              "isBooked": false
+              "isBooked": true
             },
             "9": {
               "isBooked": false
@@ -1599,7 +1599,7 @@
               "isBooked": false
             },
             "8": {
-              "isBooked": false
+              "isBooked": true
             },
             "9": {
               "isBooked": false
@@ -1652,7 +1652,7 @@
               "isBooked": false
             },
             "8": {
-              "isBooked": false
+              "isBooked": true
             },
             "9": {
               "isBooked": false

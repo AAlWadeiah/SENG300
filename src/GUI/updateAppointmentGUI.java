@@ -1,9 +1,12 @@
 package GUI;
 
+import java.time.LocalDate;
+
 import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Doctor;
 import Objects.Patient;
+import Objects.next60days;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -88,11 +91,27 @@ public class updateAppointmentGUI extends tableSchGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
+				String[] dateArray = newDate.getText().split("/");
+				String[] timeArray = newTime.getText().split(":");
+				
+				// Used to catch various exceptions, like putting a letter where numbers should be, or a date not
+				// within the next 61 days.
+				try {	
+					Integer.parseInt(dateArray[0]); 						
+					Integer.parseInt(dateArray[1]);							
+					Integer.parseInt(dateArray[2]);			
+					Integer.parseInt(timeArray[0]);
+					Integer.parseInt(timeArray[1]);
+					new next60days().isDateWithinNext60Days(newDate.getText());
+					new next60days().isTimeWithinWorkday(newTime.getText());
 				//check if forms are empty
-				if(newDate.getText().isEmpty() || newTime.getText().isEmpty()) {
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill in all fields*");
+				if(newDate.getText().isEmpty() || newTime.getText().isEmpty() || 
+						dateArray.length!=3 || 
+						dateArray[0].length()!=2 ||
+						dateArray[1].length()!=2 || 
+						dateArray[2].length()!=4) 
+				{
+					throw new Exception();
 				}
 				else {
 					String appDate = newDate.getText();
@@ -118,10 +137,17 @@ public class updateAppointmentGUI extends tableSchGUI{
 					
 
 					
-					
 				}
-			}
-		});		
+				}
+				catch(Exception f)
+				{
+					System.out.println("\n\n\nIncorrect attempt on making an appointment caught, printing the stack trace\n\n\n");
+					f.printStackTrace(System.out);
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Please fill all fields correctly*");
+				}
+			}});		
 		
 		
 		//Returns to the previous panel

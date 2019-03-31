@@ -142,6 +142,57 @@ public class next60days {
 		else {return false;}
 	}
 	
+	
+	/** This function finds out if a given date is within the next 60 days starting from tomorrow,
+	 *  if it finds that the date is not, it throws an exception
+	 * 
+	 * @param date, date in the form month/day/year
+	 * @throws Exception to be passed on to the called function to handle
+	 */
+	public void isDateWithinNext60Days(String date) throws Exception
+	{
+		String[] dateArray = date.split("/");
+		int month = Integer.parseInt(dateArray[0]);
+		int day = Integer.parseInt(dateArray[1]);
+		int year = Integer.parseInt(dateArray[2]);
+		
+		if (!hasNextYear() && year != currentYear() || 		//If the years are not consistent
+				year < currentYear() )
+		{
+			throw new Exception();
+		}
+		else if ( (LocalDate.of(year, month, day).getDayOfYear() > (today.getDayOfYear() + 61) &&                  //This handles if the date is more than 61 days away
+				today.getYear() == LocalDate.of(year, month, day).getYear()) || (
+				hasNextYear() && LocalDate.of(year, month, day).getDayOfYear() > (today.getYear() - 365+ 61))	   //If the date goes into a new year but its more than 61 days away
+				|| LocalDate.of(year, month, day).getDayOfYear() == today.getDayOfYear() ||						   //If the date is today
+				   (!hasNextYear() && (LocalDate.of(year, month, day).getDayOfYear() < today.getDayOfYear())) )    //If the date is a day which has passed
+		{
+			throw new Exception();
+		}
+	}
+	
+	
+	/** This Function is passed a time and tells if that time is within the work-day of a doctor,
+	 *  assumed as being the Hours of 9 - 5 PM. If it is not, it throws an exception
+	 * 
+	 * @param time, time passed into the function in the form of a string HH:MM
+	 * @throws Exception
+	 */
+	public void isTimeWithinWorkday(String time) throws Exception
+	{
+		//TODO: unimplemented
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 
 	 * @return Integer, The current year

@@ -93,29 +93,26 @@ public class makeAppointmentGUI extends appointmentGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				String[] dateArray = date.getText().split("/");
+				String[] timeArray = time.getText().split(":");
 				
-				// Used to catch various exceptions, like putting a letter where numbers should be
+				// Used to catch various exceptions, like putting a letter where numbers should be, or a date not
+				// within the next 61 days.
 				try {	
-				//check if forms are empty
-				if(date.getText().isEmpty() || time.getText().isEmpty()) {
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill in all fields*");
-				}
-				else if(dateArray.length!=3 || dateArray[0].length()!=2 ||
-						dateArray[1].length()!=2 || dateArray[2].length()!=4) 
-				{
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill in all fields*");
-					
-					
-					//These are to test if the date is in the right form with no letters inside, a number format exception
-					//will be caught if there are any
-					
 					Integer.parseInt(dateArray[0]); 						
 					Integer.parseInt(dateArray[1]);							
-					Integer.parseInt(dateArray[2]);							
+					Integer.parseInt(dateArray[2]);			
+					Integer.parseInt(timeArray[0]);
+					Integer.parseInt(timeArray[1]);
+					days.isDateWithinNext60Days(date.getText());
+					days.isTimeWithinWorkday(time.getText());
+				//check if forms are empty
+				if(date.getText().isEmpty() || time.getText().isEmpty() || 
+						dateArray.length!=3 || 
+						dateArray[0].length()!=2 ||
+						dateArray[1].length()!=2 || 
+						dateArray[2].length()!=4) 
+				{
+					throw new Exception();
 				}
 				
 				else {
@@ -177,7 +174,11 @@ public class makeAppointmentGUI extends appointmentGUI{
 				}}
 				catch (Exception a)
 				{
-					
+					System.out.println("\n\n\nIncorrect attempt on making an appointment caught, printing the stack trace\n\n\n");
+					a.printStackTrace(System.out);
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Please fill all fields correctly*");
 				}
 				
 			}
