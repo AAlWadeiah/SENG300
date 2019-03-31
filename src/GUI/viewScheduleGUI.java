@@ -35,7 +35,8 @@ import javafx.stage.Stage;
 
 public class viewScheduleGUI extends loginGUI{
 	
-	private TableView<Appointment> table = new TableView<>();	
+	//private TableView<ArrayList<Appointment>> table = new TableView<>();	
+	private TableView<Appointment> table = new TableView<>();
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	
@@ -90,8 +91,6 @@ public class viewScheduleGUI extends loginGUI{
 			
 		//populate cells
 
-		
-		
 		appIDCol.setCellValueFactory(new PropertyValueFactory<Appointment,String>("appointmentId"));
 		patIDCol.setCellValueFactory(new PropertyValueFactory<Appointment,String>("patientId"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<Appointment,String>("date"));
@@ -100,30 +99,24 @@ public class viewScheduleGUI extends loginGUI{
 		table.getColumns().addAll(patIDCol,appIDCol,dateCol,timeCol);
 		
 		try {
-		ObservableList<ArrayList<Appointment>> people = FXCollections.observableArrayList(docMap.values());
+		ObservableList<ArrayList<Appointment>> peopleArray = FXCollections.observableArrayList(docMap.values());
+		ObservableList<Appointment> people = FXCollections.observableArrayList();
 
-		int i=0;
-		for(ArrayList<Appointment> row : people) {
-			table.getItems().setAll(row.get(i));
-			i++;
-
-			//break;
-
+		for(ArrayList<Appointment> rowApp : peopleArray) {
+			for( Appointment row : rowApp) {
+				people.add(row);
+			}
 		}
-		
-		//table.getItems().setAll();
-		
+		table.setItems(people);
 		
 		}
+	
 		catch(Exception e) {
 			actionTarget.setFill(Color.FIREBRICK);
 			actionTarget.setFont(new Font("Cambra", 14));
 			actionTarget.setText("*No current appointments*");
 		}
 		
-
-
-		 
 
 		//Boxes
 		VBox doctorScreen = new VBox();
