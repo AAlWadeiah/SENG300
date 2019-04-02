@@ -1,7 +1,6 @@
 package GUI;
 import java.io.File;
 import java.util.List;
-
 import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Doctor;
@@ -20,7 +19,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -135,8 +133,6 @@ public class makeAppointmentGUI extends appointmentGUI{
 					Writer writer = new Writer();
 					
 					List<Doctor> allDoctors = parser.parseDoctors();
-					
-					try {
 						for(int i =0; i< allDoctors.size();i++) {			//Iterate through all doctors
 							Doctor doctorX = allDoctors.get(i);				//Check if the ID's match
 							if(doctorX.getId().equals(docID)) {				//if they match
@@ -148,12 +144,6 @@ public class makeAppointmentGUI extends appointmentGUI{
 							}
 						}
 						
-					}
-					
-					catch(Exception noDoc)
-					{
-						//TODO: This exception here seems to be resolved due to a change, but needs further testing
-					}
 
 					
 					BorderPane npPane = new BorderPane();
@@ -171,14 +161,11 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 					
 					
-				}}
+				} }
 				catch (Exception a)
 				{
 					System.out.println("\n\n\nIncorrect attempt on making an appointment caught, printing the stack trace\n\n\n");
 					a.printStackTrace(System.out);
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill all fields correctly*");
 				}
 				
 			}

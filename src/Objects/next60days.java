@@ -14,6 +14,7 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 
@@ -173,14 +174,19 @@ public class next60days {
 	
 	
 	/** This Function is passed a time and tells if that time is within the work-day of a doctor,
-	 *  assumed as being the Hours of 9 - 5 PM. If it is not, it throws an exception
+	 *  assumed as being the Hours of 9 - 5 PM. If it is not, it throws an exception which creates a popup alert box.
 	 * 
 	 * @param time, time passed into the function in the form of a string HH:MM
 	 * @throws Exception
 	 */
 	public void isTimeWithinWorkday(String time) throws Exception
 	{
-		//TODO: unimplemented
+		String hour = time.split(":")[0];
+		String minute = time.split(":")[1];
+		String[] possibleHours = {"9","10","11","12","1","2","3","4"};
+		String[] possibleMinutes = {"30","00"};
+		if (!Arrays.asList(possibleHours).contains(hour) || !Arrays.asList(possibleMinutes).contains(minute)) 
+		{throw new Exception();}
 	}
 	
 	
