@@ -5,11 +5,15 @@ import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Doctor;
 import Objects.Patient;
+import Objects.dateFormatException;
+import Objects.timeFormatException;
 import Objects.next60days;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
@@ -26,6 +30,7 @@ import javafx.stage.Stage;
 public class makeAppointmentGUI extends appointmentGUI{
 	
 	next60days days = new next60days();
+	
 	/**
 	 * Loads page to make a new appointment. Displays information of selected patient and allows user to enter a date and time for the appointment.
 	 * @param scheduleStage stage that displays the scheduling panel
@@ -95,25 +100,39 @@ public class makeAppointmentGUI extends appointmentGUI{
 				
 				// Used to catch various exceptions, like putting a letter where numbers should be, or a date not
 				// within the next 61 days.
-				try {	
-					Integer.parseInt(dateArray[0]); 						
-					Integer.parseInt(dateArray[1]);							
-					Integer.parseInt(dateArray[2]);			
-					Integer.parseInt(timeArray[0]);
-					Integer.parseInt(timeArray[1]);
-					days.isDateWithinNext60Days(date.getText());
-					days.isTimeWithinWorkday(time.getText());
+				try {		
+					
 				//check if forms are empty
-				if(date.getText().isEmpty() || time.getText().isEmpty() || 
-						dateArray.length!=3 || 
-						dateArray[0].length()!=2 ||
-						dateArray[1].length()!=2 || 
-						dateArray[2].length()!=4) 
+				if (date.getText().equals(""))
 				{
-					throw new Exception();
+					ObservableList<String> styleClass = date.getStyleClass();//WE NEED A NEW EXCEPTION FOR EMPTY DATE BOX
+					styleClass.add("error");
+					throw new Exception();			//TODO: Replace with a popup box  telling to fill the field
+				
 				}
 				
-				else {
+				Integer.parseInt(dateArray[0]); 						
+				Integer.parseInt(dateArray[1]);							
+				Integer.parseInt(dateArray[2]);		
+				
+				if( 	dateArray.length!=3 || 
+						dateArray[2].length()!=4) 
+				{
+					throw new dateFormatException();
+				}
+				
+				else if (time.getText().isEmpty())
+				{
+					ObservableList<String> styleClass = time.getStyleClass();//WE NEED A NEW EXCEPTION FOR EMPTY DATE BOX
+					styleClass.add("error");
+					throw new Exception();//WE NEED AN EXCEPTION FOR EMPTY TIME BOX
+				}
+				Integer.parseInt(timeArray[0]);
+				Integer.parseInt(timeArray[1]);
+				
+				if (timeArray.length!=2) {throw new timeFormatException();}
+				days.isDateWithinNext60Days(date.getText());
+				days.isTimeWithinWorkday(time.getText());
 					
 					String appDate = date.getText();
 					String appTime = time.getText();
@@ -161,7 +180,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 					
 					
-				} }
+				}
 				catch (Exception a)
 				{
 					System.out.println("\n\n\nIncorrect attempt on making an appointment caught, printing the stack trace\n\n\n");

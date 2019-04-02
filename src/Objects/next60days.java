@@ -168,7 +168,7 @@ public class next60days {
 				|| LocalDate.of(year, month, day).getDayOfYear() == today.getDayOfYear() ||						   //If the date is today
 				   (!hasNextYear() && (LocalDate.of(year, month, day).getDayOfYear() < today.getDayOfYear())) )    //If the date is a day which has passed
 		{
-			throw new Exception();
+			throw new dateFormatException();		//We need a more specific exception
 		}
 	}
 	
@@ -186,7 +186,7 @@ public class next60days {
 		String[] possibleHours = {"9","10","11","12","1","2","3","4"};
 		String[] possibleMinutes = {"30","00"};
 		if (!Arrays.asList(possibleHours).contains(hour) || !Arrays.asList(possibleMinutes).contains(minute)) 
-		{throw new Exception();}
+		{throw new timeFormatException();}		//we need a more specific exception
 	}
 	
 	
