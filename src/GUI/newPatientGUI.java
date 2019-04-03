@@ -191,7 +191,7 @@ public class newPatientGUI extends adminGUI{
 		Label phoneNum = new Label("Phone number: ");
 		Label eMail = new Label("Email: ");
 		Label patDoc = new Label("Doctor ID: ");
-		Label patID = new Label("Patient ID: ");
+		Label patID = new Label("Username: ");
 		Label pWord = new Label ("Password: ");
 
 		//Text Prompts
@@ -201,7 +201,7 @@ public class newPatientGUI extends adminGUI{
 		Num.setPromptText("Enter patient's phone #");
 		Email.setPromptText("Enter patient's email ");
 		//choicebox.setPromptText("Enter patient's physician");
-		ID.setPromptText("Enter patient's ID");
+		ID.setPromptText("Enter patient's username");
 		password.setPromptText("Enter patient's password");
 
 

@@ -16,6 +16,4 @@ public class dateFormatException extends Exception {
 		alert.setHeaderText("Incorrect Date Format");
 		alert.showAndWait();
 	}
-
-	
 }

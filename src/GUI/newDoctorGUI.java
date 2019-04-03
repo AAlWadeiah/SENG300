@@ -180,7 +180,7 @@ public class newDoctorGUI extends adminGUI{
 		Label phoneNum = new Label("Phone number: ");
 		Label email = new Label("Email: ");
 		Label docSpec = new Label("Department: ");
-		Label docID = new Label("Doctor ID: ");
+		Label docID = new Label("Username: ");
 		Label pWord = new Label ("Password: ");
 
 		//Text Prompts
@@ -190,8 +190,8 @@ public class newDoctorGUI extends adminGUI{
 		Num.setPromptText("Enter doctor's phone #");
 		Email.setPromptText("Enter doctor's email ");
 		spec.setPromptText("Enter doctor's department");
-		ID.setPromptText("Enter doctor's ID");
-		password.setPromptText("Enter patient's password");
+		ID.setPromptText("Enter doctor's username");
+		password.setPromptText("Enter doctor's password");
 
 
 		Pane.setAlignment(Pos.TOP_LEFT);

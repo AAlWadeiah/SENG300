@@ -1,5 +1,6 @@
 package GUI;
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
@@ -29,7 +30,7 @@ import javafx.stage.Stage;
 
 public class makeAppointmentGUI extends appointmentGUI{
 	
-	next60days days = new next60days();
+	private next60days days = new next60days();
 	
 	/**
 	 * Loads page to make a new appointment. Displays information of selected patient and allows user to enter a date and time for the appointment.
@@ -95,6 +96,11 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
+				
+				ObservableList<String> timestyleClass = time.getStyleClass();
+				ObservableList<String> datestyleClass = date.getStyleClass();
+				timestyleClass.removeAll(Collections.singleton("error"));
+				datestyleClass.removeAll(Collections.singleton("error"));
 				String[] dateArray = date.getText().split("/");
 				String[] timeArray = time.getText().split(":");
 				
