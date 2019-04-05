@@ -107,21 +107,24 @@ public class updateAppointmentGUI extends tableSchGUI{
 				try {		
 					
 				//check if forms are empty
-				if (newDate.getText().isEmpty() && newTime.getText().isEmpty())
+				if (newDate.getText().isEmpty() && newTime.getText().isEmpty()) //both boxes empty
 				{
 					datestyleClass.add("error");
 					timestyleClass.add("error");
 					throw new emptyFieldException();
 				}
-				else if (newDate.getText().isEmpty())
+				else if (newDate.getText().isEmpty()) //Empty date box
 				{
 					datestyleClass.add("error");
 					throw new emptyFieldException();
 				}
 				
-				Integer.parseInt(dateArray[0]); 						
-				Integer.parseInt(dateArray[1]);							
-				Integer.parseInt(dateArray[2]);		
+				try {
+					Integer.parseInt(dateArray[0]); 			//check if the dateArray is populated and is using integers	
+					Integer.parseInt(dateArray[1]);			    //we expect it be Month, day, year in indexes 0, 1, 2
+					Integer.parseInt(dateArray[2]);	}			
+				catch(Exception d) { datestyleClass.add("error");
+									 throw new dateFormatException(); }
 				
 				if( 	dateArray.length!=3 || 
 						dateArray[2].length()!=4) 
@@ -134,8 +137,13 @@ public class updateAppointmentGUI extends tableSchGUI{
 					timestyleClass.add("error");
 					throw new emptyFieldException();
 				}
+				
+				try {
 				Integer.parseInt(timeArray[0]);
 				Integer.parseInt(timeArray[1]);
+				}
+				catch(Exception f)  { timestyleClass.add("error");
+									  throw new timeFormatException();}
 				
 				if (timeArray.length!=2) {throw new timeFormatException();}
 				days.isDateWithinNext60Days(newDate.getText());
@@ -191,6 +199,7 @@ public class updateAppointmentGUI extends tableSchGUI{
 				}
 				catch (Exception a)
 				{
+					
 					System.out.println("\n\n\nIncorrect attempt on updating an appointment caught, printing the stack trace\n\n\n");
 					a.printStackTrace(System.out);
 				}

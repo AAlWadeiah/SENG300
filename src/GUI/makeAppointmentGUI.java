@@ -120,9 +120,15 @@ public class makeAppointmentGUI extends appointmentGUI{
 					throw new emptyFieldException();
 				}
 				
-				Integer.parseInt(dateArray[0]); 						
-				Integer.parseInt(dateArray[1]);							
-				Integer.parseInt(dateArray[2]);		
+				
+				try {
+					Integer.parseInt(dateArray[0]); 			//check if the dateArray is populated and is using integers	
+					Integer.parseInt(dateArray[1]);			    //we expect it be Month, day, year in indexes 0, 1, 2
+					Integer.parseInt(dateArray[2]);
+					}			
+				catch(Exception d) { datestyleClass.add("error");
+									 throw new dateFormatException(); }
+				
 				
 				if( 	dateArray.length!=3 || 
 						dateArray[2].length()!=4) 
@@ -135,8 +141,14 @@ public class makeAppointmentGUI extends appointmentGUI{
 					timestyleClass.add("error");
 					throw new emptyFieldException();
 				}
+				
+				try {
 				Integer.parseInt(timeArray[0]);
 				Integer.parseInt(timeArray[1]);
+				}
+				catch(Exception g)  { timestyleClass.add("error");
+									  throw new timeFormatException();}
+				
 				
 				if (timeArray.length!=2) {throw new timeFormatException();}
 				days.isDateWithinNext60Days(date.getText());
