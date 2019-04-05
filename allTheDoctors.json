@@ -13,10 +13,10 @@
       "currentAppointments": {
         "101": [
           {
-            "appointmentId": 1181188742,
+            "appointmentId": 1209579565,
             "patientId": 101,
-            "date": "04/05/2019",
-            "time": "9:00"
+            "date": "04/06/2019",
+            "time": "1:00"
           },
           {
             "appointmentId": 1181188835,
@@ -208,7 +208,7 @@
               "isBooked": false
             },
             "9": {
-              "isBooked": false
+              "isBooked": true
             },
             "10": {
               "isBooked": false

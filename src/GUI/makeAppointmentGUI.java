@@ -110,18 +110,14 @@ public class makeAppointmentGUI extends appointmentGUI{
 				//check if forms are empty
 				if (date.getText().isEmpty() && time.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = date.getStyleClass();
-					styleClass.add("error");
-					styleClass = time.getStyleClass();
-					styleClass.add("error");
+					datestyleClass.add("error");
+					timestyleClass.add("error");
 					throw new emptyFieldException();
 				}
 				else if (date.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = date.getStyleClass();
-					styleClass.add("error");
+					datestyleClass.add("error");
 					throw new emptyFieldException();
-				
 				}
 				
 				Integer.parseInt(dateArray[0]); 						
@@ -136,8 +132,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 				
 				else if (time.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = time.getStyleClass();
-					styleClass.add("error");
+					timestyleClass.add("error");
 					throw new emptyFieldException();
 				}
 				Integer.parseInt(timeArray[0]);
@@ -171,21 +166,19 @@ public class makeAppointmentGUI extends appointmentGUI{
 							if(doctorX.getId().equals(docID)) {				//if they match
 
 								if(doctorX.getAvailability().getWorkDay(days.numberOfDaysAway(date.getText())).getTimeSlot(days.timeToTimeslot(time.getText())).getIsBooked())
-								//im so sorry about this ugly if statement, but
+								//im so sorry about this ugly if statement guys, but
 								//basically what its doing is it grabs the number of days away the given date is, and
 								//uses that to find the corresponding work day, then using the given time it grabs the 
 								//right time slot then checks if that is set to true, if its true it means that the doctor is 
 								//booked at that time slot.
 								{
-									throw new bookedException(date.getText().toString()); //TODO: MAKE IT GIVE TIMES THAT ARENT BOOKED ON THAT DAY
+									throw new bookedException(date.getText(), doctorX, days.availableTimes(doctorX, days.numberOfDaysAway(date.getText()))); 
 								}
-								else {
 									
 								doctorX.getSchedule().addAppointment(person.getId(), appDate, appTime);	 //Add an appointment based on the time/date input
-								days.dateToAvailability(appDate, appTime, doctorX);			//Check the date relative to local Time and update availability
+								days.dateToUpdateAvailability(appDate, appTime, doctorX);			//Check the date relative to local Time and update availability
 								writer.editObjectToFile(doctorX,i);							//Writing to file
 								break;
-								}
 							}
 						}
 						

@@ -40,6 +40,7 @@ public class updateAppointmentGUI extends tableSchGUI{
 	public void startUA(Stage scheduleStage, HBox intro, Patient person,Doctor doc, Appointment appPat, int docID) {
 		
 		Writer writer = new Writer();
+		next60days days = new next60days();
 		
 		int pad =50;
 
@@ -93,7 +94,6 @@ public class updateAppointmentGUI extends tableSchGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				next60days days = new next60days();
 				
 				ObservableList<String> timestyleClass = newTime.getStyleClass();
 				ObservableList<String> datestyleClass = newDate.getStyleClass();
@@ -109,18 +109,14 @@ public class updateAppointmentGUI extends tableSchGUI{
 				//check if forms are empty
 				if (newDate.getText().isEmpty() && newTime.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = newDate.getStyleClass();
-					styleClass.add("error");
-					styleClass = newTime.getStyleClass();
-					styleClass.add("error");
+					datestyleClass.add("error");
+					timestyleClass.add("error");
 					throw new emptyFieldException();
 				}
 				else if (newDate.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = newDate.getStyleClass();
-					styleClass.add("error");
-					throw new emptyFieldException();			
-				
+					datestyleClass.add("error");
+					throw new emptyFieldException();
 				}
 				
 				Integer.parseInt(dateArray[0]); 						
@@ -135,8 +131,7 @@ public class updateAppointmentGUI extends tableSchGUI{
 				
 				else if (newTime.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = newTime.getStyleClass();//WE NEED A NEW EXCEPTION FOR EMPTY DATE BOX
-					styleClass.add("error");
+					timestyleClass.add("error");
 					throw new emptyFieldException();
 				}
 				Integer.parseInt(timeArray[0]);
@@ -145,7 +140,8 @@ public class updateAppointmentGUI extends tableSchGUI{
 				if (timeArray.length!=2) {throw new timeFormatException();}
 				days.isDateWithinNext60Days(newDate.getText());
 				days.isTimeWithinWorkday(newTime.getText());
-					
+				
+				
 					String appDate = newDate.getText();
 					String appTime = newTime.getText();
 					
@@ -163,8 +159,17 @@ public class updateAppointmentGUI extends tableSchGUI{
 					
 					Writer writer = new Writer();
 					
+					if(doc.getAvailability().getWorkDay(days.numberOfDaysAway(newDate.getText())).getTimeSlot(days.timeToTimeslot(newTime.getText())).getIsBooked())
+					//im so sorry about this ugly if statement, but
+					//basically what its doing is it grabs the number of days away the given date is, and
+					//uses that to find the corresponding work day, then using the given time it grabs the 
+					//right time slot then checks if that is set to true, if its true it means that the doctor is 
+					//booked at that time slot.
+					{
+						throw new bookedException(newDate.getText(), doc, days.availableTimes(doc, days.numberOfDaysAway(newDate.getText())));
+					}
 					doc.getSchedule().updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime); //update the appointment for the doctor
-					days.dateToAvailability(appDate, appTime, doc);
+					days.dateToUpdateAvailability(appDate, appTime, doc);
 					writer.editObjectToFile(doc, docID);			//write to file
 					
 					
