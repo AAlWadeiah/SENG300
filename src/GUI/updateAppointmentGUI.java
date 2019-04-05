@@ -1,12 +1,15 @@
 package GUI;
 
-import java.time.LocalDate;
-
+import java.io.File;
+import java.util.Collections;
+import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Doctor;
 import Objects.Patient;
+import exceptions.*;
 import Objects.next60days;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,7 +23,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -35,7 +37,7 @@ public class updateAppointmentGUI extends tableSchGUI{
 	 * @param schPatient current schedule
 	 * @param appPat current appointment
 	 */
-	public void startUA(Stage scheduleStage, HBox intro, Patient person,Doctor doc, Appointment appPat, int docI) {
+	public void startUA(Stage scheduleStage, HBox intro, Patient person,Doctor doc, Appointment appPat, int docID) {
 		
 		Writer writer = new Writer();
 		
@@ -91,45 +93,88 @@ public class updateAppointmentGUI extends tableSchGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
+				next60days days = new next60days();
+				
+				ObservableList<String> timestyleClass = newTime.getStyleClass();
+				ObservableList<String> datestyleClass = newDate.getStyleClass();
+				timestyleClass.removeAll(Collections.singleton("error"));
+				datestyleClass.removeAll(Collections.singleton("error"));
 				String[] dateArray = newDate.getText().split("/");
 				String[] timeArray = newTime.getText().split(":");
 				
 				// Used to catch various exceptions, like putting a letter where numbers should be, or a date not
 				// within the next 61 days.
-				try {	
-					Integer.parseInt(dateArray[0]); 						
-					Integer.parseInt(dateArray[1]);							
-					Integer.parseInt(dateArray[2]);			
-					Integer.parseInt(timeArray[0]);
-					Integer.parseInt(timeArray[1]);
-					new next60days().isDateWithinNext60Days(newDate.getText());
-					new next60days().isTimeWithinWorkday(newTime.getText());
+				try {		
+					
 				//check if forms are empty
-				if(newDate.getText().isEmpty() || newTime.getText().isEmpty() || 
-						dateArray.length!=3 || 
-						dateArray[0].length()!=2 ||
-						dateArray[1].length()!=2 || 
+				if (newDate.getText().isEmpty() && newTime.getText().isEmpty())
+				{
+					ObservableList<String> styleClass = newDate.getStyleClass();
+					styleClass.add("error");
+					styleClass = newTime.getStyleClass();
+					styleClass.add("error");
+					throw new emptyFieldException();
+				}
+				else if (newDate.getText().isEmpty())
+				{
+					ObservableList<String> styleClass = newDate.getStyleClass();
+					styleClass.add("error");
+					throw new emptyFieldException();			
+				
+				}
+				
+				Integer.parseInt(dateArray[0]); 						
+				Integer.parseInt(dateArray[1]);							
+				Integer.parseInt(dateArray[2]);		
+				
+				if( 	dateArray.length!=3 || 
 						dateArray[2].length()!=4) 
 				{
-					throw new Exception();
+					throw new dateFormatException();
 				}
-				else {
+				
+				else if (newTime.getText().isEmpty())
+				{
+					ObservableList<String> styleClass = newTime.getStyleClass();//WE NEED A NEW EXCEPTION FOR EMPTY DATE BOX
+					styleClass.add("error");
+					throw new emptyFieldException();
+				}
+				Integer.parseInt(timeArray[0]);
+				Integer.parseInt(timeArray[1]);
+				
+				if (timeArray.length!=2) {throw new timeFormatException();}
+				days.isDateWithinNext60Days(newDate.getText());
+				days.isTimeWithinWorkday(newTime.getText());
+					
 					String appDate = newDate.getText();
 					String appTime = newTime.getText();
 					
-					doc.getSchedule().updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime);
-				
-					//writer
-					writer.editObjectToFile(doc, docI);
 
 					
+					//Writer & reader
+					
+					//load objects from JSON files
+					String currentDir = System.getProperty("user.dir");
+					File path = new File(currentDir);
+
+					Parser parser = new Parser();
+
+					File[] jsonFiles = parser.getFiles(path);
+					
+					Writer writer = new Writer();
+					
+					doc.getSchedule().updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime); //update the appointment for the doctor
+					days.dateToAvailability(appDate, appTime, doc);
+					writer.editObjectToFile(doc, docID);			//write to file
+					
+					
 					BorderPane npPane = new BorderPane();
-					((Labeled) intro.getChildren().get(0)).setText("Update Complete");
+					((Labeled) intro.getChildren().get(0)).setText("Schedule Complete");
 
 					//transitions to confirmation panel
 					scheduleApp.getChildren().clear();
 					setVBox(scheduleApp);
-					Label done = new Label("Appointment update completed");
+					Label done = new Label("Patient Scheduling completed");
 					done.setFont(new Font("Cambria", 32));
 					scheduleApp.getChildren().addAll(done,reTurn);
 					setBorderpane(npPane,intro, scheduleApp);
@@ -137,17 +182,16 @@ public class updateAppointmentGUI extends tableSchGUI{
 					
 
 					
+					
 				}
-				}
-				catch(Exception f)
+				catch (Exception a)
 				{
-					System.out.println("\n\n\nIncorrect attempt on making an appointment caught, printing the stack trace\n\n\n");
-					f.printStackTrace(System.out);
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill all fields correctly*");
+					System.out.println("\n\n\nIncorrect attempt on updating an appointment caught, printing the stack trace\n\n\n");
+					a.printStackTrace(System.out);
 				}
-			}});		
+				
+			}
+		});
 		
 		
 		//Returns to the previous panel
@@ -167,6 +211,10 @@ public class updateAppointmentGUI extends tableSchGUI{
 				newDate.clear();
 				newTime.clear();
 				actionTarget.setText(null);
+				ObservableList<String> timestyleClass = newTime.getStyleClass();
+				ObservableList<String> datestyleClass = newDate.getStyleClass();
+				timestyleClass.removeAll(Collections.singleton("error"));
+				datestyleClass.removeAll(Collections.singleton("error"));
 			}
 		});
 		

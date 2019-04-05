@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Objects;
+package exceptions;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

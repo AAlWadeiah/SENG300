@@ -15,6 +15,7 @@ import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import exceptions.*;
 
 
 
@@ -96,25 +97,7 @@ public class next60days {
 		String[] dateArray = date.split("/");
 		LocalDate dateOfAppointment = LocalDate.of(Integer.parseInt(dateArray[2]),Month.of(Integer.parseInt(dateArray[0])),Integer.parseInt(dateArray[1]));
 		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment) + 1;	//This finds the number of days between the current day and the day of the appointment
-		String[] timeArray = time.split(":");
-		int timeSlot;
-		if (timeArray[0].equals("9") && timeArray[1].equals("00")) {timeSlot = 1;}
-		else if (timeArray[0].equals("9") && timeArray[1].equals("30")) {timeSlot = 2;}
-		else if (timeArray[0].equals("10") && timeArray[1].equals("00")) {timeSlot = 3;}
-		else if (timeArray[0].equals("10") && timeArray[1].equals("30")) {timeSlot = 4;}
-		else if (timeArray[0].equals("11") && timeArray[1].equals("00")) {timeSlot = 5;}
-		else if (timeArray[0].equals("11") && timeArray[1].equals("30")) {timeSlot = 6;}
-		else if (timeArray[0].equals("12") && timeArray[1].equals("00")) {timeSlot = 7;}
-		else if (timeArray[0].equals("12") && timeArray[1].equals("30")) {timeSlot = 8;}
-		else if (timeArray[0].equals("1") && timeArray[1].equals("00")) {timeSlot = 9;}
-		else if (timeArray[0].equals("1") && timeArray[1].equals("30")) {timeSlot = 10;}
-		else if (timeArray[0].equals("2") && timeArray[1].equals("00")) {timeSlot = 11;}
-		else if (timeArray[0].equals("2") && timeArray[1].equals("30")) {timeSlot = 12;}
-		else if (timeArray[0].equals("3") && timeArray[1].equals("00")) {timeSlot = 13;}
-		else if (timeArray[0].equals("3") && timeArray[1].equals("30")) {timeSlot = 14;}		
-		else if (timeArray[0].equals("4") && timeArray[1].equals("00")) {timeSlot = 15;}
-		else {timeSlot = 16;}
-		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeSlot);}
+		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeToTimeslot(time));} //get the timeslot based on the given time and book it
 
 	
 	/** This method finds the number of days between tomorrow and a given LocalDate
@@ -186,11 +169,49 @@ public class next60days {
 		String[] possibleHours = {"9","10","11","12","1","2","3","4"};
 		String[] possibleMinutes = {"30","00"};
 		if (!Arrays.asList(possibleHours).contains(hour) || !Arrays.asList(possibleMinutes).contains(minute)) 
-		{throw new timeFormatException();}		//we need a more specific exception
+		{throw new timeFormatException();}	
+	}
+	/** Finds the how many days away a certain date is from today
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public int numberOfDaysAway(String date) 
+	{
+		String[] dateArray = date.split("/");
+		LocalDate dateOfAppointment = LocalDate.of(Integer.parseInt(dateArray[2]),Month.of(Integer.parseInt(dateArray[0])),Integer.parseInt(dateArray[1]));
+		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment) + 1;	//find # of days between given date and today
+		return noOfDaysBetween.intValue();
 	}
 	
-	
-	
+	/** Given a time, it returns a time slot based on how the availability of a doctor is managed, being from 9 - 5 every
+	 *  30 minutes accounting for one time slot.
+	 * 
+	 * @param time
+	 * @return 
+	 */
+	public int timeToTimeslot(String time)
+	{
+		String[] timeArray = time.split(":");
+		int timeSlot;
+		if (timeArray[0].equals("9") && timeArray[1].equals("00")) {timeSlot = 1;}
+		else if (timeArray[0].equals("9") && timeArray[1].equals("30")) {timeSlot = 2;}
+		else if (timeArray[0].equals("10") && timeArray[1].equals("00")) {timeSlot = 3;}
+		else if (timeArray[0].equals("10") && timeArray[1].equals("30")) {timeSlot = 4;}
+		else if (timeArray[0].equals("11") && timeArray[1].equals("00")) {timeSlot = 5;}
+		else if (timeArray[0].equals("11") && timeArray[1].equals("30")) {timeSlot = 6;}
+		else if (timeArray[0].equals("12") && timeArray[1].equals("00")) {timeSlot = 7;}
+		else if (timeArray[0].equals("12") && timeArray[1].equals("30")) {timeSlot = 8;}
+		else if (timeArray[0].equals("1") && timeArray[1].equals("00")) {timeSlot = 9;}
+		else if (timeArray[0].equals("1") && timeArray[1].equals("30")) {timeSlot = 10;}
+		else if (timeArray[0].equals("2") && timeArray[1].equals("00")) {timeSlot = 11;}
+		else if (timeArray[0].equals("2") && timeArray[1].equals("30")) {timeSlot = 12;}
+		else if (timeArray[0].equals("3") && timeArray[1].equals("00")) {timeSlot = 13;}
+		else if (timeArray[0].equals("3") && timeArray[1].equals("30")) {timeSlot = 14;}		
+		else if (timeArray[0].equals("4") && timeArray[1].equals("00")) {timeSlot = 15;}
+		else {timeSlot = 16;}
+		return timeSlot;
+	}
 	
 	
 	

@@ -6,8 +6,7 @@ import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Doctor;
 import Objects.Patient;
-import Objects.dateFormatException;
-import Objects.timeFormatException;
+import exceptions.*;
 import Objects.next60days;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -109,11 +108,19 @@ public class makeAppointmentGUI extends appointmentGUI{
 				try {		
 					
 				//check if forms are empty
-				if (date.getText().equals(""))
+				if (date.getText().isEmpty() && time.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = date.getStyleClass();//WE NEED A NEW EXCEPTION FOR EMPTY DATE BOX
+					ObservableList<String> styleClass = date.getStyleClass();
 					styleClass.add("error");
-					throw new Exception();			//TODO: Replace with a popup box  telling to fill the field
+					styleClass = time.getStyleClass();
+					styleClass.add("error");
+					throw new emptyFieldException();
+				}
+				else if (date.getText().isEmpty())
+				{
+					ObservableList<String> styleClass = date.getStyleClass();
+					styleClass.add("error");
+					throw new emptyFieldException();
 				
 				}
 				
@@ -129,9 +136,9 @@ public class makeAppointmentGUI extends appointmentGUI{
 				
 				else if (time.getText().isEmpty())
 				{
-					ObservableList<String> styleClass = time.getStyleClass();//WE NEED A NEW EXCEPTION FOR EMPTY DATE BOX
+					ObservableList<String> styleClass = time.getStyleClass();
 					styleClass.add("error");
-					throw new Exception();//WE NEED AN EXCEPTION FOR EMPTY TIME BOX
+					throw new emptyFieldException();
 				}
 				Integer.parseInt(timeArray[0]);
 				Integer.parseInt(timeArray[1]);
@@ -139,7 +146,8 @@ public class makeAppointmentGUI extends appointmentGUI{
 				if (timeArray.length!=2) {throw new timeFormatException();}
 				days.isDateWithinNext60Days(date.getText());
 				days.isTimeWithinWorkday(time.getText());
-					
+				
+				
 					String appDate = date.getText();
 					String appTime = time.getText();
 					
@@ -162,10 +170,22 @@ public class makeAppointmentGUI extends appointmentGUI{
 							Doctor doctorX = allDoctors.get(i);				//Check if the ID's match
 							if(doctorX.getId().equals(docID)) {				//if they match
 
+								if(doctorX.getAvailability().getWorkDay(days.numberOfDaysAway(date.getText())).getTimeSlot(days.timeToTimeslot(time.getText())).getIsBooked())
+								//im so sorry about this ugly if statement, but
+								//basically what its doing is it grabs the number of days away the given date is, and
+								//uses that to find the corresponding work day, then using the given time it grabs the 
+								//right time slot then checks if that is set to true, if its true it means that the doctor is 
+								//booked at that time slot.
+								{
+									throw new bookedException(date.getText().toString()); //TODO: MAKE IT GIVE TIMES THAT ARENT BOOKED ON THAT DAY
+								}
+								else {
+									
 								doctorX.getSchedule().addAppointment(person.getId(), appDate, appTime);	 //Add an appointment based on the time/date input
 								days.dateToAvailability(appDate, appTime, doctorX);			//Check the date relative to local Time and update availability
 								writer.editObjectToFile(doctorX,i);							//Writing to file
 								break;
+								}
 							}
 						}
 						
@@ -204,6 +224,10 @@ public class makeAppointmentGUI extends appointmentGUI{
 				date.clear();
 				time.clear();
 				actionTarget.setText(null);
+				ObservableList<String> timestyleClass = time.getStyleClass();
+				ObservableList<String> datestyleClass = date.getStyleClass();
+				timestyleClass.removeAll(Collections.singleton("error"));
+				datestyleClass.removeAll(Collections.singleton("error"));
 			}
 		});
 		
