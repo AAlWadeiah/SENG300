@@ -146,8 +146,15 @@ public class updateAppointmentGUI extends tableSchGUI{
 									  throw new timeFormatException();}
 				
 				if (timeArray.length!=2) {throw new timeFormatException();}
-				days.isDateWithinNext60Days(newDate.getText());
-				days.isTimeWithinWorkday(newTime.getText());
+				
+				if(!days.isDateWithinNext60Days(newDate.getText()))
+					{datestyleClass.add("error");
+					throw new dateFormatException();}
+				if(!days.isTimeWithinWorkday(newTime.getText()))
+					{
+					timestyleClass.add("error");
+					throw new timeFormatException();
+					}
 				
 				
 					String appDate = newDate.getText();

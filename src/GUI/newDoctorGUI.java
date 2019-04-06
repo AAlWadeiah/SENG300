@@ -3,6 +3,8 @@ import JsonFileUtils.Writer;
 import Objects.Availability;
 import Objects.Doctor;
 import Objects.Schedule;
+import exceptions.emptyFieldException;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,6 +24,9 @@ import javafx.stage.Stage;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class newDoctorGUI extends adminGUI{
 
@@ -44,8 +49,6 @@ public class newDoctorGUI extends adminGUI{
 		TextField ID = new TextField();
 		TextField password = new TextField();
 
-		final Text actionTarget = new Text();
-
 		//Buttons
 		Button submit = new Button("Submit");
 		Button clear = new Button("Clear");
@@ -60,7 +63,7 @@ public class newDoctorGUI extends adminGUI{
 		//Panes
 		GridPane newdoctorGrid = new GridPane();
 		BorderPane newdoctorBorder = new BorderPane();
-		setdoctorPane(newdoctorGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Spec, ID, password, actionTarget);
+		setdoctorPane(newdoctorGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Spec, ID, password);
 
 		//populate box
 		newDoctor.getChildren().add(newdoctorGrid);
@@ -74,14 +77,15 @@ public class newDoctorGUI extends adminGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				fName.clear();
-				lName.clear();
-				add.clear();
-				Num.clear();
-				Email.clear();
-				Spec.clear();
-				password.clear();
-				actionTarget.setText(null);
+				ObservableList<String> styleClass;		//this is used to remove up the red outlines
+				
+				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,Spec,ID,password); //create a list we can iterate
+				for(TextField holder : checker) 
+				{
+				holder.clear();     									//clear the text
+				styleClass = holder.getStyleClass();
+				styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
+				}
 			}
 		});
 
@@ -99,12 +103,36 @@ public class newDoctorGUI extends adminGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-
+				
+				//when the submit button is pressed we must remove the past red outlines
+				
+				ObservableList<String> styleClass;	 //get the style classes
+				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,Spec,ID,password); //create a list of the textboxes can iterate
+				for(TextField holder : checker) 
+				{
+					styleClass = holder.getStyleClass();
+					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
+				}
+				
+				
+				
 				//checks if fields are empty
 				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Spec.getText().isEmpty() || ID.getText().isEmpty() || password.getText().isEmpty()) {
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill in all fields*");
+					
+					try {			//we are going to make an exception so we must surround with a try-catch
+						for(TextField holder : checker) 
+						{
+							if (holder.getText().isEmpty())		//if the field is empty
+							{
+								styleClass = holder.getStyleClass();
+								styleClass.add("error");		//make it red
+							}
+						}
+						
+						throw new emptyFieldException();
+					}
+					catch(emptyFieldException f) { } 
+					
 				}
 				else {
 					dfirstName = fName.getText();
@@ -161,10 +189,9 @@ public class newDoctorGUI extends adminGUI{
 	 * @param Num phone number textfield
 	 * @param Email email address textfield
 	 * @param spec	doctor department textfield
-	 * @param actionTarget warning text
 	 * @param password doctor's password
 	 */
-	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, TextField ID, TextField password, Text actionTarget) {
+	private void setdoctorPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, TextField spec, TextField ID, TextField password) {
 
 		int gap = 10;
 		int pad = 25;
@@ -219,7 +246,6 @@ public class newDoctorGUI extends adminGUI{
 		Pane.add(password, xs+2, ys+14);
 
 		Pane.add(submit, xs+8, ys+14);
-		Pane.add(actionTarget, xs+2, ys+14);
 		Pane.add(clear, xs+8, ys);
 		Pane.add(reTurn, end, start);
 	}

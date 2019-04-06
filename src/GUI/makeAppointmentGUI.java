@@ -151,8 +151,14 @@ public class makeAppointmentGUI extends appointmentGUI{
 				
 				
 				if (timeArray.length!=2) {throw new timeFormatException();}
-				days.isDateWithinNext60Days(date.getText());
-				days.isTimeWithinWorkday(time.getText());
+				
+				if (!days.isDateWithinNext60Days(date.getText()))
+					{datestyleClass.add("error");
+					throw new dateFormatException();}
+				
+				if (!days.isTimeWithinWorkday(time.getText()))
+					{timestyleClass.add("error");
+					throw new timeFormatException();}
 				
 				
 					String appDate = date.getText();

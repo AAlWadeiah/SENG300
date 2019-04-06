@@ -63,7 +63,7 @@ public class next60days {
 	 * @param date, date in the form month/day/year
 	 * @throws Exception to be passed on to the called function to handle
 	 */
-	public void isDateWithinNext60Days(String date) throws Exception
+	public boolean isDateWithinNext60Days(String date) throws Exception
 	{
 		String[] dateArray = date.split("/");
 		int month = Integer.parseInt(dateArray[0]);
@@ -73,7 +73,7 @@ public class next60days {
 		if (!hasNextYear() && year != currentYear() || 		//If the years are not consistent
 				year < currentYear() )
 		{
-			throw new dateFormatException();
+			return false;
 		}
 		else if ( (LocalDate.of(year, month, day).getDayOfYear() > (today.getDayOfYear() + 61) &&                  //This handles if the date is more than 61 days away
 				today.getYear() == LocalDate.of(year, month, day).getYear()) 
@@ -81,8 +81,9 @@ public class next60days {
 				|| (LocalDate.of(year, month, day).getDayOfYear() == today.getDayOfYear()) 						   //If the date is today
 				|| (!hasNextYear() && (LocalDate.of(year, month, day).getDayOfYear() < today.getDayOfYear())) )    //If the date is a day which has passed
 		{
-			throw new dateFormatException();		//We need a more specific exception
+			return false;
 		}
+		return true;
 	}
 	
 	
@@ -92,14 +93,15 @@ public class next60days {
 	 * @param time, time passed into the function in the form of a string HH:MM
 	 * @throws Exception
 	 */
-	public void isTimeWithinWorkday(String time) throws Exception
+	public boolean isTimeWithinWorkday(String time) throws Exception
 	{
 		String hour = time.split(":")[0];
 		String minute = time.split(":")[1];
 		String[] possibleHours = {"9","10","11","12","1","2","3","4"};
 		String[] possibleMinutes = {"30","00"};
 		if (!Arrays.asList(possibleHours).contains(hour) || !Arrays.asList(possibleMinutes).contains(minute)) 
-		{throw new timeFormatException();}	
+		{return false;}
+		return true;
 	}
 	/** Finds the how many days away a certain date is from today, this is essentially the workday number
 	 * 

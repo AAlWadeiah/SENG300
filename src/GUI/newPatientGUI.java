@@ -3,6 +3,8 @@ import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Doctor;
 import Objects.Patient;
+import exceptions.emptyFieldException;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -24,6 +26,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class newPatientGUI extends adminGUI{
@@ -54,8 +59,6 @@ public class newPatientGUI extends adminGUI{
 			Doc.getItems().add(doctor.getFirstname() + "-" + doctor.getId());
 		}
 
-		final Text actionTarget = new Text();
-
 		//Buttons
 		Button submit = new Button("Submit");
 		Button clear = new Button("Clear");
@@ -70,7 +73,7 @@ public class newPatientGUI extends adminGUI{
 		//Panes
 		GridPane newpatientGrid = new GridPane();
 		BorderPane newpatientBorder = new BorderPane();
-		setpatientPane(newpatientGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Doc, ID, password, actionTarget);
+		setpatientPane(newpatientGrid, submit, clear, reTurn, fName, lName, add, Num, Email, Doc, ID, password);
 
 		//populate box
 		newPatient.getChildren().add(newpatientGrid);
@@ -84,20 +87,23 @@ public class newPatientGUI extends adminGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				fName.clear();
-				lName.clear();
-				add.clear();
-				Num.clear();
-				Email.clear();
-				Doc.setValue(null);
-				ID.clear();
-				password.clear();
-				actionTarget.setText(null);
-
-
-
-			}
-		});
+				
+				// To clear up the red outlines and empty the textboxes of text.
+				ObservableList<String> styleClass;
+				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,ID,password); //create a list of the textboxes can iterate
+				for(TextField holder : checker) 
+				{
+					holder.clear();		//clear the text
+					styleClass = holder.getStyleClass();
+					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
+					
+				}
+				
+				Doc.setValue(null); 							//Clear the dropdown box
+				styleClass = Doc.getStyleClass(); 				
+				styleClass.removeAll(Collections.singleton("error")); //Remove the red outline of the Doctor Drop-down
+				
+			}});
 
 		//Returns to the previous panel
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
@@ -112,12 +118,42 @@ public class newPatientGUI extends adminGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-
+				
+				//First we remove red outlines when the submit button is pressed
+				
+				ObservableList<String> styleClass;	 //get the style classes
+				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,ID,password); //create a list of the textboxes can iterate
+				for(TextField holder : checker) 
+				{
+					styleClass = holder.getStyleClass();
+					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
+				}
+				
 				//checks if fields are empty
-				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Doc.getValue().isEmpty() || ID.getText().isEmpty() || password.getText().isEmpty()) {
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill in all fields*");
+				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() 
+						|| Email.getText().isEmpty() || Doc.getValue() == null || ID.getText().isEmpty() 
+						|| password.getText().isEmpty()) 
+				{
+					try {			//we are going to make an exception so we must surround with a try-catch
+						for(TextField holder : checker) 
+						{
+							if (holder.getText().isEmpty())		//if the field is empty
+							{
+								styleClass = holder.getStyleClass();
+								styleClass.add("error");		//make it red
+							}
+						}
+						
+						if (Doc.getValue() == null) 		//if the doctor dropdown is empty
+						{
+							styleClass = Doc.getStyleClass();
+							styleClass.add("error");		//make it red
+						}
+						
+						throw new emptyFieldException();	//throw the pop-up exception
+						} 
+					
+					catch (emptyFieldException e1) {} //cause its an exception we gotta catch but we'll do nothing
 				}
 
 				else {
@@ -172,10 +208,9 @@ public class newPatientGUI extends adminGUI{
 	 * @param Email email textfield
 	 * @param Doc patient/s doctor textfield
 	 * @param ID patient's ID number textfield
-	 * @param actionTarget warning text
 	 * @param password patient's password
 	 */
-	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, ChoiceBox<String> Doc, TextField ID, TextField password, Text actionTarget) {
+	private void setpatientPane(GridPane Pane, Button submit, Button clear, Button reTurn, TextField fName,TextField lName, TextField add, TextField Num, TextField Email, ChoiceBox<String> Doc, TextField ID, TextField password) {
 
 		int gap = 10;
 		int pad = 25;
@@ -229,7 +264,6 @@ public class newPatientGUI extends adminGUI{
 		Pane.add(password, xs+2, ys+14);
 
 		Pane.add(submit, xs+8, ys+14);
-		Pane.add(actionTarget, xs+2, ys+14);
 		Pane.add(clear, xs+8, ys);
 		Pane.add(reTurn, end, start);
 
