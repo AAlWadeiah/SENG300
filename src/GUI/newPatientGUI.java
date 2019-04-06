@@ -129,6 +129,10 @@ public class newPatientGUI extends adminGUI{
 					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
 				}
 				
+				styleClass = Doc.getStyleClass(); 				
+				styleClass.removeAll(Collections.singleton("error")); //Remove the red outline of the Doctor Drop-down
+				
+				
 				//checks if fields are empty
 				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() 
 						|| Email.getText().isEmpty() || Doc.getValue() == null || ID.getText().isEmpty() 
