@@ -4,6 +4,7 @@ import JsonFileUtils.Writer;
 import Objects.Doctor;
 import Objects.Patient;
 import exceptions.emptyFieldException;
+import exceptions.usernameTakenException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -159,8 +160,17 @@ public class newPatientGUI extends adminGUI{
 					
 					catch (emptyFieldException e1) {} //cause its an exception we gotta catch but we'll do nothing
 				}
+				
+				try {	
+					List<Patient> allPatients = parser.parsePatients();
+				
+					for(Patient patient: allPatients) {
+					if (patient.getId().toString().equals(ID.getText())) { 
+						styleClass = ID.getStyleClass(); styleClass.add("error");
+						throw new usernameTakenException();}
+					}
 
-				else {
+				
 					pfirstName = fName.getText();
 					plastName = lName.getText();
 					pAdd = add.getText();
@@ -178,7 +188,7 @@ public class newPatientGUI extends adminGUI{
 					if (success) {
 						System.out.println("Wrote to patient Json file successfully");
 					}
-					else
+					else {
 						System.out.println("Error! patient no write JSON :(");
 
 					//transition to a confirmation panel
@@ -191,12 +201,11 @@ public class newPatientGUI extends adminGUI{
 					adminScreen.getChildren().addAll(done,reTurn);
 					setBorderpane(npPane,intro, adminScreen);
 					setScene(npPane,patientStage);
-				}
+				}}
+				catch(Exception o) {}
 			}
-		});
+		});}
 
-
-	}
 
 	/**
 	 * Configures the pane where the user enters the new patient's information, making it appear in an appealing way.
