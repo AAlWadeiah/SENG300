@@ -183,8 +183,22 @@ public class updateAppointmentGUI extends tableSchGUI{
 					{
 						throw new bookedException(newDate.getText(), doc, days.availableTimes(doc, days.numberOfDaysAway(newDate.getText())));
 					}
+					
+					
+					//////////////////////////
+					//The code will only enter this portion below if it is for sure that the appointment is good to be booked
+					//////////////////////////
+					
+					
+					
+					//set the doctors availability at the old time as now available so other appointments may be booked
+					doc.getAvailability().getWorkDay(days.numberOfDaysAway(appPat.getDate())).getTimeSlot(days.timeToTimeslot(appPat.getTime())).setIsBooked(false);
+					
+					//update the schedule
 					doc.getSchedule().updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime); //update the appointment for the doctor
-					days.dateToUpdateAvailability(appDate, appTime, doc);
+					
+					
+					days.dateToUpdateAvailability(appDate, appTime, doc);	//set the new appointment time to booked so no other appointments can be booked for the doc at this time
 					writer.editObjectToFile(doc, docID);			//write to file
 					
 					

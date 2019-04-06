@@ -13,116 +13,13 @@
       "currentAppointments": {
         "101": [
           {
-            "appointmentId": 1209579565,
+            "appointmentId": 1209817893,
             "patientId": 101,
             "date": "04/06/2019",
-            "time": "1:00"
-          },
-          {
-            "appointmentId": 1181188835,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "9:30"
-          },
-          {
-            "appointmentId": 1226173152,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "10:00"
-          },
-          {
-            "appointmentId": 1226173245,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "10:30"
-          },
-          {
-            "appointmentId": 1226202943,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "11:00"
-          },
-          {
-            "appointmentId": 1226203036,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "11:30"
-          },
-          {
-            "appointmentId": 1226232734,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "12:00"
-          },
-          {
-            "appointmentId": 1226232827,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "12:30"
-          },
-          {
-            "appointmentId": 1180950414,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "1:00"
-          },
-          {
-            "appointmentId": 1180950507,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "1:30"
-          },
-          {
-            "appointmentId": 1180980205,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "2:00"
-          },
-          {
-            "appointmentId": 1180980298,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "2:30"
-          },
-          {
-            "appointmentId": 1181009996,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "3:00"
-          },
-          {
-            "appointmentId": 1181010089,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "3:30"
-          },
-          {
-            "appointmentId": 1181039787,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "4:00"
-          },
-          {
-            "appointmentId": 1181039880,
-            "patientId": 101,
-            "date": "04/05/2019",
-            "time": "4:30"
-          },
-          {
-            "appointmentId": 1254861885,
-            "patientId": 101,
-            "date": "04/06/2019",
-            "time": "12:00"
+            "time": "9:00"
           }
         ],
-        "77": [
-          {
-            "appointmentId": -313519830,
-            "patientId": 77,
-            "date": "01/01/01",
-            "time": "1:00"
-          }
-        ]
+        "77": []
       }
     },
     "availability": {
@@ -134,49 +31,49 @@
               "isBooked": true
             },
             "2": {
-              "isBooked": true
+              "isBooked": false
             },
             "3": {
-              "isBooked": true
+              "isBooked": false
             },
             "4": {
-              "isBooked": true
+              "isBooked": false
             },
             "5": {
-              "isBooked": true
+              "isBooked": false
             },
             "6": {
-              "isBooked": true
+              "isBooked": false
             },
             "7": {
-              "isBooked": true
+              "isBooked": false
             },
             "8": {
-              "isBooked": true
+              "isBooked": false
             },
             "9": {
-              "isBooked": true
+              "isBooked": false
             },
             "10": {
-              "isBooked": true
+              "isBooked": false
             },
             "11": {
-              "isBooked": true
+              "isBooked": false
             },
             "12": {
-              "isBooked": true
+              "isBooked": false
             },
             "13": {
-              "isBooked": true
+              "isBooked": false
             },
             "14": {
-              "isBooked": true
+              "isBooked": false
             },
             "15": {
-              "isBooked": true
+              "isBooked": false
             },
             "16": {
-              "isBooked": true
+              "isBooked": false
             }
           }
         },
@@ -202,13 +99,13 @@
               "isBooked": false
             },
             "7": {
-              "isBooked": true
+              "isBooked": false
             },
             "8": {
               "isBooked": false
             },
             "9": {
-              "isBooked": true
+              "isBooked": false
             },
             "10": {
               "isBooked": false
@@ -1524,13 +1421,13 @@
               "isBooked": false
             },
             "6": {
-              "isBooked": true
+              "isBooked": false
             },
             "7": {
               "isBooked": false
             },
             "8": {
-              "isBooked": true
+              "isBooked": false
             },
             "9": {
               "isBooked": false
@@ -1636,7 +1533,7 @@
               "isBooked": false
             },
             "8": {
-              "isBooked": true
+              "isBooked": false
             },
             "9": {
               "isBooked": false
@@ -1689,7 +1586,7 @@
               "isBooked": false
             },
             "8": {
-              "isBooked": true
+              "isBooked": false
             },
             "9": {
               "isBooked": false
@@ -1742,7 +1639,7 @@
               "isBooked": false
             },
             "8": {
-              "isBooked": true
+              "isBooked": false
             },
             "9": {
               "isBooked": false
@@ -3279,13 +3176,13 @@
               "isBooked": false
             },
             "8": {
-              "isBooked": true
+              "isBooked": false
             },
             "9": {
               "isBooked": false
             },
             "10": {
-              "isBooked": true
+              "isBooked": false
             },
             "11": {
               "isBooked": false

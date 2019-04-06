@@ -36,9 +36,8 @@ public class next60days {
 	//This requires that the date is given in the following format "month/day/year" with no spaces between
 	public void dateToUpdateAvailability(String date, String time, Doctor doc)
 	{
-		LocalDate dateOfAppointment = dateToLocalDate(date);
-		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment) + 1;	//This finds the number of days between the current day and the day of the appointment
-		doc.getAvailability().getWorkDay(noOfDaysBetween.intValue()).bookTimeSlot(timeToTimeslot(time));} //get the timeslot based on the given time and book it
+		int noOfDaysBetween = numberOfDaysAway(date);	//This finds the number of days between the current day and the day of the appointment
+		doc.getAvailability().getWorkDay(noOfDaysBetween).bookTimeSlot(timeToTimeslot(time));} //get the timeslot based on the given time and book it
 
 	
 	/** This method determines if the next 60 days starting from tomorrow will overlap into the next year
