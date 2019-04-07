@@ -180,6 +180,13 @@ public class newPatientGUI extends adminGUI{
 					pId = ID.getText();
 					pPassword = setPassword(password.getText());
 
+					
+					if (pId.charAt(0) == '0'){
+							styleClass = ID.getStyleClass();
+							styleClass.add("error");
+							throw new usernameTakenException();
+					}
+					
 
 					//Creates and writes to a JSON file
 					Patient patient = new Patient(pfirstName, plastName, pAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId), pPassword);
