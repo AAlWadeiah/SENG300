@@ -9,6 +9,7 @@ import Objects.Appointment;
 import Objects.Doctor;
 import Objects.Patient;
 import Objects.Schedule;
+import Objects.next60days;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -165,7 +166,12 @@ public class tableSchGUI extends appointmentGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				if(appPat!=null) {
+					next60days days = new next60days();
+					
+					//update the appointment schedule and the availability
 					doc.getSchedule().removeAppointment(appPat.getPatientId(),appPat.getAppointmentId());
+					doc.getAvailability().getWorkDay(days.numberOfDaysAway(appPat.getDate())).getTimeSlot(days.timeToTimeslot(appPat.getTime())).setIsBooked(false);
+					
 					
 					//writer
 					writer.editObjectToFile(doc, docI);

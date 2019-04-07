@@ -1,12 +1,15 @@
 package GUI;
 
-import java.time.LocalDate;
-
+import java.io.File;
+import java.util.Collections;
+import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Doctor;
 import Objects.Patient;
+import exceptions.*;
 import Objects.next60days;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,7 +23,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -35,9 +37,10 @@ public class updateAppointmentGUI extends tableSchGUI{
 	 * @param schPatient current schedule
 	 * @param appPat current appointment
 	 */
-	public void startUA(Stage scheduleStage, HBox intro, Patient person,Doctor doc, Appointment appPat, int docI) {
+	public void startUA(Stage scheduleStage, HBox intro, Patient person,Doctor doc, Appointment appPat, int docID) {
 		
 		Writer writer = new Writer();
+		next60days days = new next60days();
 		
 		int pad =50;
 
@@ -91,45 +94,121 @@ public class updateAppointmentGUI extends tableSchGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
+				
+				ObservableList<String> timestyleClass = newTime.getStyleClass();
+				ObservableList<String> datestyleClass = newDate.getStyleClass();
+				timestyleClass.removeAll(Collections.singleton("error"));
+				datestyleClass.removeAll(Collections.singleton("error"));
 				String[] dateArray = newDate.getText().split("/");
 				String[] timeArray = newTime.getText().split(":");
 				
 				// Used to catch various exceptions, like putting a letter where numbers should be, or a date not
 				// within the next 61 days.
-				try {	
-					Integer.parseInt(dateArray[0]); 						
-					Integer.parseInt(dateArray[1]);							
-					Integer.parseInt(dateArray[2]);			
-					Integer.parseInt(timeArray[0]);
-					Integer.parseInt(timeArray[1]);
-					new next60days().isDateWithinNext60Days(newDate.getText());
-					new next60days().isTimeWithinWorkday(newTime.getText());
+				try {		
+					
 				//check if forms are empty
-				if(newDate.getText().isEmpty() || newTime.getText().isEmpty() || 
-						dateArray.length!=3 || 
-						dateArray[0].length()!=2 ||
-						dateArray[1].length()!=2 || 
+				if (newDate.getText().isEmpty() && newTime.getText().isEmpty()) //both boxes empty
+				{
+					datestyleClass.add("error");
+					timestyleClass.add("error");
+					throw new emptyFieldException();
+				}
+				else if (newDate.getText().isEmpty()) //Empty date box
+				{
+					datestyleClass.add("error");
+					throw new emptyFieldException();
+				}
+				
+				try {
+					Integer.parseInt(dateArray[0]); 			//check if the dateArray is populated and is using integers	
+					Integer.parseInt(dateArray[1]);			    //we expect it be Month, day, year in indexes 0, 1, 2
+					Integer.parseInt(dateArray[2]);	}			
+				catch(Exception d) { datestyleClass.add("error");
+									 throw new dateFormatException(); }
+				
+				if( 	dateArray.length!=3 || 
 						dateArray[2].length()!=4) 
 				{
-					throw new Exception();
+					throw new dateFormatException();
 				}
-				else {
+				
+				else if (newTime.getText().isEmpty())
+				{
+					timestyleClass.add("error");
+					throw new emptyFieldException();
+				}
+				
+				try {
+				Integer.parseInt(timeArray[0]);
+				Integer.parseInt(timeArray[1]);
+				}
+				catch(Exception f)  { timestyleClass.add("error");
+									  throw new timeFormatException();}
+				
+				if (timeArray.length!=2) {throw new timeFormatException();}
+				
+				if(!days.isDateWithinNext60Days(newDate.getText()))
+					{datestyleClass.add("error");
+					throw new dateFormatException();}
+				if(!days.isTimeWithinWorkday(newTime.getText()))
+					{
+					timestyleClass.add("error");
+					throw new timeFormatException();
+					}
+				
+				
 					String appDate = newDate.getText();
 					String appTime = newTime.getText();
 					
-					doc.getSchedule().updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime);
-				
-					//writer
-					writer.editObjectToFile(doc, docI);
 
 					
+					//Writer & reader
+					
+					//load objects from JSON files
+					String currentDir = System.getProperty("user.dir");
+					File path = new File(currentDir);
+
+					Parser parser = new Parser();
+
+					File[] jsonFiles = parser.getFiles(path);
+					
+					Writer writer = new Writer();
+					
+					if(doc.getAvailability().getWorkDay(days.numberOfDaysAway(newDate.getText())).getTimeSlot(days.timeToTimeslot(newTime.getText())).getIsBooked())
+					//im so sorry about this ugly if statement, but
+					//basically what its doing is it grabs the number of days away the given date is, and
+					//uses that to find the corresponding work day, then using the given time it grabs the 
+					//right time slot then checks if that is set to true, if its true it means that the doctor is 
+					//booked at that time slot.
+					{
+						throw new bookedException(newDate.getText(), doc, days.availableTimes(doc, days.numberOfDaysAway(newDate.getText())));
+					}
+					
+					
+					//////////////////////////
+					//The code will only enter this portion below if it is for sure that the appointment is good to be booked
+					//////////////////////////
+					
+					
+					
+					//set the doctors availability at the old time as now available so other appointments may be booked
+					doc.getAvailability().getWorkDay(days.numberOfDaysAway(appPat.getDate())).getTimeSlot(days.timeToTimeslot(appPat.getTime())).setIsBooked(false);
+					
+					//update the schedule
+					doc.getSchedule().updateAppointment(appPat.getPatientId(), appPat.getAppointmentId(), appDate, appTime); //update the appointment for the doctor
+					
+					
+					days.dateToUpdateAvailability(appDate, appTime, doc);	//set the new appointment time to booked so no other appointments can be booked for the doc at this time
+					writer.editObjectToFile(doc, docID);			//write to file
+					
+					
 					BorderPane npPane = new BorderPane();
-					((Labeled) intro.getChildren().get(0)).setText("Update Complete");
+					((Labeled) intro.getChildren().get(0)).setText("Schedule Complete");
 
 					//transitions to confirmation panel
 					scheduleApp.getChildren().clear();
 					setVBox(scheduleApp);
-					Label done = new Label("Appointment update completed");
+					Label done = new Label("Patient Scheduling completed");
 					done.setFont(new Font("Cambria", 32));
 					scheduleApp.getChildren().addAll(done,reTurn);
 					setBorderpane(npPane,intro, scheduleApp);
@@ -137,17 +216,17 @@ public class updateAppointmentGUI extends tableSchGUI{
 					
 
 					
+					
 				}
-				}
-				catch(Exception f)
+				catch (Exception a)
 				{
-					System.out.println("\n\n\nIncorrect attempt on making an appointment caught, printing the stack trace\n\n\n");
-					f.printStackTrace(System.out);
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Please fill all fields correctly*");
+					
+					System.out.println("\n\n\nIncorrect attempt on updating an appointment caught, printing the stack trace\n\n\n");
+					a.printStackTrace(System.out);
 				}
-			}});		
+				
+			}
+		});
 		
 		
 		//Returns to the previous panel
@@ -167,6 +246,10 @@ public class updateAppointmentGUI extends tableSchGUI{
 				newDate.clear();
 				newTime.clear();
 				actionTarget.setText(null);
+				ObservableList<String> timestyleClass = newTime.getStyleClass();
+				ObservableList<String> datestyleClass = newDate.getStyleClass();
+				timestyleClass.removeAll(Collections.singleton("error"));
+				datestyleClass.removeAll(Collections.singleton("error"));
 			}
 		});
 		
