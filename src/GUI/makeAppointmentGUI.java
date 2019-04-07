@@ -186,7 +186,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 								if(doctorX.getAvailability().getWorkDay(days.numberOfDaysAway(date.getText())).getTimeSlot(days.timeToTimeslot(time.getText())).getIsBooked())
 								//im so sorry about this ugly if statement guys, but
 								//basically what its doing is it grabs the number of days away the given date is, and
-								//uses that to find the corresponding work day, then using the given time it grabs the 
+								//uses that to find the corresponding work day object, then using the given time it grabs the 
 								//right time slot then checks if that is set to true, if its true it means that the doctor is 
 								//booked at that time slot.
 								{

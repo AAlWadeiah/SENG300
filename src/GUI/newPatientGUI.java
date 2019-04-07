@@ -189,7 +189,7 @@ public class newPatientGUI extends adminGUI{
 						System.out.println("Wrote to patient Json file successfully");
 					}
 					else {
-						System.out.println("Error! patient no write JSON :(");
+						throw new Exception();	}  //unable to write to JSON for some odd reason
 
 					//transition to a confirmation panel
 					BorderPane npPane = new BorderPane();
@@ -201,8 +201,8 @@ public class newPatientGUI extends adminGUI{
 					adminScreen.getChildren().addAll(done,reTurn);
 					setBorderpane(npPane,intro, adminScreen);
 					setScene(npPane,patientStage);
-				}}
-				catch(Exception o) {}
+			}
+				catch(Exception o) {System.out.println("error caught");}
 			}
 		});}
 

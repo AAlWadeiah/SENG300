@@ -104,7 +104,7 @@ public class newDoctorGUI extends adminGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				
-				//when the submit button is pressed we must remove the past red outlines
+				//when the submit button is pressed we first must remove the past red outlines
 				
 				ObservableList<String> styleClass;	 //get the style classes
 				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,Spec,ID,password); //create a list of the textboxes can iterate

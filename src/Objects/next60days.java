@@ -40,7 +40,7 @@ public class next60days {
 		doc.getAvailability().getWorkDay(noOfDaysBetween).bookTimeSlot(timeToTimeslot(time));} //get the timeslot based on the given time and book it
 
 	
-	/** This method determines if the next 60 days starting from tomorrow will overlap into the next year
+	/** This method determines if the next 60 days will overlap into the next year
 	 * 
 	 * @return Boolean, true if it is in the next year
 	 */
@@ -48,7 +48,7 @@ public class next60days {
 	{
 		if(today.getMonthValue() == 11)
 		{
-			if (today.getDayOfMonth()+1 > 2) { return true;}
+			if (today.getDayOfMonth() > 2) { return true;}
 			else {return false;}
 		}
 		else if (today.getMonthValue()+1 == 12) { return true;}
@@ -69,14 +69,15 @@ public class next60days {
 		int day = Integer.parseInt(dateArray[1]);
 		int year = Integer.parseInt(dateArray[2]);
 		
-		if (!hasNextYear() && year != currentYear() || 		//If the years are not consistent
-				year < currentYear() )
+		if ( (!hasNextYear() && year != currentYear()) || 		//If the years are not consistent
+				(hasNextYear() && (year != currentYear() || year!= currentYear()+1)) //if there is a new year in the next 60 days but the in the appointment isnt this year or the next one
+				|| year < currentYear() )
 		{
 			return false;
 		}
 		else if ( (LocalDate.of(year, month, day).getDayOfYear() > (today.getDayOfYear() + 61) &&                  //This handles if the date is more than 61 days away
 				today.getYear() == LocalDate.of(year, month, day).getYear()) 
-				|| (hasNextYear() && LocalDate.of(year, month, day).getDayOfYear() > (today.getYear() - 365+ 61))	   //If the date goes into a new year but its more than 61 days away
+				|| (hasNextYear() && LocalDate.of(year, month, day).getDayOfYear() > (today.getDayOfYear() - 365+ 61))	   //If the date goes into a new year but its more than 61 days away
 				|| (LocalDate.of(year, month, day).getDayOfYear() == today.getDayOfYear()) 						   //If the date is today
 				|| (!hasNextYear() && (LocalDate.of(year, month, day).getDayOfYear() < today.getDayOfYear())) )    //If the date is a day which has passed
 		{
@@ -102,7 +103,7 @@ public class next60days {
 		{return false;}
 		return true;
 	}
-	/** Finds the how many days away a certain date is from today, this is essentially the workday number
+	/** Finds the how many days away a certain date is from today, this is the workday number
 	 * 
 	 * @param date
 	 * @return
