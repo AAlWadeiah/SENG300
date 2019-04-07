@@ -2,7 +2,9 @@ package GUI;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +12,7 @@ import java.util.Set;
 import JsonFileUtils.Parser;
 import Objects.Appointment;
 import Objects.Doctor;
+import exceptions.emptyFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -75,6 +79,20 @@ public class viewScheduleGUI extends loginGUI{
 		//Labels
 		final Label label = new Label("Appointment List");
 		label.setFont(new Font("Arial", 20));
+		
+		Label startDate = new Label("Start date:");
+		startDate.setFont(new Font("Arial", 16));
+		
+		Label endDate = new Label("End date:");
+		endDate.setFont(new Font("Arial", 16));
+		
+		TextField sDate = new TextField();
+		TextField eDate = new TextField();
+		sDate.setPromptText("Enter start date");
+		eDate.setPromptText("Enter end date");
+		
+		
+		
 			
 		final Text actionTarget = new Text();
 			
@@ -122,6 +140,15 @@ public class viewScheduleGUI extends loginGUI{
 		VBox doctorScreen = new VBox();
 		setVBox(doctorScreen);
 		doctorScreen.setPadding(new Insets(-50,50,50,50));
+		
+		HBox startBox = new HBox();
+		startBox.setPadding(new Insets(10,10,10,0));
+		startBox.setSpacing(30);
+		startBox.setAlignment(Pos.CENTER);
+		HBox endBox = new HBox();
+		endBox.setPadding(new Insets(10,10,10,0));
+		endBox.setSpacing(30);
+		endBox.setAlignment(Pos.CENTER);
 
 		HBox intro = new HBox();
 		setHBox(intro);
@@ -137,6 +164,7 @@ public class viewScheduleGUI extends loginGUI{
 		Button logout = new Button("Logout");
 		Button updateAvailability= new Button("Update availability");
 		Button viewSchedule = new Button("View schedule");
+		Button submit = new Button("Submit");
 		updateAvailability.setPrefSize(150, 30);
 		viewSchedule.setPrefSize(150, 30);
 
@@ -145,13 +173,25 @@ public class viewScheduleGUI extends loginGUI{
 		StackPane introPane = new StackPane();
 		StackPane returnPane = new StackPane();
 		StackPane textPane = new StackPane();
+		StackPane submitPane = new StackPane();
+		StackPane startPane = new StackPane();
+		StackPane endPane = new StackPane();
 		introPane.setAlignment(Pos.CENTER_RIGHT);
 		introPane.getChildren().add(logout);
+
 		
 		returnPane.getChildren().add(reTurn);
 		returnPane.setAlignment(Pos.TOP_RIGHT);
 		textPane.getChildren().add(actionTarget);
 		textPane.setAlignment(Pos.BOTTOM_CENTER);
+		submitPane.getChildren().add(submit);
+		submitPane.setAlignment(Pos.BOTTOM_RIGHT);
+		startPane.getChildren().add(startBox);
+		endPane.getChildren().add(endBox);
+
+		
+		startBox.getChildren().addAll(startDate,sDate);
+		endBox.getChildren().addAll(endDate,eDate);
 		
 
 		//Populate Boxes
@@ -176,7 +216,11 @@ public class viewScheduleGUI extends loginGUI{
 		updateAvailability.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent e) {
-				//do 
+				doctorScreen.getChildren().clear();
+				doctorScreen.setSpacing(50);
+				doctorScreen.setAlignment(Pos.TOP_LEFT);
+				doctorScreen.setPadding(new Insets(100,50,50,50));
+				doctorScreen.getChildren().addAll(returnPane,startPane, endPane, submitPane);
 			}
 		});
 		
@@ -191,6 +235,59 @@ public class viewScheduleGUI extends loginGUI{
 				
 				
 				
+			}
+		});
+		
+		submit.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent e) {
+				//when the submit button is pressed we must remove the past red outlines
+				
+				ObservableList<String> styleClass;	 //get the style classes
+				List<TextField> checker = Arrays.asList(sDate,eDate); //create a list of the textboxes can iterate
+				for(TextField holder : checker) 
+				{
+					styleClass = holder.getStyleClass();
+					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
+				}
+				
+				String docStart = sDate.getText();
+				String docEnd = eDate.getText();
+				
+				if(sDate.getText().isEmpty() || eDate.getText().isEmpty()) {
+					try {			//we are going to make an exception so we must surround with a try-catch
+						for(TextField holder : checker) 
+						{
+							if (holder.getText().isEmpty())		//if the field is empty
+							{
+								styleClass = holder.getStyleClass();
+								styleClass.add("error");		//make it red
+							}
+						}
+						
+						throw new emptyFieldException();
+					}
+					catch(emptyFieldException f) { } 
+					
+				}
+				else {
+					//handle
+					
+					
+					//confirmation page
+					Label doneAvail = new Label("Doctor Availability updated");
+					doneAvail.setFont(new Font("Cambria", 32));
+					StackPane donePane = new StackPane();
+					donePane.getChildren().add(doneAvail);
+					donePane.setAlignment(Pos.CENTER);
+					doctorScreen.getChildren().clear();
+					doctorScreen.setPadding(new Insets(50,50,50,50));
+					doctorScreen.setSpacing(100);
+					doctorScreen.getChildren().addAll(returnPane,donePane);
+					
+				}
+
 			}
 		});
 		
