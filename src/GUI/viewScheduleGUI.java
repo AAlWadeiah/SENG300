@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import JsonFileUtils.Parser;
+import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Availability;
 import Objects.Doctor;
@@ -277,6 +278,9 @@ public class viewScheduleGUI extends loginGUI{
 				else {
 					try {
 						doctorUser.getAvailability().setWorkDayAvailabilityRange(docStart, docEnd);
+						Writer writer = new Writer();
+						writer.editObjectToFile(doctorUser, doctorUser.getId());
+						
 					} catch (dateRangeException e1) {
 						e1.printStackTrace();
 					}

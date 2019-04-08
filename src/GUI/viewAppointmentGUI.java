@@ -290,7 +290,6 @@ public class viewAppointmentGUI extends loginGUI{
 					if (new validateAccount().validate(userName,getHash(oPWord.getText()), "Patient"))
 					{
 						String newPasswordHash = setPassword(newPWord);
-						System.out.println("Good to go!");
 						for(Patient patient : allPatients) {
 							if((patient.getId()).equals(userName)) {
 								Patient patientUser = patient;
