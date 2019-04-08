@@ -13,13 +13,13 @@ public class Schedule {
 
 	//Fields
 	private Integer doctorId;
-	private HashMap<Integer, ArrayList<Appointment>> currentAppointments;
+	private HashMap<String, ArrayList<Appointment>> currentAppointments;
 
 	//Constructors 
 	public Schedule () {}
 	public Schedule (Integer doctorId) {
 		setDoctorId(doctorId);
-		setCurrentAppointments(new HashMap<Integer, ArrayList<Appointment>>());
+		setCurrentAppointments(new HashMap<String, ArrayList<Appointment>>());
 	}	
 
 	/**
@@ -29,7 +29,7 @@ public class Schedule {
 	 * @param date The date of the appointment
 	 * @param time The time of the appointment
 	 */
-	public void addAppointment(Integer patientId, String date, String time) {
+	public void addAppointment(String patientId, String date, String time) {
 		if (getCurrentAppointments().containsKey(patientId)) {
 			getCurrentAppointments().get(patientId).add(new Appointment(patientId, date, time));
 		} else {
@@ -44,7 +44,7 @@ public class Schedule {
 	 * @param patientId The ID of the patient to grab appointments for
 	 * @return an ArrayList containing all of the patients appointments, and null if no record of this patient could be found
 	 */
-	public ArrayList<Appointment> getAllAppointments(Integer patientId){
+	public ArrayList<Appointment> getAllAppointments(String patientId){
 		return getCurrentAppointments().get(patientId);
 	}
 
@@ -54,7 +54,7 @@ public class Schedule {
 	 * @param appointmentId The ID of the appointment to retrieve
 	 * @return the Appointment for the patient, and null if no Appointment with the ID could be found
 	 */
-	public Appointment getAppointment(Integer patientId, Integer appointmentId) {
+	public Appointment getAppointment(String patientId, Integer appointmentId) {
 		return getCurrentAppointments().get(patientId).stream().filter(appt -> appointmentId.equals(appt.getAppointmentId())).findFirst().orElse(null);
 	}
 
@@ -65,7 +65,7 @@ public class Schedule {
 	 * @param time The time of the appointment to retrieve
 	 * @return the Appointment for the patient, and null if no Appointment with the date and time could be found
 	 */
-	public Appointment getAppointment(Integer patientId, String date, String time) {
+	public Appointment getAppointment(String patientId, String date, String time) {
 		Integer idToFind = Appointment.calculateId(date, time);
 		return getCurrentAppointments().get(patientId).stream().filter(appt -> idToFind.equals(appt.getAppointmentId())).findFirst().orElse(null);
 	}
@@ -77,7 +77,7 @@ public class Schedule {
 	 */
 	public ArrayList<Appointment> getAppointmentsByDate(String date){
 		ArrayList<Appointment> apptsOnDate = new ArrayList<Appointment>();
-		for (Entry<Integer, ArrayList<Appointment>> patientAppts: getCurrentAppointments().entrySet()) {
+		for (Entry<String, ArrayList<Appointment>> patientAppts: getCurrentAppointments().entrySet()) {
 			for (Appointment appt : patientAppts.getValue()) {
 				if (appt.getDate().equals(date)) apptsOnDate.add(appt);
 			}
@@ -90,7 +90,7 @@ public class Schedule {
 	 * @param patientId The ID of the patient to remove from the appointments record.
 	 * @return true if the patient was removed, and false if the patient could not be found
 	 */
-	public boolean removePatient(Integer patientId) {
+	public boolean removePatient(String patientId) {
 		if (getCurrentAppointments().containsKey(patientId)) {
 			getCurrentAppointments().remove(patientId);
 			return true;
@@ -105,7 +105,7 @@ public class Schedule {
 	 * @param appointmentId The ID of the appointment to remove
 	 * @return true if the appointment was removed, and false otherwise
 	 */
-	public boolean removeAppointment(Integer patientId, Integer appointmentId) {
+	public boolean removeAppointment(String patientId, Integer appointmentId) {
 		return getCurrentAppointments().get(patientId).removeIf(a -> a.getAppointmentId().equals(appointmentId));
 	}
 
@@ -116,7 +116,7 @@ public class Schedule {
 	 * @param time The time of the appointment to remove
 	 * @return true of the appointment was removed, and false otherwise
 	 */
-	public boolean removeAppointment(Integer patientId, String date, String time) {
+	public boolean removeAppointment(String patientId, String date, String time) {
 		Integer idToFind = Appointment.calculateId(date, time);
 		return getCurrentAppointments().get(patientId).removeIf(a -> a.getAppointmentId().equals(idToFind));
 	}
@@ -129,7 +129,7 @@ public class Schedule {
 	 * @param newTime The new time for the appointment
 	 * @return the new ID for the appointment
 	 */
-	public Integer updateAppointment(Integer patientId, Integer appointmentId, String newDate, String newTime) {
+	public Integer updateAppointment(String patientId, Integer appointmentId, String newDate, String newTime) {
 		Appointment apptToEdit = getCurrentAppointments().get(patientId).stream()
 				.filter(appt -> appointmentId.equals(appt.getAppointmentId())).findFirst().orElse(null);
 		return apptToEdit.updateAppointment(newDate, newTime);
@@ -144,7 +144,7 @@ public class Schedule {
 	 * @param newTime The new time for the appointment
 	 * @return the new ID for the appointment
 	 */
-	public Integer updateAppointment(Integer patientId, String oldDate, String oldTime, String newDate, String newTime) {
+	public Integer updateAppointment(String patientId, String oldDate, String oldTime, String newDate, String newTime) {
 		Integer idToFind = Appointment.calculateId(oldDate, oldTime);
 		Appointment apptToEdit = getCurrentAppointments().get(patientId).stream()
 				.filter(appt -> idToFind.equals(appt.getAppointmentId())).findFirst().orElse(null);
@@ -153,10 +153,10 @@ public class Schedule {
 
 	//Setters
 	public void setDoctorId(Integer doctorId) {this.doctorId = doctorId;}
-	public void setCurrentAppointments(HashMap<Integer, ArrayList<Appointment>> currAppt) {this.currentAppointments = currAppt;}
+	public void setCurrentAppointments(HashMap<String, ArrayList<Appointment>> currAppt) {this.currentAppointments = currAppt;}
 
 	// Getters
 	public Integer getDoctor() {return doctorId;}
-	public HashMap<Integer, ArrayList<Appointment>> getCurrentAppointments() {return currentAppointments;}
+	public HashMap<String, ArrayList<Appointment>> getCurrentAppointments() {return currentAppointments;}
 
 }

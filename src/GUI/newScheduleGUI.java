@@ -157,7 +157,7 @@ public class newScheduleGUI extends adminGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				if(person!=null) {
-					Integer schPatient = Integer.parseInt(person.getDoctor());
+					String schPatient = person.getDoctor();
 					appointmentGUI adminApp = new appointmentGUI();
 					adminApp.startApp(scheduleStage,intro,person,schPatient);
 

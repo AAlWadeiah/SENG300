@@ -52,7 +52,7 @@ public class viewScheduleGUI extends loginGUI{
 	 * @param doctorStage stage that displays doctor
 	 * @param userName current Doctor signing in
 	 */
-	public void startDoctor(Stage doctorStage,Integer userName) {
+	public void startDoctor(Stage doctorStage,String userName) {
 		
 		//Reader
 		String currentDir = System.getProperty("user.dir");
@@ -61,7 +61,7 @@ public class viewScheduleGUI extends loginGUI{
 		List<Doctor> allDoctors = parser.parseDoctors();
 		doctorUser = null;
 		
-		HashMap <Integer, ArrayList<Appointment>> docMap  = null;
+		HashMap <String, ArrayList<Appointment>> docMap  = null;
 		
 		//gets the current doctor object
 		for(Doctor doctor: allDoctors) {
@@ -72,9 +72,9 @@ public class viewScheduleGUI extends loginGUI{
 		}
 		
 		
-		docMap=  doctorUser.getSchedule().getCurrentAppointments();
+		docMap =  doctorUser.getSchedule().getCurrentAppointments();
 		
-		 Set<Integer> keys = docMap.keySet();
+		 Set<String> keys = docMap.keySet();
 		 Collection<ArrayList<Appointment>> docVal = docMap.values();
 
 		//Table setup

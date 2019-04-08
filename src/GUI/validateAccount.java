@@ -21,7 +21,7 @@ public class validateAccount {
 	 * @param pass password to validate
 	 * @param filename filename of entity we will be validating
 	 */
-	public validateAccount(Integer user, String pass, String filename) {this.validate(user, pass, filename);}
+	public validateAccount(String user, String pass, String filename) {this.validate(user, pass, filename);}
 	public validateAccount() {}
 
 	String currentDir = System.getProperty("user.dir");			//current directory
@@ -32,7 +32,7 @@ public class validateAccount {
 	List<Admin> allAdmins = parser.parseAdmins();				//List of all admins from parser class
 
 	/**
-	 * This is the method whic hdoes the actual validation by comparing the given values to the 
+	 * This is the method which does the actual validation by comparing the given values to the 
 	 * values found in file
 	 * 
 	 * @param user, ID to validate
@@ -40,12 +40,12 @@ public class validateAccount {
 	 * @param type, are we doing patients, admins, or doctors
 	 * @return boolean, true if it is validated successfully, or false otherwise
 	 */
-	public Boolean validate(Integer user, String pass, String type) {
+	public Boolean validate(String user, String pass, String type) {
 
 		boolean authenticate = false;
 		if (type.equals("Patient")) {
 			for (Patient patient : allPatients) {
-				if (patient.getId() == user) {
+				if (patient.getId().equals(user)) {
 					if(patient.getPassword().equals(pass)) {
 						System.out.println("Authentication Success!");
 						authenticate = true;
@@ -57,7 +57,7 @@ public class validateAccount {
 		}
 		else if(type.equals("Doctor")){
 			for (Doctor doctor : allDoctors) {
-				if (doctor.getId() == user) {
+				if (doctor.getId().equals(user)) {
 					if(doctor.getPassword().equals(pass)) {
 						System.out.println("Authentication Success!");
 						authenticate = true;
@@ -68,7 +68,7 @@ public class validateAccount {
 		}
 		else if(type.equals("Admin")){
 			for (Admin admin : allAdmins) {
-				if (admin.getId() == user) {
+				if (admin.getId().equals(user)) {
 					if(admin.getPassword().equals(pass)) {
 						System.out.println("Authentication Success!");
 						authenticate = true;

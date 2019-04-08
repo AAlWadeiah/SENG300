@@ -165,4 +165,65 @@ public class Writer {
 		return true;
 		
 	}
+	
+	
+	/** This method is used to edit the patient object info on the JSON file
+	 * 
+	 * @param doc Doctor object who would like their on file records to be editted
+	 * @param index index to be changed
+	 * @return True/False Success/Failure
+	 */
+	public boolean editObjectToFile(Patient pat, String index) {
+		Gson allPatFile = new GsonBuilder().setPrettyPrinting().create();
+		Type patientType = new TypeToken<List<Patient>>(){}.getType();
+
+		//declared addNewPatient
+		List<Patient> addNewPatient;
+
+
+		try {
+			FileReader fReader = new FileReader("allThePatients.json");
+			addNewPatient = allPatFile.fromJson(fReader, patientType);
+			fReader.close();
+		}
+		catch(FileNotFoundException e){
+			addNewPatient = null;
+
+		}
+		catch (IOException e){
+			System.out.println("Error! Writer Class cannot close allThePatients file - Big trouble...Aborting");
+			return false;
+		}
+
+		//if file is empty create a new list
+		if (null == addNewPatient){
+			addNewPatient = new ArrayList<>();
+		}
+		//to append, rewrite to new file
+
+		int i = 0;		
+		for(Patient patient : addNewPatient) {
+			if(patient.getId().equals(index)) {
+				break;
+				//patient located
+			}
+			i++;
+		}
+		addNewPatient.remove(i);
+		addNewPatient.add(i, pat);
+
+		String newJsonString = allPatFile.toJson(addNewPatient);
+
+
+
+		try (FileWriter file = new FileWriter("allThePatients.json")){
+			file.write(newJsonString);
+		}
+		catch(IOException f){
+			System.out.println("Error! Writer class failed to create Patient JSON object file");
+			return false;
+		}
+		return true;
+		
+	}
 }

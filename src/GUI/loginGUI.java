@@ -120,7 +120,7 @@ public class loginGUI extends startupGUI {
 						if (user.equals("Admin"))
 						{
 							
-							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
+							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
 								{
 								adminGUI adminSignin = new adminGUI();
 								adminSignin.startAdmin(stage);	
@@ -137,10 +137,10 @@ public class loginGUI extends startupGUI {
 						
 						else if (user.equals("Patient"))
 						{ 
-							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Patient"))
+							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
 								{
 								viewAppointmentGUI patientSignin = new viewAppointmentGUI();
-								patientSignin.startPatient(stage, Integer.valueOf(userID.getText()));	
+								patientSignin.startPatient(stage, userID.getText());	
 								}
 							else 
 								{
@@ -151,10 +151,10 @@ public class loginGUI extends startupGUI {
 						}
 						else if (user.equals("Doctor"))
 						{
-							if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
+							if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
 								{
 								viewScheduleGUI doctorSignin = new viewScheduleGUI();
-								doctorSignin.startDoctor(stage,Integer.parseInt(userID.getText()));
+								doctorSignin.startDoctor(stage,userID.getText());
 								}
 							else 
 								{
@@ -183,7 +183,7 @@ public class loginGUI extends startupGUI {
 						  
 						if (user.equals("Admin"))
 						{						
-							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
+							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
 								{
 								adminGUI adminSignin = new adminGUI();
 								adminSignin.startAdmin(stage);	
@@ -198,10 +198,10 @@ public class loginGUI extends startupGUI {
 						
 						else if (user.equals("Patient"))
 						{ 
-							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Patient"))
+							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
 								{
 								viewAppointmentGUI patientSignin = new viewAppointmentGUI();
-								patientSignin.startPatient(stage, Integer.valueOf(userID.getText()));	
+								patientSignin.startPatient(stage, userID.getText());	
 								}
 							else 
 								{
@@ -212,10 +212,10 @@ public class loginGUI extends startupGUI {
 						}
 						else if (user.equals("Doctor"))
 						{
-							if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
+							if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
 								{
 								viewScheduleGUI doctorSignin = new viewScheduleGUI();
-								doctorSignin.startDoctor(stage,Integer.parseInt(userID.getText()));
+								doctorSignin.startDoctor(stage,userID.getText());
 								}
 							else 
 								{
@@ -226,6 +226,7 @@ public class loginGUI extends startupGUI {
 				  }
 					  }
 						catch(Exception e) {	// we must have gotten some bad input if we go into here
+						System.out.println("That just caused an " +e.getMessage());
 						actionTarget.setFill(Color.FIREBRICK);
 						actionTarget.setFont(new Font("Cambra", 14));
 						actionTarget.setText("*Wrong Username or Password*");}

@@ -165,7 +165,7 @@ public class newPatientGUI extends adminGUI{
 					List<Patient> allPatients = parser.parsePatients();
 				
 					for(Patient patient: allPatients) {
-					if (patient.getId().toString().equals(ID.getText())) { 
+					if (patient.getId().equals(ID.getText())) { 
 						styleClass = ID.getStyleClass(); styleClass.add("error");
 						throw new usernameTakenException();}
 					}
@@ -189,13 +189,14 @@ public class newPatientGUI extends adminGUI{
 					
 
 					//Creates and writes to a JSON file
-					Patient patient = new Patient(pfirstName, plastName, pAdd, pDoct, pEmail, pNumb, Integer.valueOf(pId), pPassword);
+					Patient patient = new Patient(pfirstName, plastName, pAdd, pDoct, pEmail, pNumb, pId, pPassword);
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(patient);
 					if (success) {
 						System.out.println("Wrote to patient Json file successfully");
 					}
 					else {
+						System.out.println("Failure at writing to File");
 						throw new Exception();	}  //unable to write to JSON for some odd reason
 
 					//transition to a confirmation panel
