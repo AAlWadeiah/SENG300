@@ -7,13 +7,13 @@ package Objects;
  */
 public class Appointment {
 	private Integer appointmentId;
-	private Integer patientId;
+	private String patientId;
 	private String date;
 	private String time;
 
 	// Constructors
 	public Appointment() {}
-	public Appointment(Integer pId, String date, String time) {
+	public Appointment(String pId, String date, String time) {
 		setPatientId(pId);
 		setDate(date);
 		setTime(time);
@@ -47,11 +47,11 @@ public class Appointment {
 	public String getTime() {return time;}
 	public String getDate() {return date;}
 	public Integer getAppointmentId() {return appointmentId;}
-	public Integer getPatientId() {return patientId;}
+	public String getPatientId() {return patientId;}
 
 	// Setters
 	public void setTime(String time) {this.time = time;}
 	public void setDate(String date) {this.date = date;}
 	private void setAppointmentId(Integer apptId) {this.appointmentId = apptId;}
-	public void setPatientId(Integer patientId) {this.patientId = patientId;}
+	public void setPatientId(String patientId) {this.patientId = patientId;}
 }

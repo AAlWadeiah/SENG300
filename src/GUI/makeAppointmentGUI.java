@@ -36,17 +36,15 @@ public class makeAppointmentGUI extends appointmentGUI{
 	 * @param scheduleStage stage that displays the scheduling panel
 	 * @param intro HBox to hold consistent form
 	 * @param person The patient to make an appointment for.
-	 * @param schPatient The schedule object of the patient
+	 * @param docID The schedule object of the patient
 	 */
-	public void startAppGUI(Stage scheduleStage, HBox intro, Patient person, Integer schPatient) {
+	public void startAppGUI(Stage scheduleStage, HBox intro, Patient person, String docID) {
 		int pad =50;
 		//Buttons
 		Button submit = new Button("Submit");
 		Button clear = new Button("Clear");
 		Button reTurn = new Button("Return");	
 		
-		//get doctor ID
-		Integer docID = schPatient;
 		
 
 		//Labels & Text
@@ -247,7 +245,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				startApp(scheduleStage, intro, person, schPatient);
+				startApp(scheduleStage, intro, person, docID);
 			}
 		});
 		
@@ -284,7 +282,7 @@ public class makeAppointmentGUI extends appointmentGUI{
 		
 		Label pfirstName = new Label(person.getFirstName());
 		Label plastName = new Label(person.getLastName());
-		Label pid = new Label(person.getId().toString());
+		Label pid = new Label(person.getId());
 		Label pdoc = new Label(person.getDoctor());
 		Label paddress = new Label(person.getAddress());
 		Label pphone = new Label(person.getNumber());

@@ -167,13 +167,13 @@ public class Writer {
 	}
 	
 	
-	/** This method is used to edit the doctor object info on the JSON file
+	/** This method is used to edit the patient object info on the JSON file
 	 * 
 	 * @param doc Doctor object who would like their on file records to be editted
 	 * @param index index to be changed
 	 * @return True/False Success/Failure
 	 */
-	public boolean editObjectToFile(Patient pat, int index) {
+	public boolean editObjectToFile(Patient pat, String index) {
 		Gson allPatFile = new GsonBuilder().setPrettyPrinting().create();
 		Type patientType = new TypeToken<List<Patient>>(){}.getType();
 
@@ -203,7 +203,7 @@ public class Writer {
 
 		int i = 0;		
 		for(Patient patient : addNewPatient) {
-			if((Integer.valueOf(patient.getId())).equals(index)) {
+			if(patient.getId().equals(index)) {
 				break;
 				//patient located
 			}

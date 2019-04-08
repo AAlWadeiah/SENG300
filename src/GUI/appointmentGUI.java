@@ -31,9 +31,9 @@ public class appointmentGUI extends newScheduleGUI{
 	 * @param scheduleStage stage that displays the scheduling panel
 	 * @param intro HBox to hold consistent form
 	 * @param person The patient for the appointment
-	 * @param schPatient The current schedule object
+	 * @param docID The current doctor for the appointment
 	 */
-	public void startApp(Stage scheduleStage, HBox intro, Patient person, Integer schPatient) {
+	public void startApp(Stage scheduleStage, HBox intro, Patient person, String docID) {
 		
 		int pad =50;
 		((Labeled) intro.getChildren().get(0)).setText("Patient Appointment: ");
@@ -86,7 +86,7 @@ public class appointmentGUI extends newScheduleGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				makeAppointmentGUI makeApp = new makeAppointmentGUI();
-				makeApp.startAppGUI(scheduleStage, intro, person,schPatient);
+				makeApp.startAppGUI(scheduleStage, intro, person,docID);
 			}
 		});
 		
@@ -97,7 +97,7 @@ public class appointmentGUI extends newScheduleGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				tableSchGUI changeApp = new tableSchGUI();
-				changeApp.startAppTable(scheduleStage, intro, person,schPatient);
+				changeApp.startAppTable(scheduleStage, intro, person,docID);
 				
 			}
 		});

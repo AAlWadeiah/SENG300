@@ -1,32 +1,22 @@
 [
   {
     "firstName": "Ivan",
-    "lastName": "R",
-    "address": "123 Main Street",
+    "lastName": "R.",
+    "address": "123 What Road",
     "assignedDoctorName": "1",
-    "email": "ivan@ucalgary.ca",
-    "phoneNumber": "111 111 1111",
-    "id": 101,
+    "email": "Mail@mail.com",
+    "phoneNumber": "4038748162",
+    "id": "101",
     "password": "5f4dcc3b5aa765d61d8327deb882cf99"
   },
   {
     "firstName": "Abdullah",
-    "lastName": "A",
-    "address": "125 Main Street",
+    "lastName": "A.",
+    "address": "981 Happiness Avenue",
     "assignedDoctorName": "1",
-    "email": "ab@email.com",
-    "phoneNumber": "999 999 9999",
-    "id": 77,
-    "password": "5f4dcc3b5aa765d61d8327deb882cf99"
-  },
-  {
-    "firstName": "Abe",
-    "lastName": "Gonzalez",
-    "address": "111 Cool Rd NE",
-    "assignedDoctorName": "2",
-    "email": "abe@mail.com",
-    "phoneNumber": "50435125",
-    "id": 14,
+    "email": "email@hotmail.com",
+    "phoneNumber": "4039266772",
+    "id": "102",
     "password": "5f4dcc3b5aa765d61d8327deb882cf99"
   }
 ]

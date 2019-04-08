@@ -151,7 +151,7 @@ public class newDoctorGUI extends adminGUI{
 					//once Doctor ID has been added to GUI input, put into index 0 of constructor call below.
 					Schedule schDoc = new Schedule(Integer.valueOf(dId));
 					Availability avaDoc = new Availability();
-					Doctor doctor = new Doctor(Integer.valueOf(dId),dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd, dPassword,schDoc,avaDoc);
+					Doctor doctor = new Doctor(dId,dfirstName, dlastName, dDoc, dNumb, dEmail, dAdd, dPassword,schDoc,avaDoc);
 					Writer writer = new Writer();
 					boolean success = writer.writeObjectToFile(doctor);
 					if (success){

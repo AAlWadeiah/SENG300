@@ -42,9 +42,9 @@ public class tableSchGUI extends appointmentGUI{
 	 * @param scheduleStage stage that displays the appointment table
 	 * @param intro	HBox consistent form
 	 * @param person current patient	
-	 * @param schPatient current schedule
+	 * @param docID current doctors ID
 	 */
-	public void startAppTable(Stage scheduleStage, HBox intro, Patient person,Integer docID) {
+	public void startAppTable(Stage scheduleStage, HBox intro, Patient person,String docID) {
 		
 		int minwidth = 175;
 		

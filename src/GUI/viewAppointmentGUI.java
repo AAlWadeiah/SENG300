@@ -41,7 +41,7 @@ public class viewAppointmentGUI extends loginGUI{
 	 * @param patientStage
 	 * @param userName patients user name to sign in
 	 */
-	public void startPatient(Stage patientStage, Integer userName) {
+	public void startPatient(Stage patientStage, String userName) {
 		
 		//Reader
 		String currentDir = System.getProperty("user.dir");
@@ -223,7 +223,7 @@ public class viewAppointmentGUI extends loginGUI{
 		patientPane.setTop(intro);
 
 
-		setScene(patientPane,patientStage);
+		setScene(patientPane,patientStage); 
 				
 		//Button events
 
@@ -249,7 +249,6 @@ public class viewAppointmentGUI extends loginGUI{
 				pScreen.setPadding(new Insets(100,50,50,50));
 				pScreen.getChildren().addAll(returnPane,startPane, endPane, submitPane, textPane);
 				setBorderpane(patientPane, intro, pScreen);
-				setScene(patientPane,patientStage);
 			}
 		});
 		
@@ -288,7 +287,7 @@ public class viewAppointmentGUI extends loginGUI{
 				}
 				else {
 					//handle
-					if (new validateAccount().validate(Integer.valueOf(userName),getHash(oPWord.getText()), "Patient"))
+					if (new validateAccount().validate(userName,getHash(oPWord.getText()), "Patient"))
 					{
 						String newPasswordHash = setPassword(newPWord);
 						System.out.println("Good to go!");

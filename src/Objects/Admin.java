@@ -6,11 +6,11 @@ package Objects;
  */
 public class Admin {
 
-	private Integer id;
+	private String id;
 	private String password = "5f4dcc3b5aa765d61d8327deb882cf99"; // "password"
 	
 	//Constructors
-	public Admin (Integer id) { 
+	public Admin (String id) { 
 		setId(id);
 	}
 	public Admin() {
@@ -18,9 +18,9 @@ public class Admin {
 	}
 	
 	//Setters
-	public void setId(Integer id) {this.id = id;}
+	public void setId(String id) {this.id = id;}
 		
 	//Getters
-	public Integer getId() {return id;}
+	public String getId() {return id;}
 	public String getPassword() {return password;}
 }
