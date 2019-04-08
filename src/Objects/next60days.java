@@ -55,6 +55,19 @@ public class next60days {
 		else {return false;}
 	}
 	
+	/**
+	 * Parses a date of the form "MM/DD/YYYY". 
+	 * @param date The date to parse as a String
+	 * @return an integer array containing the values of the parsed date. Month is at index 0, day is at index 1, and year is at index 2.
+	 */
+	public int[] parseDate(String date) {
+		int[] parsedArray = new int[3];
+		String[] dateArray = date.split("/");
+		parsedArray[0] = Integer.parseInt(dateArray[0]);	// Month
+		parsedArray[1] = Integer.parseInt(dateArray[1]);	// Day
+		parsedArray[2] = Integer.parseInt(dateArray[2]);	// Year
+		return parsedArray;
+	}
 	
 	/** This function finds out if a given date is within the next 60 days starting from tomorrow,
 	 *  if it finds that the date is not, it throws an exception
@@ -64,10 +77,10 @@ public class next60days {
 	 */
 	public boolean isDateWithinNext60Days(String date) throws Exception
 	{
-		String[] dateArray = date.split("/");
-		int month = Integer.parseInt(dateArray[0]);
-		int day = Integer.parseInt(dateArray[1]);
-		int year = Integer.parseInt(dateArray[2]);
+		int[] dateArray = parseDate(date);
+		int month = dateArray[0];
+		int day = dateArray[1];
+		int year = dateArray[2];
 		
 		if ( (!hasNextYear() && year != currentYear()) || 		//If the years are not consistent
 				(hasNextYear() && (year != currentYear() || year!= currentYear()+1)) //if there is a new year in the next 60 days but the in the appointment isnt this year or the next one
