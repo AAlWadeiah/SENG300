@@ -2,6 +2,7 @@ package GUI;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import exceptions.emptyFieldException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -114,53 +115,66 @@ public class loginGUI extends startupGUI {
 				@Override
 				public void handle(ActionEvent e) {
 					
-					if (user.equals("Admin"))
-					{
+					
+					try {
+						if (user.equals("Admin"))
+						{
+							
+							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
+								{
+								adminGUI adminSignin = new adminGUI();
+								adminSignin.startAdmin(stage);	
+								}
+							else 
+								{
+								actionTarget.setFill(Color.FIREBRICK);
+								actionTarget.setFont(new Font("Cambra", 14));
+								actionTarget.setText("*Wrong Username or Password*");
+								}
+							
+							
+						}
 						
-						if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
-							{
-							adminGUI adminSignin = new adminGUI();
-							adminSignin.startAdmin(stage);	
-							}
-						else 
-							{
-							actionTarget.setFill(Color.FIREBRICK);
-							actionTarget.setFont(new Font("Cambra", 14));
-							actionTarget.setText("*Wrong Username or Password*");
-							}
-						
-						
+						else if (user.equals("Patient"))
+						{ 
+							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Patient"))
+								{
+								viewAppointmentGUI patientSignin = new viewAppointmentGUI();
+								patientSignin.startPatient(stage, Integer.valueOf(userID.getText()));	
+								}
+							else 
+								{
+								actionTarget.setFill(Color.FIREBRICK);
+								actionTarget.setFont(new Font("Cambra", 14));
+								actionTarget.setText("*Wrong Username or Password*");
+								}
+						}
+						else if (user.equals("Doctor"))
+						{
+							if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
+								{
+								viewScheduleGUI doctorSignin = new viewScheduleGUI();
+								doctorSignin.startDoctor(stage,Integer.parseInt(userID.getText()));
+								}
+							else 
+								{
+								actionTarget.setFill(Color.FIREBRICK);
+								actionTarget.setFont(new Font("Cambra", 14));
+								actionTarget.setText("*Wrong Username or Password*");
+								}
+							
+						}
+					}
+					catch(Exception e1){
+						try {
+							throw new emptyFieldException();
+						} catch (emptyFieldException e2) {
+							// Needed a catch for the exception
+						}
+						System.out.println("Error caught");
 					}
 					
-					else if (user.equals("Patient"))
-					{ 
-						if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Patient"))
-							{
-							viewAppointmentGUI patientSignin = new viewAppointmentGUI();
-							patientSignin.startPatient(stage, Integer.valueOf(userID.getText()));	
-							}
-						else 
-							{
-							actionTarget.setFill(Color.FIREBRICK);
-							actionTarget.setFont(new Font("Cambra", 14));
-							actionTarget.setText("*Wrong Username or Password*");
-							}
-					}
-					else if (user.equals("Doctor"))
-					{
-						if(new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Doctor"))
-							{
-							viewScheduleGUI doctorSignin = new viewScheduleGUI();
-							doctorSignin.startDoctor(stage,Integer.parseInt(userID.getText()));
-							}
-						else 
-							{
-							actionTarget.setFill(Color.FIREBRICK);
-							actionTarget.setFont(new Font("Cambra", 14));
-							actionTarget.setText("*Wrong Username or Password*");
-							}
-						
-					}
+
 			}});
 			
 			//If the enter button is pressed while inside the password box,
