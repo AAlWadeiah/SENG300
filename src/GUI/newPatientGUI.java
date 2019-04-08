@@ -4,6 +4,7 @@ import JsonFileUtils.Writer;
 import Objects.Doctor;
 import Objects.Patient;
 import exceptions.emptyFieldException;
+import exceptions.usernameException;
 import exceptions.usernameTakenException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,7 +49,6 @@ public class newPatientGUI extends adminGUI{
 		TextField add = new TextField();
 		TextField Num = new TextField();
 		TextField Email = new TextField();
-		//TextField Doc = new TextField();
 		TextField ID = new TextField();
 		TextField password = new TextField();
 		ChoiceBox<String> Doc = new ChoiceBox<>();
@@ -184,7 +184,7 @@ public class newPatientGUI extends adminGUI{
 					if (pId.charAt(0) == '0'){
 							styleClass = ID.getStyleClass();
 							styleClass.add("error");
-							throw new usernameTakenException();
+							throw new usernameException();
 					}
 					
 
