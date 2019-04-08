@@ -14,11 +14,18 @@ public class Availability {
 	// Fields
 	private static final Integer NUMBER_OF_WORK_DAYS = 60;
 	private HashMap<Integer, WorkDay> availability;
+	private next60days dateUtils;
 	
 	// Constructor
 	public Availability() {
 		setAvailability(new HashMap<Integer, WorkDay>());
+		setDateUtils(new next60days());
 		for (int i = 1; i <= getNumberOfWorkDays(); i++) getAvailability().put(i, new WorkDay());
+	}
+	
+	public void setWorkdayAvailability(String day) {
+		int workdayId = getDateUtils().numberOfDaysAway(day);
+		getAvailability().get(workdayId).setIsAvailable(false);
 	}
 	
 	/**
@@ -76,7 +83,9 @@ public class Availability {
 	// Getters
 	public static Integer getNumberOfWorkDays() {return NUMBER_OF_WORK_DAYS;}
 	public HashMap<Integer, WorkDay> getAvailability() {return availability;}
+	public next60days getDateUtils() {return dateUtils;}
 
 	// Setters
 	private void setAvailability(HashMap<Integer, WorkDay> availability) {this.availability = availability;}
+	public void setDateUtils(next60days dateUtils) {this.dateUtils = dateUtils;}
 }
