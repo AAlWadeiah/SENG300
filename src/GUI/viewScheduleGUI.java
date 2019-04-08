@@ -11,7 +11,9 @@ import java.util.Set;
 
 import JsonFileUtils.Parser;
 import Objects.Appointment;
+import Objects.Availability;
 import Objects.Doctor;
+import exceptions.dateRangeException;
 import exceptions.emptyFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +43,7 @@ public class viewScheduleGUI extends loginGUI{
 	
 	//private TableView<ArrayList<Appointment>> table = new TableView<>();	
 	private TableView<Appointment> table = new TableView<>();
+	private Doctor doctorUser;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	
@@ -56,7 +59,7 @@ public class viewScheduleGUI extends loginGUI{
 		File path = new File(currentDir);
 		Parser parser = new Parser();
 		List<Doctor> allDoctors = parser.parseDoctors();
-		Doctor doctorUser = null;
+		doctorUser = null;
 		
 		HashMap <Integer, ArrayList<Appointment>> docMap  = null;
 		
@@ -272,9 +275,11 @@ public class viewScheduleGUI extends loginGUI{
 					
 				}
 				else {
-					//handle
-					
-					
+					try {
+						doctorUser.getAvailability().setWorkDayAvailabilityRange(docStart, docEnd);
+					} catch (dateRangeException e1) {
+						e1.printStackTrace();
+					}
 					//confirmation page
 					Label doneAvail = new Label("Doctor Availability updated");
 					doneAvail.setFont(new Font("Cambria", 32));

@@ -66,9 +66,9 @@ public class Availability {
 	 */
 	public WorkDay[] getWorkDayRange(Integer firstWorkDay, Integer secondWorkDay) {
 		WorkDay[] workRange = new WorkDay[secondWorkDay - firstWorkDay];
-		int counter = firstWorkDay - 1;
-		while(counter < secondWorkDay) {
-			workRange[counter] = getAvailability().get(counter);
+		int counter = 0;
+		while(counter < workRange.length) {
+			workRange[counter] = getAvailability().get(firstWorkDay + counter);
 			counter++;
 		}
 		return workRange;
