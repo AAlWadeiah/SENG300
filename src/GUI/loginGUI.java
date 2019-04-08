@@ -166,12 +166,9 @@ public class loginGUI extends startupGUI {
 						}
 					}
 					catch(Exception e1){
-						try {
-							throw new emptyFieldException();
-						} catch (emptyFieldException e2) {
-							// Needed a catch for the exception
-						}
-						System.out.println("Error caught");
+						actionTarget.setFill(Color.FIREBRICK);
+						actionTarget.setFont(new Font("Cambra", 14));
+						actionTarget.setText("*Wrong Username or Password*");
 					}
 					
 
@@ -181,6 +178,9 @@ public class loginGUI extends startupGUI {
 			//do the validation process
 			passID.setOnKeyReleased(event -> {
 				  if (event.getCode() == KeyCode.ENTER){
+					  
+					  try {			//in order to catch any bad input
+						  
 						if (user.equals("Admin"))
 						{						
 							if (new validateAccount().validate(Integer.valueOf(userID.getText()),getHash(passID.getText()), "Admin"))
@@ -223,7 +223,14 @@ public class loginGUI extends startupGUI {
 								actionTarget.setFont(new Font("Cambra", 14));
 								actionTarget.setText("*Wrong Username or Password*");
 								}
-				  }}});
+				  }
+					  }
+						catch(Exception e) {	// we must have gotten some bad input if we go into here
+						actionTarget.setFill(Color.FIREBRICK);
+						actionTarget.setFont(new Font("Cambra", 14));
+						actionTarget.setText("*Wrong Username or Password*");}
+						
+				  }});
 	}
 	
 	
