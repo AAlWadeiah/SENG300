@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import exceptions.dateRangeException;
+import javafx.collections.SetChangeListener;
+
 /**
  * A class which stores the availability of a Doctor.
  * @author Abdullah
@@ -14,6 +17,7 @@ public class Availability {
 	// Fields
 	private static final Integer NUMBER_OF_WORK_DAYS = 60;
 	private HashMap<Integer, WorkDay> availability;
+	private boolean updated = false;
 	private next60days dateUtils;
 	
 	// Constructor
@@ -24,8 +28,25 @@ public class Availability {
 	}
 	
 	public void setWorkdayAvailability(String day) {
-		int workdayId = getDateUtils().numberOfDaysAway(day);
-		getAvailability().get(workdayId).setIsAvailable(false);
+		int workDayId = getDateUtils().numberOfDaysAway(day);
+		setWorkDayAvailability(workDayId, false);
+		setUpdated(true);
+	}
+	
+	public void setWorkDayAvailabilityRange(String firstDay, String secondDay) throws dateRangeException{
+		int firstDayId = getDateUtils().numberOfDaysAway(firstDay);
+		int secondDayId = getDateUtils().numberOfDaysAway(secondDay);
+		
+		if (firstDayId > secondDayId) 
+			throw new dateRangeException();
+		
+		else {
+			WorkDay[] workdays = getWorkDayRange(firstDayId, secondDayId);
+			for (WorkDay day : workdays) {
+				day.setIsAvailable(false);
+			}
+		}
+		setUpdated(true);
 	}
 	
 	/**
@@ -84,8 +105,10 @@ public class Availability {
 	public static Integer getNumberOfWorkDays() {return NUMBER_OF_WORK_DAYS;}
 	public HashMap<Integer, WorkDay> getAvailability() {return availability;}
 	public next60days getDateUtils() {return dateUtils;}
+	public boolean isUpdated() {return updated;}
 
 	// Setters
 	private void setAvailability(HashMap<Integer, WorkDay> availability) {this.availability = availability;}
 	public void setDateUtils(next60days dateUtils) {this.dateUtils = dateUtils;}
+	public void setUpdated(boolean updated) {this.updated = updated;}
 }
