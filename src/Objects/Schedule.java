@@ -16,7 +16,9 @@ public class Schedule {
 	private HashMap<String, ArrayList<Appointment>> currentAppointments;
 
 	//Constructors 
-	public Schedule () {}
+	public Schedule () {
+		setCurrentAppointments(new HashMap<String, ArrayList<Appointment>>());
+	}
 	public Schedule (Integer doctorId) {
 		setDoctorId(doctorId);
 		setCurrentAppointments(new HashMap<String, ArrayList<Appointment>>());
