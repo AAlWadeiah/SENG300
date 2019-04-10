@@ -395,10 +395,8 @@ public class viewScheduleGUI extends loginGUI{
 						Writer writer = new Writer();
 						writer.editObjectToFile(doctorUser, doctorUser.getId());
 						
-					} catch (dateRangeException e1) {
-						System.out.println("CHECK HERE 2"); 
-						e1.printStackTrace();
-					}
+					
+					
 					System.out.println("CHECK HERE 3");
 					//confirmation page
 					Label doneAvail = new Label("Doctor Availability updated");
@@ -410,9 +408,12 @@ public class viewScheduleGUI extends loginGUI{
 					doctorScreen.setPadding(new Insets(50,50,50,50));
 					doctorScreen.setSpacing(100);
 					doctorScreen.getChildren().addAll(returnPane,donePane);
-					
 				}
-
+				catch (dateRangeException e1) {
+							System.out.println("CHECK HERE 2"); 
+							e1.printStackTrace();
+				}
+			}
 			}
 		});
 		
