@@ -1,6 +1,8 @@
 package GUI;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,6 +19,7 @@ import Objects.Appointment;
 import Objects.Availability;
 import Objects.Doctor;
 import Objects.WorkDay;
+import Objects.next60days;
 import exceptions.dateRangeException;
 import exceptions.emptyFieldException;
 import javafx.collections.FXCollections;
@@ -300,7 +303,9 @@ public class viewScheduleGUI extends loginGUI{
 				for(int row =0; row < docAvailability.size()/5; row ++) {
 					for(int col = 0; col < docAvailability.size()/12;col++) {
 						Rectangle rec = new Rectangle();
-						Label day = new Label("Day " + (count+1));
+						LocalDate date = new next60days().tomorrowDate();
+						DateTimeFormatter format = DateTimeFormatter.ofPattern("MMMM dd");
+						Label day = new Label(date.plusDays(count).format(format));
 						rec.setWidth(120);
 						rec.setHeight(40);
 						rec.setStroke(Color.BLACK);

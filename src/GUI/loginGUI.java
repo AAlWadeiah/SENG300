@@ -226,7 +226,7 @@ public class loginGUI extends startupGUI {
 				  }
 					  }
 						catch(Exception e) {	// we must have gotten some bad input if we go into here
-						System.out.println("That just caused an " +e.getMessage());
+						System.out.println("That just caused an " + e.getMessage());
 						actionTarget.setFill(Color.FIREBRICK);
 						actionTarget.setFont(new Font("Cambra", 14));
 						actionTarget.setText("*Wrong Username or Password*");}

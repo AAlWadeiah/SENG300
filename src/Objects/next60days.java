@@ -1,6 +1,5 @@
 /**
  * 
- * This class will handle all issues associated with relating the local date and mapping it to the next 60 
  * days.
  * 
  * 
@@ -229,6 +228,13 @@ public class next60days {
 		return localDate;
 	}
 	
+	/**
+	 * 
+	 */
+	public LocalDate tomorrowDate()
+	{
+		return today.plusDays(1);
+	}
 	
 	/**
 	 * 
