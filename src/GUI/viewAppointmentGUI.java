@@ -62,18 +62,6 @@ public class viewAppointmentGUI extends loginGUI{
 			}			
 		}
 
-
-		
-		for(Doctor doctor: allDoctors) {
-			if(doctor.getSchedule().getAllAppointments(patientUser.getId())!=null) {
-				 appUser = doctor.getSchedule().getAllAppointments(patientUser.getId());
-				 doctorUser = doctor;
-				 break;
-				//doctor appointment list
-			}
-		}
-		
-
 		//Boxes
 
 		HBox intro = new HBox();
@@ -180,6 +168,15 @@ public class viewAppointmentGUI extends loginGUI{
 		int tabNum =1;
 		
 		try {
+			
+			for(Doctor doctor: allDoctors) {
+				if(doctor.getSchedule().getAllAppointments(patientUser.getId())!=null) {
+					 appUser = doctor.getSchedule().getAllAppointments(patientUser.getId());
+					 doctorUser = doctor;
+					 break;
+					//doctor appointment list
+				}
+			}
 			for(Appointment apps : appUser) {
 				VBox patientScreen = new VBox();
 				setVBox(patientScreen);

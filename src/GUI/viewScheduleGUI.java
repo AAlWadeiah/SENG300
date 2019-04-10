@@ -1,5 +1,6 @@
 package GUI;
 
+import javafx.scene.input.MouseEvent;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -52,6 +53,7 @@ public class viewScheduleGUI extends loginGUI{
 	
 	//private TableView<ArrayList<Appointment>> table = new TableView<>();	
 	private TableView<Appointment> table = new TableView<>();
+	private LocalDate date = new next60days().tomorrowDate();
 	private Doctor doctorUser;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -61,6 +63,7 @@ public class viewScheduleGUI extends loginGUI{
 	 * @param doctorStage stage that displays doctor
 	 * @param userName current Doctor signing in
 	 */
+	
 	public void startDoctor(Stage doctorStage,String userName) {
 		
 		//Reader
@@ -80,12 +83,6 @@ public class viewScheduleGUI extends loginGUI{
 			}
 		}
 		
-		
-		docMap =  doctorUser.getSchedule().getCurrentAppointments();
-		
-		 Set<String> keys = docMap.keySet();
-		 Collection<ArrayList<Appointment>> docVal = docMap.values();
-
 		//Table setup
 		int minwidth = 175;
 		//Labels
@@ -137,7 +134,11 @@ public class viewScheduleGUI extends loginGUI{
 		
 		table.getColumns().addAll(patIDCol,appIDCol,dateCol,timeCol);
 		
+
 		try {
+		docMap =  doctorUser.getSchedule().getCurrentAppointments();
+		Set<String> keys = docMap.keySet();
+		Collection<ArrayList<Appointment>> docVal = docMap.values();
 		ObservableList<ArrayList<Appointment>> peopleArray = FXCollections.observableArrayList(docMap.values());
 		ObservableList<Appointment> people = FXCollections.observableArrayList();
 
@@ -294,16 +295,17 @@ public class viewScheduleGUI extends loginGUI{
 
 				Collection<WorkDay> availVal = docAvailMap.values();
 				ObservableList<Boolean> docAvailability = FXCollections.observableArrayList();
+				
+				
 					
 				for(WorkDay docAvaiList : availVal) {
 					docAvailability.add(docAvaiList.getIsAvailable());
 				}			
-	
 				int count = 0;
+				LocalDate date = new next60days().tomorrowDate();
 				for(int row =0; row < docAvailability.size()/5; row ++) {
 					for(int col = 0; col < docAvailability.size()/12;col++) {
 						Rectangle rec = new Rectangle();
-						LocalDate date = new next60days().tomorrowDate();
 						DateTimeFormatter format = DateTimeFormatter.ofPattern("MMMM dd");
 						Label day = new Label(date.plusDays(count).format(format));
 						rec.setWidth(120);
@@ -311,7 +313,23 @@ public class viewScheduleGUI extends loginGUI{
 						rec.setStroke(Color.BLACK);
 						schedulePane.setRowIndex(rec, row);
 						schedulePane.setColumnIndex(rec, col);
-	
+						/**
+						 * 
+						 * Right here we could make a popup every time someone clicks on a day showing all the
+						 * appointments on that one day
+						 * 
+						final int count2 = count;
+						rec.setOnMouseClicked(new EventHandler<MouseEvent>()
+						{
+							public void handle(MouseEvent e) 
+							{
+								final LocalDate date2 = new next60days().tomorrowDate();
+								DateTimeFormatter correctFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+								System.out.println("On " + date2.plusDays(count2).format(format) + " doctor has appointments "
+										+ doctorUser.getSchedule().getAppointmentsByDate(date2.plusDays(count2).format(correctFormat)));
+							}
+						});
+								*/
 						schedulePane.getChildren().addAll(rec);
 						if(docAvailability.get(count).equals(true)) {
 							rec.setFill(Color.GRAY);
