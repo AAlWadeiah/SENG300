@@ -287,6 +287,7 @@ public class viewScheduleGUI extends loginGUI{
 				availPane.setCenter(schedulePane);
 				schedulePane.setPadding(new Insets(20,20,20,100));
 				
+				
 
 				Collection<WorkDay> availVal = docAvailMap.values();
 				ObservableList<Boolean> docAvailability = FXCollections.observableArrayList();
@@ -299,12 +300,13 @@ public class viewScheduleGUI extends loginGUI{
 				for(int row =0; row < docAvailability.size()/5; row ++) {
 					for(int col = 0; col < docAvailability.size()/12;col++) {
 						Rectangle rec = new Rectangle();
+						Label day = new Label("Day " + (count+1));
 						rec.setWidth(120);
 						rec.setHeight(40);
 						rec.setStroke(Color.BLACK);
 						schedulePane.setRowIndex(rec, row);
 						schedulePane.setColumnIndex(rec, col);
-
+	
 						schedulePane.getChildren().addAll(rec);
 						if(docAvailability.get(count).equals(true)) {
 							rec.setFill(Color.GRAY);
@@ -313,9 +315,13 @@ public class viewScheduleGUI extends loginGUI{
 						else {
 							rec.setFill(Color.RED);
 						}
+						schedulePane.add(day, col, row);
 						count++;
 					}
 				}
+
+				
+				
 				
 				
 				
