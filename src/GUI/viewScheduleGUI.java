@@ -19,6 +19,7 @@ import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Availability;
 import Objects.Doctor;
+import Objects.Patient;
 import Objects.WorkDay;
 import Objects.next60days;
 import exceptions.dateRangeException;
@@ -29,7 +30,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -313,11 +317,12 @@ public class viewScheduleGUI extends loginGUI{
 						rec.setStroke(Color.BLACK);
 						schedulePane.setRowIndex(rec, row);
 						schedulePane.setColumnIndex(rec, col);
+						
 						/**
 						 * 
-						 * Right here we could make a popup every time someone clicks on a day showing all the
+						 * Right here we make a popup every time someone clicks on a day showing all the
 						 * appointments on that one day
-						 * 
+						 */
 						final int count2 = count;
 						rec.setOnMouseClicked(new EventHandler<MouseEvent>()
 						{
@@ -325,11 +330,47 @@ public class viewScheduleGUI extends loginGUI{
 							{
 								final LocalDate date2 = new next60days().tomorrowDate();
 								DateTimeFormatter correctFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-								System.out.println("On " + date2.plusDays(count2).format(format) + " doctor has appointments "
-										+ doctorUser.getSchedule().getAppointmentsByDate(date2.plusDays(count2).format(correctFormat)));
+								
+								//This gets all appointments of the doctor on that certain date
+								ArrayList<Appointment> AppointmentArray = doctorUser.getSchedule().getAppointmentsByDate(date2.plusDays(count2).format(correctFormat));
+								String appointmentsInformationString;
+								
+								if(AppointmentArray.size() > 0)
+								{
+									appointmentsInformationString = "On " + date2.format(format) + " you have the following appointments: \n\n";
+									Patient currentPatient = null;
+									for (Appointment appoint : AppointmentArray)
+									{
+										List<Patient> allPatients = parser.parsePatients();
+										for(Patient patient : allPatients) {
+											if (patient.getId().equals(appoint.getPatientId()))
+											{
+												currentPatient = patient;
+											}
+										}
+										
+										appointmentsInformationString = appointmentsInformationString + appoint.getTime()+ " with "+ currentPatient.getFirstName()+ " "+ currentPatient.getLastName() + ",\n";
+									}
+									appointmentsInformationString = appointmentsInformationString.substring(0, appointmentsInformationString.length()-2);
+									Alert alert = new Alert(AlertType.INFORMATION, appointmentsInformationString, ButtonType.CLOSE);
+									alert.setTitle("Appointments Upcoming");
+									alert.setHeaderText("Daily Schedule");
+									alert.showAndWait();
+									
+								}
+								else {
+									appointmentsInformationString = "On " + day.getText() + " you have no appointments";
+									
+									Alert alert = new Alert(AlertType.INFORMATION, appointmentsInformationString, ButtonType.CLOSE);
+									alert.setHeaderText("Daily Schedule");
+									alert.showAndWait();
+								}
+								
+								
+								
 							}
 						});
-								*/
+					
 						schedulePane.getChildren().addAll(rec);
 						if(docAvailability.get(count).equals(true)) {
 							rec.setFill(Color.GRAY);
