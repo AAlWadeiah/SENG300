@@ -9,11 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+
+
 import JsonFileUtils.Parser;
 import JsonFileUtils.Writer;
 import Objects.Appointment;
 import Objects.Availability;
 import Objects.Doctor;
+import Objects.WorkDay;
 import exceptions.dateRangeException;
 import exceptions.emptyFieldException;
 import javafx.collections.FXCollections;
@@ -29,11 +32,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -79,7 +84,7 @@ public class viewScheduleGUI extends loginGUI{
 		 Collection<ArrayList<Appointment>> docVal = docMap.values();
 
 		//Table setup
-		 int minwidth = 175;
+		int minwidth = 175;
 		//Labels
 		final Label label = new Label("Appointment List");
 		label.setFont(new Font("Arial", 20));
@@ -92,10 +97,19 @@ public class viewScheduleGUI extends loginGUI{
 		
 		TextField sDate = new TextField();
 		TextField eDate = new TextField();
-		sDate.setPromptText("Enter start date");
-		eDate.setPromptText("Enter end date");
+		sDate.setPromptText("MM/DD/YYYY");
+		eDate.setPromptText("MM/DD/YYYY");
+		
+		//docAvil
+		Availability docAvail = doctorUser.getAvailability();
+		
+		HashMap<Integer, WorkDay> docAvailMap = docAvail.getAvailability();
+		
+
 		
 		
+		
+
 		
 			
 		final Text actionTarget = new Text();
@@ -169,6 +183,7 @@ public class viewScheduleGUI extends loginGUI{
 		Button updateAvailability= new Button("Update availability");
 		Button viewSchedule = new Button("View schedule");
 		Button submit = new Button("Submit");
+		Button checkAvail = new Button("Check availability");
 		updateAvailability.setPrefSize(150, 30);
 		viewSchedule.setPrefSize(150, 30);
 
@@ -180,6 +195,7 @@ public class viewScheduleGUI extends loginGUI{
 		StackPane submitPane = new StackPane();
 		StackPane startPane = new StackPane();
 		StackPane endPane = new StackPane();
+		StackPane checkPane = new StackPane();
 		introPane.setAlignment(Pos.CENTER_RIGHT);
 		introPane.getChildren().add(logout);
 
@@ -192,6 +208,8 @@ public class viewScheduleGUI extends loginGUI{
 		submitPane.setAlignment(Pos.BOTTOM_RIGHT);
 		startPane.getChildren().add(startBox);
 		endPane.getChildren().add(endBox);
+		checkPane.getChildren().add(checkAvail);
+		checkPane.setAlignment(Pos.BOTTOM_CENTER);
 
 		
 		startBox.getChildren().addAll(startDate,sDate);
@@ -224,7 +242,7 @@ public class viewScheduleGUI extends loginGUI{
 				doctorScreen.setSpacing(50);
 				doctorScreen.setAlignment(Pos.TOP_LEFT);
 				doctorScreen.setPadding(new Insets(100,50,50,50));
-				doctorScreen.getChildren().addAll(returnPane,startPane, endPane, submitPane);
+				doctorScreen.getChildren().addAll(returnPane,startPane, endPane, submitPane,checkPane);
 			}
 		});
 		
@@ -236,6 +254,70 @@ public class viewScheduleGUI extends loginGUI{
 				doctorScreen.setAlignment(Pos.CENTER_LEFT);
 				doctorScreen.setPadding(new Insets(50,50,50,50));
 				doctorScreen.getChildren().addAll(returnPane, label,table,textPane);
+				
+				
+				
+			}
+		});
+		
+		checkAvail.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent e) {
+				BorderPane root = new BorderPane();
+				Stage secondaryStage = new Stage();
+				setScene(root,secondaryStage);
+				secondaryStage.setTitle("Doctor Availability");
+				
+				HBox intro = new HBox();
+				setHBox(intro);
+				VBox openScreen = new VBox();
+				setVBox(openScreen);
+				setBorderpane(root,intro,openScreen);
+				
+				Label actor = new Label();
+				actor.setText("Availability");
+				actor.setTextFill(Color.WHITE);
+				actor.setFont(new Font("Cambria", 32));
+				intro.getChildren().addAll(actor);
+				
+				GridPane schedulePane = new GridPane();
+				BorderPane availPane = new BorderPane();
+				openScreen.getChildren().add(availPane);
+				openScreen.setAlignment(Pos.CENTER);
+				availPane.setCenter(schedulePane);
+				schedulePane.setPadding(new Insets(20,20,20,100));
+				
+
+				Collection<WorkDay> availVal = docAvailMap.values();
+				ObservableList<Boolean> docAvailability = FXCollections.observableArrayList();
+					
+				for(WorkDay docAvaiList : availVal) {
+					docAvailability.add(docAvaiList.getIsAvailable());
+				}			
+	
+				int count = 0;
+				for(int row =0; row < docAvailability.size()/5; row ++) {
+					for(int col = 0; col < docAvailability.size()/12;col++) {
+						Rectangle rec = new Rectangle();
+						rec.setWidth(120);
+						rec.setHeight(40);
+						rec.setStroke(Color.BLACK);
+						schedulePane.setRowIndex(rec, row);
+						schedulePane.setColumnIndex(rec, col);
+
+						schedulePane.getChildren().addAll(rec);
+						if(docAvailability.get(count).equals(true)) {
+							rec.setFill(Color.GRAY);
+							
+						}
+						else {
+							rec.setFill(Color.RED);
+						}
+						count++;
+					}
+				}
+				
+				
 				
 				
 				
@@ -276,14 +358,19 @@ public class viewScheduleGUI extends loginGUI{
 					
 				}
 				else {
+					
 					try {
+						System.out.println("CHECK HERE 0");
 						doctorUser.getAvailability().setWorkDayAvailabilityRange(docStart, docEnd);
+						System.out.println("CHECK HERE 1");
 						Writer writer = new Writer();
 						writer.editObjectToFile(doctorUser, doctorUser.getId());
 						
 					} catch (dateRangeException e1) {
+						System.out.println("CHECK HERE 2"); 
 						e1.printStackTrace();
 					}
+					System.out.println("CHECK HERE 3");
 					//confirmation page
 					Label doneAvail = new Label("Doctor Availability updated");
 					doneAvail.setFont(new Font("Cambria", 32));
