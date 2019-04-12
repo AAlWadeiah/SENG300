@@ -17,13 +17,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import exceptions.*;
 
-
-
-
 public class next60days {
-	
+
 	private LocalDate today = LocalDate.now();
-	
+
 	/** 
 	 * This method finds the difference between the first date of the doctors schedule and the date of a given appointment
 	 *  Using this it calls the availability method to update the given doctors availability
@@ -38,7 +35,7 @@ public class next60days {
 		int noOfDaysBetween = numberOfDaysAway(date);	//This finds the number of days between the current day and the day of the appointment
 		doc.getAvailability().getWorkDay(noOfDaysBetween).bookTimeSlot(timeToTimeslot(time));} //get the timeslot based on the given time and book it
 
-	
+
 	/** This method determines if the next 60 days will overlap into the next year
 	 * 
 	 * @return Boolean, true if it is in the next year
@@ -53,7 +50,7 @@ public class next60days {
 		else if (today.getMonthValue()+1 == 12) { return true;}
 		else {return false;}
 	}
-	
+
 	/**
 	 * Parses a date of the form "MM/DD/YYYY". 
 	 * @param date The date to parse as a String
@@ -67,7 +64,7 @@ public class next60days {
 		parsedArray[2] = Integer.parseInt(dateArray[2]);	// Year
 		return parsedArray;
 	}
-	
+
 	/** This function finds out if a given date is within the next 60 days starting from tomorrow,
 	 *  if it finds that the date is not, it throws an exception
 	 * 
@@ -80,7 +77,7 @@ public class next60days {
 		int month = dateArray[0];
 		int day = dateArray[1];
 		int year = dateArray[2];
-		
+
 		if ( (!hasNextYear() && year != currentYear()) || 		//If the years are not consistent
 				(hasNextYear() && (year != currentYear() || year!= currentYear()+1)) //if there is a new year in the next 60 days but the in the appointment isnt this year or the next one
 				|| year < currentYear() )
@@ -97,8 +94,8 @@ public class next60days {
 		}
 		return true;
 	}
-	
-	
+
+
 	/** This Function is passed a time and tells if that time is within the work-day of a doctor,
 	 *  assumed as being the Hours of 9 - 5 PM. If it is not, it throws an exception which creates a popup alert box.
 	 * 
@@ -126,7 +123,7 @@ public class next60days {
 		Long noOfDaysBetween = ChronoUnit.DAYS.between(today.plusDays(1), dateOfAppointment) + 1;	//find # of days between given date and today
 		return noOfDaysBetween.intValue();
 	}
-	
+
 	/** Given a time, it returns a time slot based on how the availability of a doctor is managed, being from 9 - 5 every
 	 *  30 minutes accounting for one time slot.
 	 * 
@@ -152,10 +149,11 @@ public class next60days {
 		else if (timeArray[0].equals("3") && timeArray[1].equals("00")) {timeSlot = 13;}
 		else if (timeArray[0].equals("3") && timeArray[1].equals("30")) {timeSlot = 14;}		
 		else if (timeArray[0].equals("4") && timeArray[1].equals("00")) {timeSlot = 15;}
-		else {timeSlot = 16;}
+		else if (timeArray[0].equals("4") && timeArray[1].equals("30")) {timeSlot = 16;}
+		else {timeSlot = -1;}
 		return timeSlot;
 	}
-	
+
 	/**Given a timeslot integer, it returns the corresponding time
 	 * 
 	 * @param timeSlot, an integer corresponding to the correct timeSlot
@@ -179,10 +177,11 @@ public class next60days {
 		else if (timeSlot ==13 ) {time = "3:00";}
 		else if (timeSlot ==14 ) {time = "3:30";}		
 		else if (timeSlot ==15 ) {time = "4:00";}
-		else {time = "4:30";}
+		else if (timeSlot ==16 ){time = "4:30";}
+		else {time = "N/A";}
 		return time;
 	}
-	
+
 	/** Given a certain day and a doctor, this method finds out what timeslots the doctor has available
 	 * 
 	 * @param doc doctor object to check what timeslots he has
@@ -196,14 +195,14 @@ public class next60days {
 		while (i<= 16)
 		{
 			if(!doc.getAvailability().getWorkDay(dayID).getTimeSlot(i).getIsBooked())
-				{
-					timeArray.add(timeslotToTime(i));
-				};
+			{
+				timeArray.add(timeslotToTime(i));
+			};
 			i++;
 		}
 		return timeArray;
 	}
-	
+
 	/** This just formats the date to be visually appealing
 	 * 
 	 * @param date
@@ -211,12 +210,12 @@ public class next60days {
 	 */
 	public String dateFormat(String date) 
 	{
-	DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-	String formattedDate = dateToLocalDate(date).format(format);
-	
-	return formattedDate;}
-	
-	
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+		String formattedDate = dateToLocalDate(date).format(format);
+
+		return formattedDate;}
+
+
 	/** Given a date string in the format MM/DD/YYYY, it returns a LocalDate object corresponding
 	 * 
 	 * 
@@ -227,7 +226,7 @@ public class next60days {
 		LocalDate localDate = LocalDate.of(Integer.parseInt(dateArray[2]),Month.of(Integer.parseInt(dateArray[0])),Integer.parseInt(dateArray[1]));
 		return localDate;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -235,7 +234,7 @@ public class next60days {
 	{
 		return today.plusDays(1);
 	}
-	
+
 	/**
 	 * 
 	 * @return Integer, The current year
@@ -244,7 +243,7 @@ public class next60days {
 	{
 		return today.getYear();
 	}
-	
+
 	/**
 	 * @return Integer, The next year
 	 */
@@ -284,6 +283,6 @@ public class next60days {
 	{
 		return today.plusDays(60).getMonthValue();
 	}
-	
-	
+
+
 }
