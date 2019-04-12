@@ -52,9 +52,9 @@ public class newPatientGUI extends adminGUI{
 		TextField ID = new TextField();
 		TextField password = new TextField();
 		ChoiceBox<String> Doc = new ChoiceBox<>();
-		
+
 		Parser parser = new Parser();
-		
+
 		List<Doctor> allDoctors = parser.parseDoctors();
 		for(Doctor doctor: allDoctors) {
 			Doc.getItems().add(doctor.getFirstname() + "-" + doctor.getId());
@@ -88,7 +88,7 @@ public class newPatientGUI extends adminGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				
+
 				// To clear up the red outlines and empty the textboxes of text.
 				ObservableList<String> styleClass;
 				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,ID,password); //create a list of the textboxes can iterate
@@ -97,13 +97,13 @@ public class newPatientGUI extends adminGUI{
 					holder.clear();		//clear the text
 					styleClass = holder.getStyleClass();
 					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
-					
+
 				}
-				
+
 				Doc.setValue(null); 							//Clear the dropdown box
 				styleClass = Doc.getStyleClass(); 				
 				styleClass.removeAll(Collections.singleton("error")); //Remove the red outline of the Doctor Drop-down
-				
+
 			}});
 
 		//Returns to the previous panel
@@ -119,9 +119,9 @@ public class newPatientGUI extends adminGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				
+
 				//First we remove red outlines when the submit button is pressed
-				
+
 				ObservableList<String> styleClass;	 //get the style classes
 				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,ID,password); //create a list of the textboxes can iterate
 				for(TextField holder : checker) 
@@ -129,11 +129,11 @@ public class newPatientGUI extends adminGUI{
 					styleClass = holder.getStyleClass();
 					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
 				}
-				
+
 				styleClass = Doc.getStyleClass(); 				
 				styleClass.removeAll(Collections.singleton("error")); //Remove the red outline of the Doctor Drop-down
-				
-				
+
+
 				//checks if fields are empty
 				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() 
 						|| Email.getText().isEmpty() || Doc.getValue() == null || ID.getText().isEmpty() 
@@ -148,29 +148,29 @@ public class newPatientGUI extends adminGUI{
 								styleClass.add("error");		//make it red
 							}
 						}
-						
+
 						if (Doc.getValue() == null) 		//if the doctor dropdown is empty
 						{
 							styleClass = Doc.getStyleClass();
 							styleClass.add("error");		//make it red
 						}
-						
+
 						throw new emptyFieldException();	//throw the pop-up exception
-						} 
-					
+					} 
+
 					catch (emptyFieldException e1) {} //cause its an exception we gotta catch but we'll do nothing
 				}
-				
+
 				try {	
 					List<Patient> allPatients = parser.parsePatients();
-				
+
 					for(Patient patient: allPatients) {
-					if (patient.getId().equals(ID.getText())) { 
-						styleClass = ID.getStyleClass(); styleClass.add("error");
-						throw new usernameTakenException();}
+						if (patient.getId().equals(ID.getText())) { 
+							styleClass = ID.getStyleClass(); styleClass.add("error");
+							throw new usernameTakenException();}
 					}
 
-				
+
 					pfirstName = fName.getText();
 					plastName = lName.getText();
 					pAdd = add.getText();
@@ -180,13 +180,12 @@ public class newPatientGUI extends adminGUI{
 					pId = ID.getText();
 					pPassword = setPassword(password.getText());
 
-					
+
 					if (pId.charAt(0) == '0'){
-							styleClass = ID.getStyleClass();
-							styleClass.add("error");
-							throw new usernameException();
+						styleClass = ID.getStyleClass();
+						styleClass.add("error");
+						throw new usernameException();
 					}
-					
 
 					//Creates and writes to a JSON file
 					Patient patient = new Patient(pfirstName, plastName, pAdd, pDoct, pEmail, pNumb, pId, pPassword);
@@ -209,11 +208,10 @@ public class newPatientGUI extends adminGUI{
 					adminScreen.getChildren().addAll(done,reTurn);
 					setBorderpane(npPane,intro, adminScreen);
 					setScene(npPane,patientStage);
-			}
+				}
 				catch(Exception o) {System.out.println("error caught");}
 			}
 		});}
-
 
 	/**
 	 * Configures the pane where the user enters the new patient's information, making it appear in an appealing way.
@@ -287,11 +285,7 @@ public class newPatientGUI extends adminGUI{
 		Pane.add(submit, xs+8, ys+14);
 		Pane.add(clear, xs+8, ys);
 		Pane.add(reTurn, end, start);
-
-
-
 	}
-
 
 	/** This method sets the actual attribute of the hash
 	 * 

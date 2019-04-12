@@ -41,7 +41,6 @@ public class newScheduleGUI extends adminGUI{
 
 		int minwidth = 100;
 
-
 		//Labels
 		final Label label = new Label("Patient List");
 		label.setFont(new Font("Arial", 20));
@@ -65,7 +64,6 @@ public class newScheduleGUI extends adminGUI{
 		numCol.setMinWidth(minwidth);
 		emailCol.setMinWidth(minwidth);
 
-
 		//load objects from JSON files
 		String currentDir = System.getProperty("user.dir");
 		File path = new File(currentDir);
@@ -73,14 +71,8 @@ public class newScheduleGUI extends adminGUI{
 		Parser parser = new Parser();
 
 		File[] jsonFiles = parser.getFiles(path);
-		
-		final Text actionTarget = new Text();
-		
 
-		/**tester
-	    for (Patient patient : allPatients) {
-			System.out.println(patient.getFirstName() + " " + patient.getLastName()+" " + patient.getAddress() +" " + patient.getDoctor() + " " + patient.getEmail() + " " +patient.getNumber() + " " + patient.getId());
-		}*/
+		final Text actionTarget = new Text();
 
 		//populate cells
 		firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -92,16 +84,16 @@ public class newScheduleGUI extends adminGUI{
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
 
 		try {
-		List<Patient> allPatients = parser.parsePatients();
-		ObservableList<Patient> people = FXCollections.observableArrayList(allPatients);
-		table.setItems(people);
-		table.getColumns().addAll(firstNameCol,lastNameCol,IDCol,doctorCol,addressCol,numCol,emailCol);
+			List<Patient> allPatients = parser.parsePatients();
+			ObservableList<Patient> people = FXCollections.observableArrayList(allPatients);
+			table.setItems(people);
+			table.getColumns().addAll(firstNameCol,lastNameCol,IDCol,doctorCol,addressCol,numCol,emailCol);
 		}
 		catch(Exception e) {
 			actionTarget.setFill(Color.FIREBRICK);
 			actionTarget.setFont(new Font("Cambra", 14));
 			actionTarget.setText("*No current patients*");
-			
+
 		}
 		//click event based on selection of a patient in the table
 		table.setOnMouseClicked((MouseEvent e)->{
@@ -164,9 +156,6 @@ public class newScheduleGUI extends adminGUI{
 				}
 			}
 		});
-
-
-
 	}
 
 }

@@ -42,7 +42,7 @@ public class viewAppointmentGUI extends loginGUI{
 	 * @param userName patients user name to sign in
 	 */
 	public void startPatient(Stage patientStage, String userName) {
-		
+
 		//Reader
 		String currentDir = System.getProperty("user.dir");
 		File path = new File(currentDir);
@@ -53,7 +53,6 @@ public class viewAppointmentGUI extends loginGUI{
 		Patient patientUser = null;
 		Doctor doctorUser = null;
 
-		
 		for(Patient patient : allPatients) {
 			if((patient.getId()).equals(userName)) {
 				patientUser = patient;
@@ -63,93 +62,69 @@ public class viewAppointmentGUI extends loginGUI{
 		}
 
 		//Boxes
-
 		HBox intro = new HBox();
 		setHBox(intro);
-
 
 		//Labels
 		Label actor = new Label();
 		actor.setText("Patient: ");
 		actor.setFont(new Font("Cambria", 32));
 		actor.setTextFill(Color.WHITE);
-		
-		
-		
+
 		//Changing Password Stuff
-		
 		VBox pScreen = new VBox();
 		setVBox(pScreen);
 		pScreen.setPadding(new Insets(-50,50,50,50));
-		
+
 		final Text actionTarget = new Text();
-		
+
 		Label oldPassword = new Label("Old Password:");
 		oldPassword.setFont(new Font("Arial", 16));
-		
+
 		Label newPassword = new Label("New Password:");
 		newPassword.setFont(new Font("Arial", 16));
-		
+
 		TextField oPWord = new TextField();
 		TextField nPWord = new TextField();
-		
+
 		oPWord.setPromptText("Enter Old Password");
 		nPWord.setPromptText("Enter New Password");
-		
+
 		Button reTurn = new Button("Return");
 		Button submit = new Button("Submit");
-		
-		
+
 		HBox startBox = new HBox();
 		startBox.setPadding(new Insets(10,10,10,0));
 		startBox.setSpacing(30);
 		startBox.setAlignment(Pos.CENTER);
-		
-		
+
 		HBox endBox = new HBox();
 		endBox.setPadding(new Insets(10,10,10,0));
 		endBox.setSpacing(30);
 		endBox.setAlignment(Pos.CENTER);
 
-		
-		
 		startBox.getChildren().addAll(oldPassword,oPWord);
 		endBox.getChildren().addAll(newPassword,nPWord);
-		
-		
-		
-		
-		
+
 		StackPane returnPane = new StackPane();
 		StackPane startPane = new StackPane();
 		StackPane endPane = new StackPane();
 		StackPane submitPane = new StackPane();
 		StackPane textPane = new StackPane();
-		
+
 		textPane.getChildren().add(actionTarget);
 		returnPane.getChildren().add(reTurn);
 		startPane.getChildren().add(startBox);
 		endPane.getChildren().add(endBox);
 		submitPane.getChildren().add(submit);
-		
-		
-		
-		
-		
+
 		returnPane.setAlignment(Pos.TOP_RIGHT);
 		submitPane.setAlignment(Pos.BOTTOM_RIGHT);
 		textPane.setAlignment(Pos.BOTTOM_CENTER);
-		
-		
-		
-		
-		
-		
 
 		//Buttons 
 		Button logout = new Button("Logout");
 		Button changePassword = new Button("Change Password");
-
 
 		//Panes
 		BorderPane patientPane = new BorderPane();
@@ -162,19 +137,16 @@ public class viewAppointmentGUI extends loginGUI{
 		test.getChildren().add(changePassword);
 		introPane.setAlignment(Pos.TOP_RIGHT);
 		introPane.getChildren().add(logout);
-		
 
-		
 		int tabNum =1;
-		
+
 		try {
-			
+
 			for(Doctor doctor: allDoctors) {
 				if(doctor.getSchedule().getAllAppointments(patientUser.getId())!=null) {
-					 appUser = doctor.getSchedule().getAllAppointments(patientUser.getId());
-					 doctorUser = doctor;
-					 break;
-					//doctor appointment list
+					appUser = doctor.getSchedule().getAllAppointments(patientUser.getId());
+					doctorUser = doctor;
+					break;
 				}
 			}
 			for(Appointment apps : appUser) {
@@ -182,7 +154,7 @@ public class viewAppointmentGUI extends loginGUI{
 				setVBox(patientScreen);
 				patientScreen.setSpacing(40);
 				setTabBox(patientScreen,apps,doctorUser);
-				
+
 				Tab tab = new Tab();
 				tab.setGraphic(new Label("Appointment " + tabNum));
 				tab.setContent(patientScreen);
@@ -190,7 +162,7 @@ public class viewAppointmentGUI extends loginGUI{
 				tabNum++;
 			}
 			patientPane.setCenter(tabPane);
-			
+
 		}
 		catch(Exception e) {
 			//no appointment yet
@@ -206,24 +178,16 @@ public class viewAppointmentGUI extends loginGUI{
 			patientPane.setCenter(patientScreen);
 		}
 
-		
-		
-
 		//Populate Boxes
 		intro.getChildren().addAll(actor,introPane, test);
 		intro.setHgrow(introPane, Priority.ALWAYS);
 		intro.setHgrow(test, Priority.ALWAYS);
-		
-		//patientScreen.getChildren().addAll(tabPane);
-
 
 		patientPane.setTop(intro);
 
-
 		setScene(patientPane,patientStage); 
-				
-		//Button events
 
+		//Button events
 		//restarts program
 		logout.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -231,15 +195,13 @@ public class viewAppointmentGUI extends loginGUI{
 				start(patientStage);
 			}
 		});
-	
-		
-		
+
 		//changes password
 		changePassword.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent e) {
 				//start(patientStage);
-				
+
 				pScreen.getChildren().clear();
 				pScreen.setSpacing(50);
 				pScreen.setAlignment(Pos.TOP_LEFT);
@@ -248,13 +210,13 @@ public class viewAppointmentGUI extends loginGUI{
 				setBorderpane(patientPane, intro, pScreen);
 			}
 		});
-		
+
 		submit.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
 				//when the submit button is pressed we must remove the past red outlines
-				
+
 				ObservableList<String> styleClass;	 //get the style classes
 				List<TextField> checker = Arrays.asList(oPWord,nPWord); //create a list of the textboxes can iterate
 				for(TextField holder : checker) 
@@ -262,10 +224,10 @@ public class viewAppointmentGUI extends loginGUI{
 					styleClass = holder.getStyleClass();
 					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
 				}
-				
+
 				String oldPWord = oPWord.getText();
 				String newPWord = nPWord.getText();
-				
+
 				if(oPWord.getText().isEmpty() || nPWord.getText().isEmpty()) {
 					try {			//we are going to make an exception so we must surround with a try-catch
 						for(TextField holder : checker) 
@@ -276,11 +238,11 @@ public class viewAppointmentGUI extends loginGUI{
 								styleClass.add("error");		//make it red
 							}
 						}
-						
+
 						throw new emptyFieldException();
 					}
 					catch(emptyFieldException f) { } 
-					
+
 				}
 				else {
 					//handle
@@ -297,7 +259,7 @@ public class viewAppointmentGUI extends loginGUI{
 								//patient located
 							}			
 						}
-						
+
 						//confirmation page
 						Label doneAvail = new Label("Password Changed!");
 						doneAvail.setFont(new Font("Cambria", 32));
@@ -309,30 +271,16 @@ public class viewAppointmentGUI extends loginGUI{
 						pScreen.setSpacing(100);
 						pScreen.getChildren().addAll(returnPane,donePane);
 					}
-				else 
+					else 
 					{
-					
-					actionTarget.setFill(Color.FIREBRICK);
-					actionTarget.setFont(new Font("Cambra", 14));
-					actionTarget.setText("*Wrong Username or Password*");
+						actionTarget.setFill(Color.FIREBRICK);
+						actionTarget.setFont(new Font("Cambra", 14));
+						actionTarget.setText("*Wrong Username or Password*");
 					}
-					
-					
-					
-
-					
-					
-					
-					
-					
-					
-
-					
 				}
-
 			}
 		});
-		
+
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -341,7 +289,7 @@ public class viewAppointmentGUI extends loginGUI{
 			}
 		});
 	}
-	
+
 	/**
 	 * sets up the tab pane
 	 * @param patientScreen
@@ -349,27 +297,27 @@ public class viewAppointmentGUI extends loginGUI{
 	 * @param doctorUser
 	 */
 	public void setTabBox(VBox patientScreen, Appointment apps, Doctor doctorUser){
-		
+
 		//Labels
 		Label docLabel = new Label("Doctor: ");
 		docLabel.setFont(new Font("Arial", 32));
-		
-		
+
+
 		Label datenTime = new Label("Date & Time: ");
 		datenTime.setFont(new Font("Arial", 32));
-		
+
 		Label docName = new Label("Dr. " + doctorUser.getFirstname() + " " + doctorUser.getLastname()+"\n\n");
 		docName.setFont(new Font("Arial", 16));
-		
+
 		Label docTime = new Label(apps.getDate()+"\n\n" +apps.getTime());
 		docTime.setFont(new Font("Arial", 16));
-		
+
 		patientScreen.getChildren().addAll(docLabel,docName,datenTime,docTime);
 		patientScreen.setAlignment(Pos.TOP_LEFT);
 		patientScreen.setPadding(new Insets(50,50,50,50));
-		
+
 	}
-	
+
 	/** This method sets the actual attribute of the hash
 	 * 
 	 * @param p The users text version password
@@ -392,7 +340,7 @@ public class viewAppointmentGUI extends loginGUI{
 		}
 		return password;
 	}
-	
+
 	/** This hashes a string which is input and returns the corresponding hash
 	 * 
 	 * @param p The users text version password

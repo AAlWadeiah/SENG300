@@ -63,7 +63,6 @@ public class adminGUI extends loginGUI{
 		setBorderpane(adminPane, intro, adminScreen);
 		setScene(adminPane,adminStage);
 
-
 		//Button events
 
 		//ActionEvent used to restart program
@@ -79,10 +78,8 @@ public class adminGUI extends loginGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-
 				newPatientGUI adminNewpatient = new newPatientGUI();
 				adminNewpatient.startPatient(adminStage,intro,adminScreen);
-
 			}
 		});
 
@@ -91,26 +88,18 @@ public class adminGUI extends loginGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-
 				newDoctorGUI adminNewdoctor = new newDoctorGUI();
 				adminNewdoctor.startDoctor(adminStage,intro,adminScreen);
-
 			}
 		});
 
 		//Action Event used to invoke the newscheduleGUI which will be used to make a schedule
 		adminS.setOnAction(new EventHandler<ActionEvent>(){
-
 			@Override
 			public void handle(ActionEvent e) {
-
 				newScheduleGUI adminNewschedule = new newScheduleGUI();
 				adminNewschedule.startSchedule(adminStage,intro);
-
 			}
 		});
-
-
 	}
-
 }

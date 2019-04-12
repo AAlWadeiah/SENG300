@@ -30,213 +30,200 @@ import javafx.stage.Stage;
 public class loginGUI extends startupGUI {
 	@SuppressWarnings("unused")
 	public void startLogin(Stage stage, String user) {
-		
+
 
 		//Boxes
-			VBox  screen = new VBox(20);		//spacing is 20 in the VBox
-			setVBox(screen);
+		VBox  screen = new VBox(20);		//spacing is 20 in the VBox
+		setVBox(screen);
 
-			HBox intro = new HBox();
-			setHBox(intro);
-			
-			HBox usernameBox = new HBox();
-			setHBox(usernameBox);
-			
-			HBox passwordBox = new HBox();
-			setHBox(passwordBox);
+		HBox intro = new HBox();
+		setHBox(intro);
+
+		HBox usernameBox = new HBox();
+		setHBox(usernameBox);
+
+		HBox passwordBox = new HBox();
+		setHBox(passwordBox);
 
 		//Labels
-			Label actor = new Label();
-			actor.setText(user+" Login");
-			actor.setFont(new Font("Cambria", 32));
-			actor.setTextFill(Color.WHITE);
-			
-			final Text actionTarget = new Text();
+		Label actor = new Label();
+		actor.setText(user+" Login");
+		actor.setFont(new Font("Cambria", 32));
+		actor.setTextFill(Color.WHITE);
+
+		final Text actionTarget = new Text();
 
 		//Buttons 
-			Button rreturn = new Button("Return");
-			Button submit = new Button("Submit");
+		Button rreturn = new Button("Return");
+		Button submit = new Button("Submit");
 
-			submit.setPrefSize(150, 30);
+		submit.setPrefSize(150, 30);
 
 		//Panes
-			BorderPane pane = new BorderPane();
-			StackPane introPane = new StackPane();
-			StackPane submitPane = new StackPane();
-			
+		BorderPane pane = new BorderPane();
+		StackPane introPane = new StackPane();
+		StackPane submitPane = new StackPane();
+
 		//Fields and Labels
-			TextField userID = new TextField();
-			PasswordField passID = new PasswordField();
-			Label passLabel = new Label("Password:      ");
-			Label userLabel = new Label("Username:      ");
-			userLabel.setFont(new Font("Calibiri",20));
-			passLabel.setFont(new Font("Calibiri",20));
-			
+		TextField userID = new TextField();
+		PasswordField passID = new PasswordField();
+		Label passLabel = new Label("Password:      ");
+		Label userLabel = new Label("Username:      ");
+		userLabel.setFont(new Font("Calibiri",20));
+		passLabel.setFont(new Font("Calibiri",20));
+
 		//Adjust Boxes
-			introPane.setAlignment(Pos.CENTER_RIGHT);
-			
-			usernameBox.setStyle("-fx-background-color: #c5c9cc;");
-			usernameBox.setAlignment(Pos.TOP_CENTER);
-			
-			passwordBox.setStyle("-fx-background-color: #c5c9cc;");
-			passwordBox.setAlignment(Pos.TOP_CENTER);
+		introPane.setAlignment(Pos.CENTER_RIGHT);
+
+		usernameBox.setStyle("-fx-background-color: #c5c9cc;");
+		usernameBox.setAlignment(Pos.TOP_CENTER);
+
+		passwordBox.setStyle("-fx-background-color: #c5c9cc;");
+		passwordBox.setAlignment(Pos.TOP_CENTER);
 
 		//Populate Boxes
-			intro.getChildren().addAll(actor,introPane);
-			intro.setHgrow(introPane, Priority.ALWAYS);
-			
-			introPane.getChildren().add(rreturn);
-			submitPane.getChildren().addAll(submit);
-			
-			usernameBox.getChildren().addAll(userLabel,userID);
-			passwordBox.getChildren().addAll(passLabel,passID);
-			
-			screen.getChildren().addAll(usernameBox, passwordBox);
-			screen.getChildren().addAll(submitPane,actionTarget);
-				
+		intro.getChildren().addAll(actor,introPane);
+		intro.setHgrow(introPane, Priority.ALWAYS);
+
+		introPane.getChildren().add(rreturn);
+		submitPane.getChildren().addAll(submit);
+
+		usernameBox.getChildren().addAll(userLabel,userID);
+		passwordBox.getChildren().addAll(passLabel,passID);
+
+		screen.getChildren().addAll(usernameBox, passwordBox);
+		screen.getChildren().addAll(submitPane,actionTarget);
+
 		//Set panes and scene
-			setBorderpane( pane, intro,  screen);
-			setScene( pane, stage);
+		setBorderpane( pane, intro,  screen);
+		setScene( pane, stage);
 
+		//Button events
+		//restarts program
+		rreturn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent e) {
+				start(stage);
+			}
+		});
 
-			//Button events
+		//Collect the values in the login boxes and validate their login info
+		submit.setOnAction(new EventHandler<ActionEvent>(){
 
-			//restarts program
-			rreturn.setOnAction(new EventHandler<ActionEvent>(){
-				@Override
-				public void handle(ActionEvent e) {
-					start(stage);
+			@Override
+			public void handle(ActionEvent e) {
+				try {
+					if (user.equals("Admin"))
+					{
+						if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
+						{
+							adminGUI adminSignin = new adminGUI();
+							adminSignin.startAdmin(stage);	
+						}
+						else 
+						{
+							actionTarget.setFill(Color.FIREBRICK);
+							actionTarget.setFont(new Font("Cambra", 14));
+							actionTarget.setText("*Wrong Username or Password*");
+						}
+					}
+
+					else if (user.equals("Patient"))
+					{ 
+						if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
+						{
+							viewAppointmentGUI patientSignin = new viewAppointmentGUI();
+							patientSignin.startPatient(stage, userID.getText());	
+						}
+						else 
+						{
+							actionTarget.setFill(Color.FIREBRICK);
+							actionTarget.setFont(new Font("Cambra", 14));
+							actionTarget.setText("*Wrong Username or Password*");
+						}
+					}
+					else if (user.equals("Doctor"))
+					{
+						if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
+						{
+							viewScheduleGUI doctorSignin = new viewScheduleGUI();
+							doctorSignin.startDoctor(stage,userID.getText());
+						}
+						else 
+						{
+							actionTarget.setFill(Color.FIREBRICK);
+							actionTarget.setFont(new Font("Cambra", 14));
+							actionTarget.setText("*Wrong Username or Password*");
+						}
+					}
 				}
-			});
-
-			//Collect the values in the login boxes and validate their login info
-			submit.setOnAction(new EventHandler<ActionEvent>(){
-
-				@Override
-				public void handle(ActionEvent e) {
-					
-					
-					try {
-						if (user.equals("Admin"))
-						{
-							
-							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
-								{
-								adminGUI adminSignin = new adminGUI();
-								adminSignin.startAdmin(stage);	
-								}
-							else 
-								{
-								actionTarget.setFill(Color.FIREBRICK);
-								actionTarget.setFont(new Font("Cambra", 14));
-								actionTarget.setText("*Wrong Username or Password*");
-								}
-							
-							
-						}
-						
-						else if (user.equals("Patient"))
-						{ 
-							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
-								{
-								viewAppointmentGUI patientSignin = new viewAppointmentGUI();
-								patientSignin.startPatient(stage, userID.getText());	
-								}
-							else 
-								{
-								actionTarget.setFill(Color.FIREBRICK);
-								actionTarget.setFont(new Font("Cambra", 14));
-								actionTarget.setText("*Wrong Username or Password*");
-								}
-						}
-						else if (user.equals("Doctor"))
-						{
-							if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
-								{
-								viewScheduleGUI doctorSignin = new viewScheduleGUI();
-								doctorSignin.startDoctor(stage,userID.getText());
-								}
-							else 
-								{
-								actionTarget.setFill(Color.FIREBRICK);
-								actionTarget.setFont(new Font("Cambra", 14));
-								actionTarget.setText("*Wrong Username or Password*");
-								}
-							
-						}
-					}
-					catch(Exception e1){
-						actionTarget.setFill(Color.FIREBRICK);
-						actionTarget.setFont(new Font("Cambra", 14));
-						actionTarget.setText("*Wrong Username or Password*");
-					}
-					
-
+				catch(Exception e1){
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Wrong Username or Password*");
+				}
 			}});
-			
-			//If the enter button is pressed while inside the password box,
-			//do the validation process
-			passID.setOnKeyReleased(event -> {
-				  if (event.getCode() == KeyCode.ENTER){
-					  
-					  try {			//in order to catch any bad input
-						  
-						if (user.equals("Admin"))
-						{						
-							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
-								{
-								adminGUI adminSignin = new adminGUI();
-								adminSignin.startAdmin(stage);	
-								}
-							else 
-								{
-								actionTarget.setFill(Color.FIREBRICK);
-								actionTarget.setFont(new Font("Cambra", 14));
-								actionTarget.setText("*Wrong Username or Password*");
-								}
-						}
-						
-						else if (user.equals("Patient"))
-						{ 
-							if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
-								{
-								viewAppointmentGUI patientSignin = new viewAppointmentGUI();
-								patientSignin.startPatient(stage, userID.getText());	
-								}
-							else 
-								{
-								actionTarget.setFill(Color.FIREBRICK);
-								actionTarget.setFont(new Font("Cambra", 14));
-								actionTarget.setText("*Wrong Username or Password*");
-								}
-						}
-						else if (user.equals("Doctor"))
+
+		//If the enter button is pressed while inside the password box,
+		//do the validation process
+		passID.setOnKeyReleased(event -> {
+			if (event.getCode() == KeyCode.ENTER){
+
+				try {			//in order to catch any bad input
+
+					if (user.equals("Admin"))
+					{						
+						if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Admin"))
 						{
-							if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
-								{
-								viewScheduleGUI doctorSignin = new viewScheduleGUI();
-								doctorSignin.startDoctor(stage,userID.getText());
-								}
-							else 
-								{
-								actionTarget.setFill(Color.FIREBRICK);
-								actionTarget.setFont(new Font("Cambra", 14));
-								actionTarget.setText("*Wrong Username or Password*");
-								}
-				  }
-					  }
-						catch(Exception e) {	// we must have gotten some bad input if we go into here
-						System.out.println("That just caused an " + e.getMessage());
-						actionTarget.setFill(Color.FIREBRICK);
-						actionTarget.setFont(new Font("Cambra", 14));
-						actionTarget.setText("*Wrong Username or Password*");}
-						
-				  }});
+							adminGUI adminSignin = new adminGUI();
+							adminSignin.startAdmin(stage);	
+						}
+						else 
+						{
+							actionTarget.setFill(Color.FIREBRICK);
+							actionTarget.setFont(new Font("Cambra", 14));
+							actionTarget.setText("*Wrong Username or Password*");
+						}
+					}
+
+					else if (user.equals("Patient"))
+					{ 
+						if (new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Patient"))
+						{
+							viewAppointmentGUI patientSignin = new viewAppointmentGUI();
+							patientSignin.startPatient(stage, userID.getText());	
+						}
+						else 
+						{
+							actionTarget.setFill(Color.FIREBRICK);
+							actionTarget.setFont(new Font("Cambra", 14));
+							actionTarget.setText("*Wrong Username or Password*");
+						}
+					}
+					else if (user.equals("Doctor"))
+					{
+						if(new validateAccount().validate(userID.getText(),getHash(passID.getText()), "Doctor"))
+						{
+							viewScheduleGUI doctorSignin = new viewScheduleGUI();
+							doctorSignin.startDoctor(stage,userID.getText());
+						}
+						else 
+						{
+							actionTarget.setFill(Color.FIREBRICK);
+							actionTarget.setFont(new Font("Cambra", 14));
+							actionTarget.setText("*Wrong Username or Password*");
+						}
+					}
+				}
+				catch(Exception e) {	// we must have gotten some bad input if we go into here
+					System.out.println("That just caused an " + e.getMessage());
+					actionTarget.setFill(Color.FIREBRICK);
+					actionTarget.setFont(new Font("Cambra", 14));
+					actionTarget.setText("*Wrong Username or Password*");}
+			}
+		});
 	}
-	
-	
-	
-	
+
 	/** This hashes a string which is input and returns the corresponding hash
 	 * 
 	 * @param p The users text version password
@@ -259,6 +246,4 @@ public class loginGUI extends startupGUI {
 		}
 		return password;
 	}
-	
-	
-		}
+}

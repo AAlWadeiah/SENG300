@@ -33,10 +33,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class tableSchGUI extends appointmentGUI{
-	
+
 	private TableView<Appointment> table = new TableView<Appointment>();
 	private Appointment appPat;
-	
+
 	/**
 	 * Populates a table displaying all the available appointments for a given patient
 	 * @param scheduleStage stage that displays the appointment table
@@ -45,32 +45,32 @@ public class tableSchGUI extends appointmentGUI{
 	 * @param docID current doctors ID
 	 */
 	public void startAppTable(Stage scheduleStage, HBox intro, Patient person,String docID) {
-		
+
 		int minwidth = 175;
-		
+
 		//Labels
 		final Label label = new Label("Appointment List");
 		label.setFont(new Font("Arial", 20));
-		
+
 		final Text actionTarget = new Text();
-		
+
 		//Table setup
 		TableColumn appIDCol = new TableColumn("App ID");
 		TableColumn patIDCol = new TableColumn("Patient ID");
 		TableColumn dateCol = new TableColumn("Date");
 		TableColumn timeCol = new TableColumn("Time");
-		
+
 		appIDCol.setMinWidth(minwidth);
 		patIDCol.setMinWidth(minwidth);
 		dateCol.setMinWidth(minwidth);
 		timeCol.setMinWidth(minwidth);
-		
+
 		//populate cells
 		appIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
 		patIDCol.setCellValueFactory(new PropertyValueFactory<>("patientId"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
 		timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
-		
+
 		//reader & writer
 		String currentDir = System.getProperty("user.dir");
 		File path = new File(currentDir);
@@ -79,7 +79,7 @@ public class tableSchGUI extends appointmentGUI{
 		Writer writer = new Writer();
 
 		File[] jsonFiles = parser.getFiles(path);		
-		
+
 		List<Doctor> allDoctors = parser.parseDoctors();
 		List<Appointment> allApps = null;
 		Doctor doctorX = null;
@@ -101,44 +101,44 @@ public class tableSchGUI extends appointmentGUI{
 			actionTarget.setFill(Color.FIREBRICK);
 			actionTarget.setFont(new Font("Cambra", 14));
 			actionTarget.setText("*No current appointments*");
-			
+
 		}
-		
+
 		final Doctor doc = doctorX;
 		final int docI = docIndex;
 
 		table.getColumns().addAll(patIDCol,appIDCol,dateCol,timeCol);
-		
+
 		//click event based on selection of appointment in the table
 		table.setOnMouseClicked((MouseEvent e)->{
 			appPat = table.getSelectionModel().getSelectedItem();
 
 
 		});
-		
+
 		//Buttons
 		Button reTurn = new Button("Return");
 		Button remove = new Button("Remove");
 		Button update = new Button("Update");
-		
+
 		//Boxes
 		VBox schedulePatient = new VBox();
 		schedulePatient.setStyle("-fx-background-color: #c5c9cc;");
 		schedulePatient.setSpacing(25);
 		schedulePatient.setAlignment(Pos.CENTER_LEFT);
 		schedulePatient.setPadding(new Insets(50,50,50,50));
-		
+
 		HBox changePatient = new HBox();
 		changePatient.setStyle("-fx-background-color: #c5c9cc;");
 		changePatient.setAlignment(Pos.CENTER_RIGHT);
 		changePatient.setSpacing(15);
 		changePatient.getChildren().addAll(remove,update);
-		
+
 		//Panes
 		StackPane returnPane = new StackPane();
 		StackPane textPane = new StackPane();
 		StackPane buttonPane = new StackPane();
-		
+
 		returnPane.getChildren().add(reTurn);
 		returnPane.setAlignment(Pos.TOP_RIGHT);
 		textPane.getChildren().add(actionTarget);
@@ -152,7 +152,7 @@ public class tableSchGUI extends appointmentGUI{
 
 		setBorderpane(scheduleBorder, intro, schedulePatient);
 		setScene(scheduleBorder,scheduleStage);
-		
+
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -160,24 +160,21 @@ public class tableSchGUI extends appointmentGUI{
 				startApp(scheduleStage, intro, person, docID);
 			}
 		});
-		
+
 		remove.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
 				if(appPat!=null) {
 					next60days days = new next60days();
-					
+
 					//update the appointment schedule and the availability
 					doc.getSchedule().removeAppointment(appPat.getPatientId(),appPat.getAppointmentId());
 					doc.getAvailability().getWorkDay(days.numberOfDaysAway(appPat.getDate())).getTimeSlot(days.timeToTimeslot(appPat.getTime())).setIsBooked(false);
-					
-					
+
 					//writer
 					writer.editObjectToFile(doc, docI);
-					
-					
-					
+
 					//transition to confirmation panel
 					BorderPane npPane = new BorderPane();
 					((Labeled) intro.getChildren().get(0)).setText("Appointment Removed");
@@ -193,7 +190,7 @@ public class tableSchGUI extends appointmentGUI{
 				}
 			}
 		});
-		
+
 		update.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -201,13 +198,8 @@ public class tableSchGUI extends appointmentGUI{
 				if(appPat!=null) {
 					updateAppointmentGUI upAppGUI = new updateAppointmentGUI();
 					upAppGUI.startUA(scheduleStage, intro, person, doc,appPat,docI);
-					
-
 				}
 			}
 		});
-		
 	}
-
-
 }

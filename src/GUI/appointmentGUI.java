@@ -24,7 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class appointmentGUI extends newScheduleGUI{
-	
+
 
 	/**
 	 * Loads the page to either add an appointment or update an existing one
@@ -34,43 +34,38 @@ public class appointmentGUI extends newScheduleGUI{
 	 * @param docID The current doctor for the appointment
 	 */
 	public void startApp(Stage scheduleStage, HBox intro, Patient person, String docID) {
-		
+
 		int pad =50;
 		((Labeled) intro.getChildren().get(0)).setText("Patient Appointment: ");
 
 		//Buttons
 		Button addApp = new Button("Add appointment");
 		addApp.setPrefSize(150, 30);
-		
+
 		Button updateApp = new Button("Update appointment");
 		updateApp.setPrefSize(150, 30);
 		Button reTurn = new Button("Return");
-		
+
 		//Boxes
 		VBox scheduleApp = new VBox();		
 		setformVBox(scheduleApp);
 		scheduleApp.setPadding(new Insets(pad,pad,pad,pad));
 		scheduleApp.setSpacing(pad+80);
 		scheduleApp.setAlignment(Pos.TOP_CENTER);
-		
-
-				
 
 		//Panes
 		BorderPane appBorder = new BorderPane();
 
 		StackPane returnPane = new StackPane();
-		
+
 		returnPane.getChildren().add(reTurn);
 		returnPane.setAlignment(Pos.TOP_RIGHT);
-		
+
 		scheduleApp.getChildren().addAll(returnPane,addApp,updateApp);
-		
-		
+
 		setBorderpane(appBorder, intro, scheduleApp);
 		setScene(appBorder,scheduleStage);
-		
-		
+
 		//ActionEvent for returning to the previous screen
 		reTurn.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -79,7 +74,7 @@ public class appointmentGUI extends newScheduleGUI{
 				startSchedule(scheduleStage, intro);
 			}
 		});
-		
+
 		//ActionEvent for the adding a new Appointment Button
 		addApp.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -89,7 +84,6 @@ public class appointmentGUI extends newScheduleGUI{
 				makeApp.startAppGUI(scheduleStage, intro, person,docID);
 			}
 		});
-		
 
 		//ActionEven for the updating Appointment Button
 		updateApp.setOnAction(new EventHandler<ActionEvent>(){
@@ -98,19 +92,7 @@ public class appointmentGUI extends newScheduleGUI{
 			public void handle(ActionEvent e) {
 				tableSchGUI changeApp = new tableSchGUI();
 				changeApp.startAppTable(scheduleStage, intro, person,docID);
-				
 			}
 		});
-		
-		
-		
-				
-		
-		
-		
-		
-		
-		
 	}
-
 }

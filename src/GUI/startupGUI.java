@@ -21,7 +21,7 @@ public class startupGUI extends Application {
 	int size = 800;
 	String pfirstName, plastName, pAdd, pNumb, pEmail, pDoct,pId, pPassword;
 	String dfirstName, dlastName, dAdd, dNumb, dEmail,dDoc, dId, dPassword;
-	
+
 	/**
 	 * Initializes the startup page accessible by all agents, patients, doctors, and administration.
 	 * @param primaryStage The stage that displays the primary panel
@@ -66,7 +66,7 @@ public class startupGUI extends Application {
 
 			}
 		});
-		
+
 		patient.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
@@ -76,17 +76,16 @@ public class startupGUI extends Application {
 
 			}
 		});
-		
+
 		doctor.setOnAction(new EventHandler<ActionEvent>(){
-			
-				@Override
-				public void handle(ActionEvent e) {
-					loginGUI doctorLogin = new loginGUI();
-					doctorLogin.startLogin(primaryStage,"Doctor");
 
-				}
-			});
+			@Override
+			public void handle(ActionEvent e) {
+				loginGUI doctorLogin = new loginGUI();
+				doctorLogin.startLogin(primaryStage,"Doctor");
 
+			}
+		});
 
 		//populate boxes
 		intro.getChildren().addAll(actor);
@@ -95,9 +94,6 @@ public class startupGUI extends Application {
 		//Set the borderpane and scene
 		setBorderpane(root,intro,openScreen);
 		setScene(root,primaryStage);
-
-
-
 	}
 
 	/**

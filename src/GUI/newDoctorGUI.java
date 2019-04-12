@@ -78,13 +78,13 @@ public class newDoctorGUI extends adminGUI{
 			@Override
 			public void handle(ActionEvent e) {
 				ObservableList<String> styleClass;		//this is used to remove up the red outlines
-				
+
 				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,Spec,ID,password); //create a list we can iterate
 				for(TextField holder : checker) 
 				{
-				holder.clear();     									//clear the text
-				styleClass = holder.getStyleClass();
-				styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
+					holder.clear();     									//clear the text
+					styleClass = holder.getStyleClass();
+					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
 				}
 			}
 		});
@@ -103,9 +103,9 @@ public class newDoctorGUI extends adminGUI{
 
 			@Override
 			public void handle(ActionEvent e) {
-				
+
 				//when the submit button is pressed we first must remove the past red outlines
-				
+
 				ObservableList<String> styleClass;	 //get the style classes
 				List<TextField> checker = Arrays.asList(fName,lName,add,Num,Email,Spec,ID,password); //create a list of the textboxes can iterate
 				for(TextField holder : checker) 
@@ -113,12 +113,12 @@ public class newDoctorGUI extends adminGUI{
 					styleClass = holder.getStyleClass();
 					styleClass.removeAll(Collections.singleton("error"));	//remove the red outline
 				}
-				
-				
-				
+
+
+
 				//checks if fields are empty
 				if(fName.getText().isEmpty() || lName.getText().isEmpty() || add.getText().isEmpty() || Num.getText().isEmpty() || Email.getText().isEmpty() || Spec.getText().isEmpty() || ID.getText().isEmpty() || password.getText().isEmpty()) {
-					
+
 					try {			//we are going to make an exception so we must surround with a try-catch
 						for(TextField holder : checker) 
 						{
@@ -128,11 +128,11 @@ public class newDoctorGUI extends adminGUI{
 								styleClass.add("error");		//make it red
 							}
 						}
-						
+
 						throw new emptyFieldException();
 					}
 					catch(emptyFieldException f) { } 
-					
+
 				}
 				else {
 					dfirstName = fName.getText();
